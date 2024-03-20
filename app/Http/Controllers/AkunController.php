@@ -13,4 +13,16 @@ class AkunController extends Controller
     public function create(){
         return view('create');
     }
+
+    public function store(Request $request){
+        dd($request->all());
+    }
+
+    public function sidang(){
+        return view('berkas.sidang');
+    }
+
+    public function yudisium(){
+        return view('berkas.yudisium');
+    }
 }

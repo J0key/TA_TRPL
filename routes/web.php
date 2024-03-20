@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AkunController::class, 'view']);
+Route::get('/', [AkunController::class, 'view'])->name('main');
 Route::get('/create', [AkunController::class, 'create'])->name('create');
+Route::put('/store', [AkunController::class, 'store'])->name('store');
+
+// Berkas
+Route::get('/sidang', [AkunController::class, 'sidang'])->name('sidang');
+Route::get('/yudisium', [AkunController::class, 'yudisium'])->name('yudisium');
+
+
 
