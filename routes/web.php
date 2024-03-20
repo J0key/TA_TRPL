@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\AkunController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BerkasController;
+use App\Http\Controllers\AkunController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +15,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AkunController::class, 'view'])->name('main');
-Route::get('/create', [AkunController::class, 'create'])->name('create');
-Route::put('/store', [AkunController::class, 'store'])->name('store');
+// login
+Route::get('/', [AkunController::class, 'login'])->name('login');
+
+
+// Akun - Mahasiswa
+Route::get('/mahasiswa', [AkunController::class, 'viewMahasiswa'])->name('mahasiswa');
+Route::get('/createMahasiswa', [AkunController::class, 'createMahasiswa'])->name('createMahasiswa');
+Route::put('/storeMahasiswa', [AkunController::class, 'storeMahasiswa'])->name('storeMahasiswa');
+
+// Akun - Akademik
+Route::get('/akademik', [AkunController::class, 'viewAkademik'])->name('akademik');
+
+// Akun - Kaprodi
+Route::get('/kaprodi', [AkunController::class, 'viewKaprodi'])->name('kaprodi');
+
+// Akun - Dosen
+Route::get('/dosen', [AkunController::class, 'viewDosen'])->name('dosen');
+
 
 // Berkas
-Route::get('/sidang', [AkunController::class, 'sidang'])->name('sidang');
-Route::get('/yudisium', [AkunController::class, 'yudisium'])->name('yudisium');
+Route::get('/sidang', [BerkasController::class,  'sidang'])->name('sidang');
+Route::get('/createSidang', [BerkasController::class, 'createSidang'])->name('createSidang');
+Route::get('/yudisium', [BerkasController::class, 'yudisium'])->name('yudisium');
 
 
 

@@ -1,5 +1,7 @@
 @extends('layout.sidebar')
 
+@section('main')
+
 {{-- main start --}}
 <main class="w-[1139px] ml-[322px] min-h-screen my-10 ">
     {{-- navbar start --}}
@@ -39,7 +41,7 @@
 
     {{-- head start --}}
     <div>
-        <a href="{{ route('create') }}">
+        <a href="{{ route('createSidang') }}">
             <button class="bg-[#025E5A] py-2 px-4 mt-6 rounded-md">
                 <i class="ri-add-line"></i>
                 Tambah Sidang
@@ -103,7 +105,7 @@
                                     </path>
                                 </svg>
                             </a>
-  
+
 
                         </div>
                     </td>
@@ -116,3 +118,4 @@
 
 </main>
 {{-- main end --}}
+@endsection

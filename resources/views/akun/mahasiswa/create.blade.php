@@ -93,7 +93,7 @@
         </div>
         {{-- navbar end --}}
 
-        <a href="{{ route('main') }}">
+        <a href="{{ route('mahasiswa') }}">
             <button class="bg-[#025E5A] py-2 px-4 mt-6 rounded-md">
                 <i class="ri-arrow-left-line"></i>
                 Kembali
@@ -133,7 +133,7 @@
         </div>
 
         {{-- form start --}}
-        <form class="w-full border border-[#344948] mt-8 px-10 py-5 rounded-md bg-white " method="POST" action="{{ route('store') }}">
+        <form class="w-full border border-[#344948] mt-8 px-10 py-5 rounded-md bg-white " method="POST" action="{{ route('storeMahasiswa') }}">
             @csrf
             <div class="grid md:grid-cols-2 md:gap-6 mt-5">
                 <div class="relative z-0 w-full mb-5 group">

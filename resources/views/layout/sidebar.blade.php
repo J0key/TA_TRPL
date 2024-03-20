@@ -56,6 +56,10 @@
     </div>
     {{-- sidebar end --}}
 
+    {{-- main start --}}
+    @yield('main')
+    {{-- main end --}}
+
 
 </body>
 

@@ -6,23 +6,33 @@ use Illuminate\Http\Request;
 
 class AkunController extends Controller
 {
-    public function view(){
-        return view('layout.main');
+
+    public function login(){
+        return view('layout.login');
     }
 
-    public function create(){
-        return view('create');
+    public function viewMahasiswa(){
+        return view('akun.mahasiswa.mahasiswa');
     }
 
-    public function store(Request $request){
+    public function viewAkademik(){
+        return view('akun.akademik.akademik');
+    }
+    public function viewDosen(){
+        return view('akun.dosen.dosen');
+    }
+
+    public function viewKaprodi(){
+        return view('akun.kaprodi.kaprodi');
+    }
+
+    public function createMahasiswa(){
+        return view('akun.mahasiswa.create');
+    }
+
+    public function storeMahasiswa(Request $request){
         dd($request->all());
     }
 
-    public function sidang(){
-        return view('berkas.sidang');
-    }
 
-    public function yudisium(){
-        return view('berkas.yudisium');
-    }
 }
