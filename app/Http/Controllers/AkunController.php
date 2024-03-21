@@ -13,4 +13,8 @@ class AkunController extends Controller
     public function create(){
         return view('create');
     }
+
+    public function persetujuan(){
+        return view('partial.layouts');
+    }
 }

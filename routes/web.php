@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AkunController::class, 'view']);
 Route::get('/create', [AkunController::class, 'create'])->name('create');
-
+Route::get('/persetujuan', [AkunController::class, 'persetujuan'])->name('persetujuan');
