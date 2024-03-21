@@ -21,42 +21,13 @@
         }
 
         /* CSS untuk modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 99;
+        .relative:hover .absolute {
+            display: block;
         }
 
-        .modal-content {
-            background-color: #fff;
-            padding: 50px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .confirm-button {
-            background-color: #ff0000;
-            color: #fff;
-            padding: 50px 50px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 30px;
-        }
-
-        .cancel-button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 10px;
+        /* Fix alignment of dropdown items */
+        .relative {
+            display: inline-block;
         }
     </style>
 </head>
@@ -68,7 +39,7 @@
         <div class="fixed left-0 top-0 w-80 h-full p-4 z-50 sidebar-menu transition-transform bg-main_green shadow-lg shadow-slate-800"
             style="text-align: center">
             <div class="flex flex-row justify-center items-center my-6">
-                <img class="w-16" src="../assets/ugm_logo.png" alt="" />
+                <img class="w-16" src="{{ asset('icon/ugm_logo.png') }}" alt="" />
                 <a href="#" class="flex items-center ml-8 text-white text-2xl font-semibold"
                     style="font-weight: 200px">
                     TA - TRPL
@@ -79,7 +50,7 @@
                 <li class="mb-1 group py-2">
                     <a href="#"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                        <img src="../assets/Property 1=icon, Property 2=mahasiswa.png" class="w-4 h-auto mr-4"
+                        <img src="{{ asset('icon/Property 1=icon, Property 2=mahasiswa.png') }}" class="w-4 h-auto mr-4"
                             alt="" />
                         <span class="text-md">Dashboard</span>
                     </a>
@@ -88,8 +59,8 @@
                 <li class="mb-1 group py-2">
                     <a href="#"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                        <img src="../assets/Property 1=icon, Property 2=pengumuman.png" class="w-4 h-auto mr-4"
-                            alt="" />
+                        <img src="{{ asset('icon/Property 1=icon, Property 2=pengumuman.png') }}"
+                            class="w-4 h-auto mr-4" alt="" />
                         <span class="text-md">Pengumuman</span>
                     </a>
                 </li>
@@ -97,7 +68,7 @@
                 <li class="mb-1 py-2">
                     <a id="list_user" href="#"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
-                        <img src="../assets/Property 1=icon, Property 2=user.png" class="w-4 h-auto mr-4"
+                        <img src="{{ asset('icon/Property 1=icon, Property 2=user.png') }}" class="w-4 h-auto mr-4"
                             alt="" />
                         <span class="text-md">User</span>
                         <i class="ri-arrow-right-s-line ml-auto"
@@ -130,7 +101,7 @@
                 <li class="mb-1 py-2">
                     <a id="list_account" href="#"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
-                        <img src="../assets/Property 1=icon, Property 2=account.png" class="w-4 h-auto mr-4"
+                        <img src="{{ asset('icon/Property 1=icon, Property 2=account.png') }}" class="w-4 h-auto mr-4"
                             alt="" />
                         <span class="text-md">Account</span>
                         <i class="ri-arrow-right-s-line ml-auto"
@@ -179,7 +150,7 @@
                 <li class="mb-1 py-2">
                     <a id="list_berkas" href="#"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
-                        <img src="../assets/Property 1=icon, Property 2=berkas.png" class="w-4 h-auto mr-4"
+                        <img src="{{ asset('icon/Property 1=icon, Property 2=berkas.png') }}" class="w-4 h-auto mr-4"
                             alt="" />
                         <span class="text-md">Berkas</span>
                         <i class="ri-arrow-right-s-line ml-auto"
@@ -212,7 +183,7 @@
                 <li class="mb-1 py-2">
                     <a id="list_persetujuan" href="#"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
-                        <img src="../assets/Property 1=icon, Property 2=persetujuan.png" class="w-4 h-auto mr-4"
+                        <img src="{{ asset('icon/Property 1=icon, Property 2=berkas.png') }}" class="w-4 h-auto mr-4"
                             alt="" />
                         <span class="text-md font-semi">Persetujuan</span>
                         <i class="ri-arrow-right-s-line ml-auto"
@@ -253,7 +224,7 @@
                 <li class="mb-1 group py-2">
                     <a href="#"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                        <img src="../assets/Property 1=ico, Property 2=periode.png" class="w-4 h-auto mr-4"
+                        <img src="{{ asset('icon/Property 1=ico, Property 2=periode.png') }}" class="w-4 h-auto mr-4"
                             alt="" />
                         <span class="text-md">Periode Registrasi</span>
                     </a>
@@ -262,7 +233,7 @@
                 <li class="mb-1 group py-2">
                     <a href="#"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                        <img src="../assets/Property 1=icon, Property 2=project.png" class="w-4 h-auto mr-4"
+                        <img src="{{ asset('icon/Property 1=icon, Property 2=project.png') }}" class="w-4 h-auto mr-4"
                             alt="" />
                         <span class="text-md">Proyek</span>
                     </a>
@@ -274,7 +245,8 @@
 
         <!-- start: Main -->
 
-        <main class="pt-10 flex ms-80 px-20 flex-auto min-h-screen transition-all" style="background-color: #efefef">
+        <main class="pt-10 flex flex-col ms-80 px-20 flex-auto min-h-screen transition-all"
+            style="background-color: #efefef">
             <div class="w-full flex flex-row h-16 bg-white rounded-md items-center shadow-md shadow-slate-400">
                 <div class="flex flex-auto w-auto">
                     <form action="" method="GET"
@@ -298,11 +270,14 @@
                 </div>
 
                 <div class="flex flex-row me-12 space-x-4">
-                    <img class="w-6 h-6" src="../assets/lampu.png" alt="" />
-                    <img class="w-6 h-6" src="../assets/lonceng.png" alt="" />
+                    <img class="w-6 h-6" src="{{ asset('icon/lampu.png') }}" alt="" />
+                    <img class="w-6 h-6" src="{{ asset('icon/lonceng.png') }}" alt="" />
                     <div class="rounded-xl bg-slate-300 w-8 h-8"></div>
                 </div>
             </div>
+
+            @yield('content')
+
         </main>
     </div>
 
