@@ -1,4 +1,4 @@
-@extends('layout.sidebar')
+@extends('partial.layouts')
 
 @section('main')
 
@@ -42,7 +42,7 @@
     {{-- head start --}}
     <div>
         <a href="{{ route('createMahasiswa') }}">
-            <button class="bg-[#025E5A] py-2 px-4 mt-6 rounded-md">
+            <button class="bg-[#025E5A] py-2 px-4 mt-6 rounded-md text-white">
                 <i class="ri-add-line"></i>
                 Tambah Akun
             </button>

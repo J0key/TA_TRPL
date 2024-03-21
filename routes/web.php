@@ -24,6 +24,9 @@ Route::get('/persetujuan_edit_revisi', [AkunController::class, 'persetujuan_edit
 // login
 Route::get('/', [AkunController::class, 'login'])->name('login');
 
+// Dashboard
+Route::get('/dashboard', [AkunController::class, 'dashboard'])->name('dashboard');
+
 
 // Akun - Mahasiswa
 Route::get('/mahasiswa', [AkunController::class, 'viewMahasiswa'])->name('mahasiswa');

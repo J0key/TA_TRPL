@@ -32,15 +32,14 @@
     </style>
 </head>
 
-<body id="body" class="text-gray-800 font-inter">
+<body id="body" class="text-gray-800 font-inter bg-[#EFEFEF]">
     <!-- start: Sidebar -->
-
     <div class="flex flex-row flex-auto">
-        <div class="fixed left-0 top-0 w-80 h-full p-4 z-50 sidebar-menu transition-transform bg-main_green shadow-lg shadow-slate-800"
+        <div class="fixed left-0 top-0 w-64 h-full p-4 z-50 sidebar-menu transition-transform bg-main_green shadow-lg shadow-slate-800"
             style="text-align: center">
             <div class="flex flex-row justify-center items-center my-6">
                 <img class="w-16" src="{{ asset('icon/ugm_logo.png') }}" alt="" />
-                <a href="#" class="flex items-center ml-8 text-white text-2xl font-semibold"
+                <a href="#" class="flex items-center ml-3 text-white text-2xl font-semibold"
                     style="font-weight: 200px">
                     TA - TRPL
                 </a>
@@ -78,7 +77,7 @@
                                 "></i>
                     </a>
 
-                    <div id="menu" class="justify-start mt-6 ms-[-120px]"
+                    <div id="menu" class="justify-start mt-6 ms-[-30px]"
                         style="transition: display 0.3s ease; display: none">
                         <div class="flex items-center">
                             <div class="w-2 h-2 rounded bg-white"></div>
@@ -111,11 +110,11 @@
                                 "></i>
                     </a>
 
-                    <div id="menu" class="justify-start mt-6 ms-[-120px]"
+                    <div id="menu" class="justify-start mt-6 ms-[-30px]"
                         style="transition: display 0.3s ease; display: none">
                         <div class="flex items-center">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('mahasiswa') }}"
                                 class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
                                 <span class="text-md">Mahasiswa</span>
                             </a>
@@ -123,7 +122,7 @@
 
                         <div class="flex items-center mt-2">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('dosen')}}"
                                 class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
                                 <span class="text-md">Dosen</span>
                             </a>
@@ -131,7 +130,7 @@
 
                         <div class="flex items-center mt-2">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('akademik') }}"
                                 class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
                                 <span class="text-md">Akademik</span>
                             </a>
@@ -139,7 +138,7 @@
 
                         <div class="flex items-center mt-2">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('kaprodi') }}"
                                 class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
                                 <span class="text-md">Kaprodi</span>
                             </a>
@@ -160,7 +159,7 @@
                                 "></i>
                     </a>
 
-                    <div id="menu" class="justify-start mt-6 ms-[-120px]"
+                    <div id="menu" class="justify-start mt-6 ms-[-30px]"
                         style="transition: display 0.3s ease; display: none">
                         <div class="flex items-center">
                             <div class="w-2 h-2 rounded bg-white"></div>
@@ -193,7 +192,7 @@
                                 "></i>
                     </a>
 
-                    <div id="menu" class="justify-start mt-6 ms-[-120px]"
+                    <div id="menu" class="justify-start mt-6 ms-[-30px]"
                         style="transition: display 0.3s ease; display: none">
                         <div class="flex items-center">
                             <div class="w-2 h-2 rounded bg-white"></div>
@@ -243,9 +242,10 @@
         <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
         <!-- end: Sidebar -->
 
-        <!-- start: Main -->
+        @yield('main')
 
-        <main class="pt-10 flex flex-col ms-80 px-20 flex-auto min-h-screen transition-all"
+        <!-- start: Main -->
+        {{-- <main class="pt-10 flex flex-col ms-80 px-20 flex-auto min-h-screen transition-all"
             style="background-color: #efefef">
             <div class="w-full flex flex-row h-16 bg-white rounded-md items-center shadow-md shadow-slate-400">
                 <div class="flex flex-auto w-auto">
@@ -278,10 +278,12 @@
 
             @yield('content')
 
-        </main>
+        </main> --}}
+
+         <!-- end: Main -->
+
     </div>
 
-    <!-- end: Main -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
@@ -351,6 +353,7 @@
             iconElement.style.transform = "rotate(0deg)";
         }
 
+
         arrayList.forEach((item) => {
             item.addEventListener("click", function() {
                 const parentList = this.parentNode;
@@ -371,6 +374,40 @@
                 }
             });
         });
+
+        function openItemDropdown(item) {
+            const parentList = item.parentNode;
+            const menu = parentList.querySelector("#menu");
+            const iconElement = item.querySelector("i");
+
+            // Open the dropdown
+            iconElement.style.transform = "rotate(90deg)";
+            menu.style.display = "inline-block";
+            item.style.backgroundColor = "#5B9692";
+        }
+
+        function getCurrentRoute() {
+            return window.location.pathname;
+        }
+
+        const validRoutes = [
+            [],
+            ["/mahasiswa", "/dosen", "/akademik", "/kaprodi"]
+        ];
+        const currentRoute = getCurrentRoute();
+        if (validRoutes[1].includes(currentRoute)) {
+            openItemDropdown(listAccount);
+            const parentList = listAccount.parentNode;
+            const menu = parentList.querySelector("#menu");
+            if(currentRoute === validRoutes[1][0]){
+                const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            } else if(currentRoute === validRoutes[1][1]){
+                const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            }
+        }
+
     </script>
 </body>
 

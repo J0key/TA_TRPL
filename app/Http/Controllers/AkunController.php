@@ -11,6 +11,10 @@ class AkunController extends Controller
         return view('layout.login');
     }
 
+    public function dashboard(){
+        return view('dashboard');
+    }
+
     public function viewMahasiswa(){
         return view('akun.mahasiswa.mahasiswa');
     }
