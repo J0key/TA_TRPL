@@ -36,9 +36,9 @@ Route::get('/dosen', [AkunController::class, 'viewDosen'])->name('dosen');
 
 
 // Berkas
-Route::get('/sidang', [BerkasController::class,  'sidang'])->name('sidang');
+Route::get('/berkas_sidang', [BerkasController::class,  'sidang'])->name('berkas_sidang');
 Route::get('/createSidang', [BerkasController::class, 'createSidang'])->name('createSidang');
-Route::get('/yudisium', [BerkasController::class, 'yudisium'])->name('yudisium');
+Route::get('/berkas_yudisium', [BerkasController::class, 'yudisium'])->name('berkas_yudisium');
 
 
 // Persetujuan

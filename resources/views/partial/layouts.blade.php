@@ -163,7 +163,7 @@
                         style="transition: display 0.3s ease; display: none">
                         <div class="flex items-center">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('berkas_sidang')}}"
                                 class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
                                 <span class="text-md">Sidang</span>
                             </a>
@@ -171,7 +171,7 @@
 
                         <div class="flex items-center mt-2">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('berkas_yudisium')}}"
                                 class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
                                 <span class="text-md">Yudisium</span>
                             </a>
@@ -356,8 +356,8 @@
         const validRoutes = [
             ["/user_mahasiswa", "/user_dosen"],
             ["/mahasiswa", "/dosen", "/akademik", "/kaprodi"],
-            [],
-            ["/persetujuan", "/persetujuan_sidang", "/persetujuan_yudisium"],
+            ["/berkas_sidang" ,"/berkas_yudisium"],
+            ["/persetujuan", "/persetujuan_sidang", "/persetujuan_yudisium"]
 
 
         ];
@@ -378,6 +378,20 @@
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
             } else if (currentRoute === validRoutes[1][3]) {
                 const firstChildDiv = menu.querySelector("div:nth-child(4) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            }
+        }
+
+        // Berkas
+        if (validRoutes[3].includes(currentRoute)) {
+            openItemDropdown(listBerkas);
+            const parentList = listBerkas.parentNode;
+            const menu = parentList.querySelector("#menu");
+            if (currentRoute === validRoutes[2][0]) {
+                const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            } else if (currentRoute === validRoutes[2][1]) {
+                const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
             }
         }
