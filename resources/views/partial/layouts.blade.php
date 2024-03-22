@@ -10,10 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    </script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <title>Dashboard</title>
     <style>
         body {
@@ -122,7 +119,7 @@
 
                         <div class="flex items-center mt-2">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="{{ route('dosen')}}"
+                            <a href="{{ route('dosen') }}"
                                 class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
                                 <span class="text-md">Dosen</span>
                             </a>
@@ -232,8 +229,8 @@
                 <li class="mb-1 group py-2">
                     <a href="#"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                        <img src="{{ asset('icon/Property 1=icon, Property 2=project.png') }}" class="w-4 h-auto mr-4"
-                            alt="" />
+                        <img src="{{ asset('icon/Property 1=icon, Property 2=project.png') }}"
+                            class="w-4 h-auto mr-4" alt="" />
                         <span class="text-md">Proyek</span>
                     </a>
                 </li>
@@ -244,43 +241,6 @@
 
         @yield('main')
 
-        <!-- start: Main -->
-        {{-- <main class="pt-10 flex flex-col ms-80 px-20 flex-auto min-h-screen transition-all"
-            style="background-color: #efefef">
-            <div class="w-full flex flex-row h-16 bg-white rounded-md items-center shadow-md shadow-slate-400">
-                <div class="flex flex-auto w-auto">
-                    <form action="" method="GET"
-                        class="flex flex-row text-sm items-center justify-centerself-center">
-                        <button type="submit" class="p-2 ms-2 rounded-l-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                viewBox="0 0 41 38" fill="none">
-                                <path
-                                    d="M36.2276 32.1258L30.0889 26.2992C32.4718 23.4562 33.6257 19.8476 33.3135 16.2154C33.0013 12.5832 31.2466 9.20357 28.4103 6.77135C25.574 4.33914 21.8717 3.03923 18.0645 3.13891C14.2574 3.2386 10.6348 4.73031 7.94178 7.30731C5.24872 9.88431 3.68983 13.3507 3.58566 16.9938C3.48148 20.6369 4.83993 24.1797 7.38169 26.8937C9.92345 29.6078 13.4553 31.2869 17.2511 31.5856C21.0468 31.8844 24.8179 30.7802 27.789 28.5L33.8781 34.3267C34.0319 34.4751 34.2149 34.5929 34.4165 34.6732C34.6181 34.7536 34.8344 34.795 35.0529 34.795C35.2713 34.795 35.4876 34.7536 35.6892 34.6732C35.8908 34.5929 36.0738 34.4751 36.2276 34.3267C36.5259 34.0314 36.6926 33.6369 36.6926 33.2263C36.6926 32.8156 36.5259 32.4211 36.2276 32.1258V32.1258ZM18.5064 28.5C16.2156 28.5 13.9763 27.85 12.0715 26.6321C10.1668 25.4143 8.68226 23.6833 7.80561 21.6581C6.92896 19.6329 6.69959 17.4044 7.1465 15.2544C7.59341 13.1045 8.69654 11.1296 10.3164 9.57957C11.9362 8.02954 14 6.97395 16.2468 6.5463C18.4936 6.11864 20.8224 6.33813 22.9389 7.177C25.0553 8.01587 26.8642 9.43645 28.1369 11.2591C29.4096 13.0817 30.0889 15.2246 30.0889 17.4167C30.0889 20.3562 28.8686 23.1752 26.6965 25.2538C24.5244 27.3323 21.5783 28.5 18.5064 28.5V28.5Z"
-                                    fill="#025E5A" />
-                            </svg>
-                        </button>
-                        <input type="text" placeholder="Search here..." name="query"
-                            class="p-2 text-slate-800 rounded-r-md focus:outline-none ml-4 text-lg"
-                            style="
-                                    input::placeholder {
-                                        color: #008080;
-                                    }
-                                " />
-                    </form>
-                </div>
-
-                <div class="flex flex-row me-12 space-x-4">
-                    <img class="w-6 h-6" src="{{ asset('icon/lampu.png') }}" alt="" />
-                    <img class="w-6 h-6" src="{{ asset('icon/lonceng.png') }}" alt="" />
-                    <div class="rounded-xl bg-slate-300 w-8 h-8"></div>
-                </div>
-            </div>
-
-            @yield('content')
-
-        </main> --}}
-
-         <!-- end: Main -->
 
     </div>
 
@@ -399,15 +359,14 @@
             openItemDropdown(listAccount);
             const parentList = listAccount.parentNode;
             const menu = parentList.querySelector("#menu");
-            if(currentRoute === validRoutes[1][0]){
+            if (currentRoute === validRoutes[1][0]) {
                 const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if(currentRoute === validRoutes[1][1]){
+            } else if (currentRoute === validRoutes[1][1]) {
                 const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
             }
         }
-
     </script>
 </body>
 

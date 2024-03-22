@@ -38,8 +38,8 @@
         <div class="flex items-center justify-between mt-8">
 
             <div class="text-[#404D61] mt-5">
-                <p class="font-semibold  text-3xl">Mahasiswa</p>
-                <p class="font-regular text-xl">1000 results found</p>
+                <p class="font-semibold  text-3xl">Sidang</p>
+                <p class="font-regular text-xl">100 results found</p>
             </div>
 
             <div class="flex items-center">
@@ -48,7 +48,7 @@
                     <li class="mr-4">
                         <button type="button"
                             class="text-[#4C8F8B] w-12 h-12 bg-[#FBFFFC] shadow-md shadow-black/15 rounded flex items-center justify-center hover:bg-gray-50 hover:text-gray-600">
-                            <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
+                            <img src="{{ asset('icon/sort2.png') }}" class="w-6 h-6" alt="">
                         </button>
                     </li>
                     <li class="mr-4">
@@ -86,11 +86,10 @@
             <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 overflow-scroll">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Action</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Aksi</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tanggal Daftar</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">NIM</th>
                         <th scope="col" class="px-6 py-4 font-medium text-gray-900">Name</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Semester </th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tahun Ajaran</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Proses Bimbingan</th>
                         <th scope="col" class="px-6 py-4 font-medium text-gray-900">Status</th>
                     </tr>
                 </thead>
@@ -99,17 +98,15 @@
                     <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
                         <th class="px-6 py-4 text-white ">
 
-                            <div class="bg-main_green w-fit p-2 rounded-xl">
-                                <img src="{{ asset('icon/eye.png') }}" alt="">
+                            <div class="bg-dark_green w-fit p-2 rounded-xl">
+                                <img src="{{ asset('icon/pencil.png') }}" alt="">
                             </div>
 
                         </th>
-                        <td class="px-6 py-4">Shyra Athaya</td>
-                        <td class="px-6 py-4">ganjil</td>
-                        <td class="px-6 py-4 ">active</td>
-                        <td class="px-6 py-4">0</td>
-                        <td class="px-6 py-4 text-[#0064FF]">bimbingan</td>
-
+                        <td class="px-6 py-4">22/09/2003</td>
+                        <td class="px-6 py-4">22/3/4464/SV/24234</td>
+                        <td class="px-6 py-4 ">Shyra Athaya</td>
+                        <td class="px-6 py-4 text-[#0064FF]">proses</td>
                     </tr>
                     <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
                         <th class="px-6 py-4 text-white ">
@@ -119,14 +116,11 @@
                             </div>
 
                         </th>
-                        <td class="px-6 py-4">Ikhwan Hanif</td>
-                        <td class="px-6 py-4">ganjil</td>
-                        <td class="px-6 py-4 ">active</td>
-                        <td class="px-6 py-4">0</td>
-                        <td class="px-6 py-4 text-green-600">proses</td>
-
+                        <td class="px-6 py-4">22/09/2003</td>
+                        <td class="px-6 py-4">22/3/4464/SV/24234</td>
+                        <td class="px-6 py-4 ">Shyra Athaya</td>
+                        <td class="px-6 py-4 text-[#0064FF]">proses</td>
                     </tr>
-
                     <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
                         <th class="px-6 py-4 text-white ">
 
@@ -135,12 +129,10 @@
                             </div>
 
                         </th>
-                        <td class="px-6 py-4">Andromedha Cynosura</td>
-                        <td class="px-6 py-4">ganjil</td>
-                        <td class="px-6 py-4">active</td>
-                        <td class="px-6 py-4">0</td>
-                        <td class="px-6 py-4 text-red-600">revisi</td>
-
+                        <td class="px-6 py-4">22/09/2003</td>
+                        <td class="px-6 py-4">22/3/4464/SV/24234</td>
+                        <td class="px-6 py-4 ">Shyra Athaya</td>
+                        <td class="px-6 py-4 text-[#0064FF]">proses</td>
                     </tr>
                 </tbody>
             </table>
@@ -173,5 +165,4 @@
             </button>
         </div>
     </main>
-
 @endsection
