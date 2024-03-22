@@ -14,11 +14,20 @@ use App\Http\Controllers\AkunController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Persetujuan
 Route::get('/persetujuan', [AkunController::class, 'persetujuan'])->name('persetujuan');
 Route::get('/persetujuan_view', [AkunController::class, 'persetujuan_view'])->name('persetujuan_view');
 Route::get('/persetujuan_edit_proses', [AkunController::class, 'persetujuan_edit_proses'])->name('persetujuan_edit_proses');
 Route::get('/persetujuan_edit_revisi', [AkunController::class, 'persetujuan_edit_revisi'])->name('persetujuan_edit_revisi');
 
+Route::get('/persetujuan_sidang', [AkunController::class, 'persetujuan_sidang'])->name('persetujuan_sidang');
+Route::get('/persetujuan_yudisium', [AkunController::class, 'persetujuan_yudisium'])->name('persetujuan_yudisium');
+
+
+//Project
+Route::get('/project', [AkunController::class, 'project'])->name('project');
+Route::get('/project_detail', [AkunController::class, 'project_detail'])->name('project_detail');
 
 
 // login
