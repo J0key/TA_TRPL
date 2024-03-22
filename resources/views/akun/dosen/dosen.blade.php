@@ -1,9 +1,9 @@
-@extends('layout.sidebar')
+@extends('partial.layouts')
 
 @section('main')
 
 {{-- main start --}}
-<main class="w-[1139px] ml-[322px] min-h-screen my-10 ">
+<main class="w-[1139px] ml-[322px] min-h-screen my-10  text-white">
     {{-- navbar start --}}
     <div class="py-4 px-6 bg-[#FBFFFC] flex item-center shadow-md rounded-md shadow-black/5">
         <ul class="ml-4 flex items-center">

@@ -14,7 +14,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     </script>
-    <title>Dashboard</title>
+    <title>TA - TRPL</title>
     <style>
         body {
             font-family: "Poppins", sans-serif;
@@ -403,6 +403,14 @@
                 const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
             } else if(currentRoute === validRoutes[1][1]){
+                const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            }
+            else if(currentRoute === validRoutes[1][2]){
+                const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            }
+            else if(currentRoute === validRoutes[1][3]){
                 const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
             }
