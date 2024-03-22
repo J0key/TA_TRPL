@@ -15,9 +15,6 @@ class AkunController extends Controller
         return view('dashboard');
     }
 
-    public function viewMahasiswa(){
-        return view('akun.mahasiswa.mahasiswa');
-    }
 
 
     //Persetujuan
@@ -41,7 +38,7 @@ class AkunController extends Controller
         return view('persetujuan.persetujuan_yudisium');
     }
 
-
+    // Project
     public function project(){
         return view('projects.project');
     }
@@ -50,6 +47,10 @@ class AkunController extends Controller
     }
 
 
+    // Akun
+    public function viewMahasiswa(){
+        return view('akun.mahasiswa.mahasiswa');
+    }
 
     public function viewAkademik(){
         return view('akun.akademik.akademik');

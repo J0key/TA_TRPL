@@ -38,7 +38,7 @@
         <div class="flex items-center justify-between mt-8">
 
             <div class="text-[#404D61] mt-5">
-                <p class="font-semibold  text-3xl">Mahasiswa</p>
+                <p class="font-semibold  text-3xl">Tugas Akhir</p>
                 <p class="font-regular text-xl">1000 results found</p>
             </div>
 
