@@ -130,37 +130,40 @@
         </div>
 
 
-        <div class="w-full h-fit p-4 px-6 bg-white rounded-lg shadow-md shadow-slate-500 flex flex-row mt-10">
+        <form action="">
+            <div class="w-full h-fit p-4 px-6 bg-white rounded-lg shadow-md shadow-slate-500 flex flex-row mt-10">
 
-            <div class="w-[50%] h-fit p-8 flex flex-col">
-                <p class="text-lg font-semibold">Dosen Pembimbing 1</p>
-                <select id="search_item" name="query_type" class="border rounded p-2">
-                    <option value="Project" class="py-2 w-fit block">Project</option>
-                    <option value="Lecturer" class="py-2 w-fit block">Lecturer</option>
-                </select>
+                <div class="w-[50%] h-fit p-8 flex flex-col">
+                    <p class="text-lg font-semibold">Dosen Pembimbing 1</p>
+                    <select id="search_item" name="query_type" class="border rounded p-2">
+                        <option value="Project" class="py-2 w-fit block">Project</option>
+                        <option value="Lecturer" class="py-2 w-fit block">Lecturer</option>
+                    </select>
+                </div>
+
+                <div class="w-[50%] h-fit p-8 flex flex-col">
+                    <p class="text-lg font-semibold">Dosen Pembimbing 2</p>
+                    <select id="search_item" name="query_type" class="border rounded p-2">
+                        <option value="Project" class="py-2 w-fit block">Project</option>
+                        <option value="Lecturer" class="py-2 w-fit block">Lecturer</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="w-[50%] h-fit p-8 flex flex-col">
-                <p class="text-lg font-semibold">Dosen Pembimbing 2</p>
-                <select id="search_item" name="query_type" class="border rounded p-2">
-                    <option value="Project" class="py-2 w-fit block">Project</option>
-                    <option value="Lecturer" class="py-2 w-fit block">Lecturer</option>
-                </select>
+            <div class="w-full h-fit py-8 px-10 bg-white rounded-lg shadow-md shadow-slate-500 flex flex-col mt-10">
+                <p class="text-xl font-semibold">Tugas Akhir Di Revisi Dengan Alasan</p>
+                <p class="text-md mt-4">mohon didiskusikan dengan dosen pembimbing karena metode yang diusulkan bukan
+                    metode
+                    SPK</p>
+
             </div>
-        </div>
 
-        <div class="w-full h-fit py-8 px-10 bg-white rounded-lg shadow-md shadow-slate-500 flex flex-col mt-10">
-            <p class="text-xl font-semibold">Tugas Akhir Di Revisi Dengan Alasan</p>
-            <p class="text-md mt-4">mohon didiskusikan dengan dosen pembimbing karena metode yang diusulkan bukan metode
-                SPK</p>
-
-        </div>
-
-        <div class="flex flex-row-reverse w-full h-fit space-x-6 mb-8">
-            <button class=" bg-main_green px-4 py-2 w-fit h-fit mt-10 rounded-lg text-white text-lg ms-10">
-                Setujui</button>
-            <button class=" bg-red-600 px-4 py-2 w-fit h-fit mt-10 rounded-lg text-white text-lg">
-                Revisi</button>
-        </div>
+            <div class="flex flex-row-reverse w-full h-fit space-x-6 mb-8">
+                <button class=" bg-main_green px-4 py-2 w-fit h-fit mt-10 rounded-lg text-white text-lg ms-10">
+                    Setujui</button>
+                <button class=" bg-red-600 px-4 py-2 w-fit h-fit mt-10 rounded-lg text-white text-lg">
+                    Revisi</button>
+            </div>
+        </form>
     </main>
 @endsection

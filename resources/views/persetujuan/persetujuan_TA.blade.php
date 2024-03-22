@@ -35,6 +35,8 @@
                 </li>
             </ul>
         </div>
+
+        
         <div class="flex items-center justify-between mt-8">
 
             <div class="text-[#404D61] mt-5">

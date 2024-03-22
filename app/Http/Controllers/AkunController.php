@@ -42,11 +42,25 @@ class AkunController extends Controller
     }
 
 
+
+    //Projek
     public function project(){
         return view('projects.project');
     }
     public function project_detail(){
         return view('projects.project_detail');
+    }
+    public function project_add(){
+        return view('projects.project_add');
+    }
+    public function project_update(){
+        return view('projects.project_update');
+    }
+
+
+    //Periode
+    public function periode(){
+        return view('periode.periode');
     }
 
 

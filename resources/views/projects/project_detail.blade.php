@@ -153,9 +153,9 @@
                                 <div class="bg-dark_green w-fit p-2 rounded-xl">
                                     <img class="w-4 h-auto" src="{{ asset('icon/pencil.png') }}" alt="">
                                 </div>
-                                <div class=" bg-red-600 w-fit p-2 rounded-xl ms-2">
+                                <button onclick="openModal()" class=" bg-red-600 w-fit p-2 rounded-xl ms-2">
                                     <img class="w-4 h-auto" src="{{ asset('icon/trash_bin.png') }}" alt="">
-                                </div>
+                                </button>
                             </div>
                         </th>
 
@@ -208,16 +208,18 @@
         </div>
     </main>
 
-    <div class="fixed w-full h-full flex flex-col justify-center items-center">
-        <div class="w-full h-full bg-gray-500 opacity-50 absolute"></div>
+    <div id="modal" class="fixed w-full h-full flex-col justify-center items-center hidden">
         <div class="w-full h-full bg-white opacity-50 absolute"></div>
-        <div class="w-[35rem] py-4 bg-white shadow-md shadow-slate-800 z-10 absolute ms-20 rounded-lg">
+        <div class="w-[35rem] py-4 bg-white shadow-md shadow-slate-600 z-10 absolute ms-20 rounded-lg">
             <div class="flex flex-col w-full h-full px-4 z-20 items-center">
                 <div class="w-full flex flex-row-reverse">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                    <button onclick="closeModal()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                 </div>
                 <p class="w-full h-fit text-3xl font-semibold text-center text-gray-700">Hapus</p>
                 <p class="w-full h-fit text-md font-semibold text-center text-gray-700 mt-4">Apakah Yakin Untuk
@@ -225,7 +227,7 @@
                 <img class="w-48 h-auto" src="{{ asset('icon/trash_bin2.png') }}" alt="">
                 <div class="w-[80%] mt-[-15px] border-b-2 border-gray-500"></div>
                 <div class="flex flex-row w-full items-center justify-center my-6">
-                    <button
+                    <button onclick="closeModal()"
                         class="bg-red-600 px-4 py-2 w-fit h-fit rounded-lg text-white text-sm me-16 flex flex-row items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white me-2" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
@@ -246,36 +248,22 @@
             </div>
         </div>
     </div>
+
     @stack('script')
 @endsection
 
 <script>
+    function openModal() {
+        const modal = document.getElementById('modal');
+        // Ubah tampilan modal menjadi flex
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
 
-    // document.getElementById('search_item').addEventListener('change', function() {
-    //     var selectedValue = this.value; // Mendapatkan nilai yang dipilih
-    //     var dropdowncontainerprojek = document.getElementById('dropdowncontainerprojek');
-    //     var dropdowncontainerdosen = document.getElementById('dropdowncontainerdosen');
-    //     if (selectedValue == "Project") {
-    //         dropdowncontainerprojek.style.display = 'flex'
-    //         dropdowncontainerdosen.style.display = 'none'
-    //     } else {
-    //         dropdowncontainerprojek.style.display = 'none'
-    //         dropdowncontainerdosen.style.display = 'flex'
-    //     }
-    // })
-
-
-
-    document.addEventListener('click', function(event) {
-        var profilePopup = document.getElementById('profile_popup');
-        var popup = document.getElementById('profile');
-        var targetElement = event.target; // Element yang di-klik
-
-        // Periksa apakah element yang di-klik berada di dalam atau sama dengan profilePopup
-        if (profilePopup && !profilePopup.contains(targetElement) && !popup.contains(targetElement)) {
-            // Klik di luar area profile, tutup profile
-            profilePopup.style.display = 'none';
-        }
-
-    });
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        // Ubah tampilan modal menjadi flex
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+    }
 </script>

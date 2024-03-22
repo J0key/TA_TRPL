@@ -28,6 +28,13 @@ Route::get('/persetujuan_yudisium', [AkunController::class, 'persetujuan_yudisiu
 //Project
 Route::get('/project', [AkunController::class, 'project'])->name('project');
 Route::get('/project_detail', [AkunController::class, 'project_detail'])->name('project_detail');
+Route::get('/project_add', [AkunController::class, 'project_add'])->name('project_add');
+Route::get('/project_update', [AkunController::class, 'project_update'])->name('project_update');
+
+
+//Periode
+Route::get('/periode', [AkunController::class, 'periode'])->name('periode');
+
 
 
 // login
