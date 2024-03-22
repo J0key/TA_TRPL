@@ -163,7 +163,7 @@
                         style="transition: display 0.3s ease; display: none">
                         <div class="flex items-center">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('berkas_sidang')}}"
                                 class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
                                 <span class="text-md">Sidang</span>
                             </a>
@@ -171,7 +171,7 @@
 
                         <div class="flex items-center mt-2">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('berkas_yudisium')}}"
                                 class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
                                 <span class="text-md">Yudisium</span>
                             </a>
@@ -196,7 +196,7 @@
                         style="transition: display 0.3s ease; display: none">
                         <div class="flex items-center">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('persetujuan') }}"
                                 class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
                                 <span class="text-md">Tugas Akhir</span>
                             </a>
@@ -204,7 +204,7 @@
 
                         <div class="flex items-center mt-2">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('persetujuan_sidang') }}"
                                 class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
                                 <span class="text-md">Sidang</span>
                             </a>
@@ -212,7 +212,7 @@
 
                         <div class="flex items-center mt-2">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('persetujuan_yudisium') }}"
                                 class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
                                 <span class="text-md">Yudisium</span>
                             </a>
@@ -230,7 +230,7 @@
                 </li>
 
                 <li class="mb-1 group py-2">
-                    <a href="#"
+                    <a href="{{ route('project') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <img src="{{ asset('icon/Property 1=icon, Property 2=project.png') }}"
                             class="w-4 h-auto mr-4" alt="" />
@@ -354,10 +354,15 @@
         }
 
         const validRoutes = [
-            [],
-            ["/mahasiswa", "/dosen", "/akademik", "/kaprodi"]
+            ["/user_mahasiswa", "/user_dosen"],
+            ["/mahasiswa", "/dosen", "/akademik", "/kaprodi"],
+            ["/berkas_sidang" ,"/berkas_yudisium"],
+            ["/persetujuan", "/persetujuan_sidang", "/persetujuan_yudisium"]
+
+
         ];
         const currentRoute = getCurrentRoute();
+        // Account
         if (validRoutes[1].includes(currentRoute)) {
             openItemDropdown(listAccount);
             const parentList = listAccount.parentNode;
@@ -365,16 +370,45 @@
             if (currentRoute === validRoutes[1][0]) {
                 const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if(currentRoute === validRoutes[1][1]){
+            } else if (currentRoute === validRoutes[1][1]) {
+                const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            } else if (currentRoute === validRoutes[1][2]) {
+                const firstChildDiv = menu.querySelector("div:nth-child(3) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            } else if (currentRoute === validRoutes[1][3]) {
+                const firstChildDiv = menu.querySelector("div:nth-child(4) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            }
+        }
+
+        // Berkas
+        if (validRoutes[3].includes(currentRoute)) {
+            openItemDropdown(listBerkas);
+            const parentList = listBerkas.parentNode;
+            const menu = parentList.querySelector("#menu");
+            if (currentRoute === validRoutes[2][0]) {
+                const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            } else if (currentRoute === validRoutes[2][1]) {
                 const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
             }
-            else if(currentRoute === validRoutes[1][2]){
+        }
+
+        // Persetujuan
+        if (validRoutes[3].includes(currentRoute)) {
+            openItemDropdown(listPersetujuan);
+            const parentList = listPersetujuan.parentNode;
+            const menu = parentList.querySelector("#menu");
+            if (currentRoute === validRoutes[3][0]) {
+                const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            } else if (currentRoute === validRoutes[3][1]) {
                 const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            }
-            else if(currentRoute === validRoutes[1][3]){
-                const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
+            } else if (currentRoute === validRoutes[3][2]) {
+                const firstChildDiv = menu.querySelector("div:nth-child(3) > a");
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
             }
         }

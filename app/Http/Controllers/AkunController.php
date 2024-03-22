@@ -15,9 +15,6 @@ class AkunController extends Controller
         return view('dashboard');
     }
 
-    public function viewMahasiswa(){
-        return view('akun.mahasiswa.mahasiswa');
-    }
 
 
     //Persetujuan

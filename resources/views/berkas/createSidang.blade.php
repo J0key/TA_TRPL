@@ -1,1 +1,1 @@
-@extends('layout.sidebar')
+@extends('partial.layouts')

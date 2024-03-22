@@ -15,7 +15,34 @@ use App\Http\Controllers\AkunController;
 |
 */
 
+// login
+Route::get('/', [AkunController::class, 'login'])->name('login');
+
+// Dashboard
+Route::get('/dashboard', [AkunController::class, 'dashboard'])->name('dashboard');
+
+
+// Akun
+// Mahasiswa
+Route::get('/mahasiswa', [AkunController::class, 'viewMahasiswa'])->name('mahasiswa');
+Route::get('/createMahasiswa', [AkunController::class, 'createMahasiswa'])->name('createMahasiswa');
+Route::put('/storeMahasiswa', [AkunController::class, 'storeMahasiswa'])->name('storeMahasiswa');
+// Akademik
+Route::get('/akademik', [AkunController::class, 'viewAkademik'])->name('akademik');
+// Kaprodi
+Route::get('/kaprodi', [AkunController::class, 'viewKaprodi'])->name('kaprodi');
+// Dosen
+Route::get('/dosen', [AkunController::class, 'viewDosen'])->name('dosen');
+
+
+// Berkas
+Route::get('/berkas_sidang', [BerkasController::class,  'sidang'])->name('berkas_sidang');
+Route::get('/createSidang', [BerkasController::class, 'createSidang'])->name('createSidang');
+Route::get('/berkas_yudisium', [BerkasController::class, 'yudisium'])->name('berkas_yudisium');
+
+
 // Persetujuan
+// Tugas Akhir
 Route::get('/persetujuan', [AkunController::class, 'persetujuan'])->name('persetujuan');
 Route::get('/persetujuan_view', [AkunController::class, 'persetujuan_view'])->name('persetujuan_view');
 Route::get('/persetujuan_edit_proses', [AkunController::class, 'persetujuan_edit_proses'])->name('persetujuan_edit_proses');
@@ -23,6 +50,10 @@ Route::get('/persetujuan_edit_revisi', [AkunController::class, 'persetujuan_edit
 
 Route::get('/persetujuan_sidang', [AkunController::class, 'persetujuan_sidang'])->name('persetujuan_sidang');
 Route::get('/persetujuan_yudisium', [AkunController::class, 'persetujuan_yudisium'])->name('persetujuan_yudisium');
+
+
+
+// Periode Registrasi
 
 
 //Project
