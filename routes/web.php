@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BerkasController;
+use App\Http\Controllers\DosenPageController;
 use App\Http\Controllers\AkunController;
+use App\Http\Controllers\MahasiswaPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,6 @@ Route::get('/', [AkunController::class, 'login'])->name('login');
 
 // Dashboard
 Route::get('/dashboard', [AkunController::class, 'dashboard'])->name('dashboard');
-
 
 // Akun
 // Mahasiswa
@@ -55,7 +56,6 @@ Route::get('/persetujuan_yudisium', [AkunController::class, 'persetujuan_yudisiu
 
 // Periode Registrasi
 
-
 //Project
 Route::get('/project', [AkunController::class, 'project'])->name('project');
 Route::get('/project_detail', [AkunController::class, 'project_detail'])->name('project_detail');
@@ -65,7 +65,6 @@ Route::get('/project_update', [AkunController::class, 'project_update'])->name('
 
 //Periode
 Route::get('/periode', [AkunController::class, 'periode'])->name('periode');
-
 
 
 // login
@@ -94,3 +93,22 @@ Route::get('/dosen', [AkunController::class, 'viewDosen'])->name('dosen');
 Route::get('/sidang', [BerkasController::class,  'sidang'])->name('sidang');
 Route::get('/createSidang', [BerkasController::class, 'createSidang'])->name('createSidang');
 Route::get('/yudisium', [BerkasController::class, 'yudisium'])->name('yudisium');
+
+// MAHASISWA
+// dashboard
+Route::get('/mahasiswa/dashboard', [MahasiswaPageController::class,  'dashboard'])->name('mahasiswa.dashboard');
+Route::get('/mahasiswa/profile', [MahasiswaPageController::class,  'profile'])->name('mahasiswa.profile');
+Route::get('/mahasiswa/profile/update', [MahasiswaPageController::class,  'profileUpdate'])->name('mahasiswa.profileUpdate');
+Route::get('/mahasiswa/profile_prestasi/update', [MahasiswaPageController::class,  'profilePrestasiUpdate'])->name('mahasiswa.profilePrestasiUpdate');
+Route::get('/mahasiswa/profile_pengalaman/update', [MahasiswaPageController::class,  'profilePengalamanUpdate'])->name('mahasiswa.profilePengalamanUpdate');
+Route::get('/mahasiswa/tugasakhir', [MahasiswaPageController::class,  'tugasakhir'])->name('mahasiswa.tugasakhir');
+Route::get('/mahasiswa/pengumuman', [MahasiswaPageController::class,  'pengumuman'])->name('mahasiswa.pengumuman');
+
+
+// Dosen
+// dashboard
+Route::get('/dosen/dashboard', [DosenPageController::class,  'dashboard'])->name('dosen.dashboard');
+Route::get('/dosen/profile', [DosenPageController::class,  'profile'])->name('dosen.profile');
+Route::get('/dosen/profile/update', [DosenPageController::class,  'profileUpdate'])->name('dosen.profileUpdate');
+Route::get('/dosen/tugasakhir', [DosenPageController::class,  'tugasakhir'])->name('dosen.tugasakhir');
+Route::get('/dosen/pengumuman', [DosenPageController::class,  'pengumuman'])->name('dosen.pengumuman');

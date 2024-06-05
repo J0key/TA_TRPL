@@ -14,6 +14,7 @@ module.exports = {
             semi_dark_green: "#025E5A",
             dark_green: "#344948",
             light_green: "#62B5B1",
+            button_green: "#347677",
         },
     },
     plugins: [require("flowbite/plugin")],
