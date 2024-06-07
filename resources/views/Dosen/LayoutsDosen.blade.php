@@ -12,8 +12,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="https://cdn.tailwindcss.com"></script>
-
-    </script>
     <title>TA - TRPL</title>
     <style>
         body {
@@ -35,7 +33,7 @@
 <body id="body" class="text-gray-800 font-inter bg-[#EFEFEF]">
     <!-- start: Sidebar -->
     <div class="flex flex-row flex-auto">
-        <div class="fixed left-0 top-0 w-64 h-full p-4 z-50 sidebar-menu transition-transform bg-main_green shadow-lg shadow-slate-800"
+        <div class="fixed left-0 top-0 w-72 h-full p-4 z-50 sidebar-menu transition-transform bg-main_green shadow-lg shadow-slate-800"
             style="text-align: center">
             <div class="flex flex-row justify-center items-center my-6">
                 <img class="w-16" src="{{ asset('icon/ugm_logo.png') }}" alt="" />
@@ -64,34 +62,37 @@
 
                 <li class="mb-1 py-2">
                     <a id="list_user" href="#"
-                        class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
-                        <img src="{{ asset('icon/Dosen/Vector (7).png') }}" class="w-4 h-auto mr-4" alt="" />
-                        <span class="text-md">Mahasiswa</span>
-                        <i class="ri-arrow-right-s-line ml-auto"
-                            style="
-                                    transition: transform 0.3s ease,
-                                        display 0.3s ease;
-                                "></i>
-                    </a>
+                        class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md transition-all transition-transform">
+                        <button class="flex flex-row items-center" type="button" onclick="navbarMahasiswa()">
+                            <img src="{{ asset('icon/Dosen/Vector (7).png') }}" class="w-4 h-auto mr-4"
+                                alt="" />
+                            <span class="text-md">Mahasiswa</span>
+                            <i id="panah" class="ri-arrow-right-s-line ms-20"
+                                style="
+                                        transition: transform 0.3s ease,
+                                            display 0.3s ease;">
+                            </i>
+                        </button>
 
-                    <div id="menu" class="justify-start mt-6 ms-[-30px]"
-                        style="transition: display 0.3s ease; display: none">
-                        <div class="flex items-center">
+                    </a>
+                    <div id="menu" class="justify-start mt-4 ms-5 hidden" style="transition: all 1s ease">
+                        <div class="flex items-center" style="transition: all 1s ease">
                             <div class="w-2 h-2 rounded bg-white"></div>
                             <a href="#"
-                                class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
-                                <span class="text-md">Mahasiswa</span>
+                                class="ms-2 text-white font-medium hover:border-b-2 hover:border-white hover:text-gray-100">
+                                <span class="text-sm">Pendadaran</span>
                             </a>
                         </div>
 
-                        <div class="flex items-center mt-2">
+                        <div class="flex items-center mt-4" style="transition: all 1s ease">
                             <div class="w-2 h-2 rounded bg-white"></div>
                             <a href="#"
-                                class="px-2 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md">
-                                <span class="text-md">Dosen</span>
+                                class="ms-2 text-white font-medium hover:border-b-2 hover:border-white hover:text-gray-100">
+                                <span class="text-sm">Bimbingan</span>
                             </a>
                         </div>
                     </div>
+
                 </li>
 
                 <li class="mb-1 group py-2">
@@ -110,7 +111,6 @@
 
         @yield('main')
 
-
     </div>
 
 
@@ -118,167 +118,30 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        // function openProfile() {
-        //     var popup = document.getElementById("profile_popup");
-        //     popup.style.display = "flex";
-        // }
+        let counter = false;
+        const menu = document.getElementById("menu");
+        const panah = document.getElementById("panah");
 
-        // document
-        //     .getElementById("search_item")
-        //     .addEventListener("change", function () {
-        //         // Fungsi yang akan dieksekusi saat nilai dropdown berubah
-        //         var selectedValue = this.value; // Mendapatkan nilai yang dipilih
-        //         var dropdowncontainerprojek = document.getElementById(
-        //             "dropdowncontainerprojek"
-        //         );
-        //         var dropdowncontainerdosen = document.getElementById(
-        //             "dropdowncontainerdosen"
-        //         );
-        //         if (selectedValue == "Project") {
-        //             dropdowncontainerprojek.style.display = "flex";
-        //             dropdowncontainerdosen.style.display = "none";
-        //         } else {
-        //             dropdowncontainerprojek.style.display = "none";
-        //             dropdowncontainerdosen.style.display = "flex";
-        //         }
-        //     });
-
-        // document.addEventListener("click", function (event) {
-        //     var profilePopup = document.getElementById("profile_popup");
-        //     var popup = document.getElementById("profile");
-        //     var targetElement = event.target; // Element yang di-klik
-
-        //     // Periksa apakah element yang di-klik berada di dalam atau sama dengan profilePopup
-        //     if (
-        //         profilePopup &&
-        //         !profilePopup.contains(targetElement) &&
-        //         !popup.contains(targetElement)
-        //     ) {
-        //         // Klik di luar area profile, tutup profile
-        //         profilePopup.style.display = "none";
-        //     }
-        // });
-
-        // const menu = document.getElementById("menu");
-        const listUser = document.getElementById("list_user");
-        const listAccount = document.getElementById("list_account");
-        const listPersetujuan = document.getElementById("list_persetujuan");
-        const listBerkas = document.getElementById("list_berkas");
-
-        const arrayList = [
-            listUser,
-            listAccount,
-            listBerkas,
-            listPersetujuan,
-        ];
-
-        function tutupDropDown(list, menu) {
-            const iconElement = list.querySelector("i");
-            menu.style.display = "none";
-            list.style.backgroundColor = "#4C8F8B";
-            iconElement.style.transform = "rotate(0deg)";
-        }
-
-
-        arrayList.forEach((item) => {
-            item.addEventListener("click", function() {
-                const parentList = this.parentNode;
-                const menu = parentList.querySelector("#menu");
-                if (menu.style.display == "none") {
-                    arrayList.forEach((element) => {
-                        const tmpParentList = element.parentNode;
-                        const tmpMenu =
-                            tmpParentList.querySelector("#menu");
-                        tutupDropDown(element, tmpMenu);
-                    });
-                    const iconElement = item.querySelector("i");
-                    iconElement.style.transform = "rotate(90deg)";
-                    menu.style.display = "inline-block";
-                    item.style.backgroundColor = "#5B9692";
-                } else {
-                    tutupDropDown(item, menu);
-                }
-            });
-        });
-
-        function openItemDropdown(item) {
-            const parentList = item.parentNode;
-            const menu = parentList.querySelector("#menu");
-            const iconElement = item.querySelector("i");
-
-            // Open the dropdown
-            iconElement.style.transform = "rotate(90deg)";
-            menu.style.display = "inline-block";
-            item.style.backgroundColor = "#5B9692";
-        }
-
-        function getCurrentRoute() {
-            return window.location.pathname;
-        }
-
-        const validRoutes = [
-            ["/user_mahasiswa", "/user_dosen"],
-            ["/mahasiswa", "/dosen", "/akademik", "/kaprodi"],
-            ["/berkas_sidang", "/berkas_yudisium"],
-            ["/persetujuan", "/persetujuan_sidang", "/persetujuan_yudisium"]
-
-
-        ];
-        const currentRoute = getCurrentRoute();
-        // Account
-        if (validRoutes[1].includes(currentRoute)) {
-            openItemDropdown(listAccount);
-            const parentList = listAccount.parentNode;
-            const menu = parentList.querySelector("#menu");
-            if (currentRoute === validRoutes[1][0]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if (currentRoute === validRoutes[1][1]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if (currentRoute === validRoutes[1][2]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(3) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if (currentRoute === validRoutes[1][3]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(4) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+        function navbarMahasiswa() {
+            if (counter == true) {
+                menu.classList.remove("block");
+                menu.classList.add("hidden");
+                panah.classList.remove("rotate-90")
+                panah.classList.add("rotate-0")
+                counter = false;
+            } else if (counter == false) {
+                menu.classList.remove("hidden");
+                menu.classList.add("block");
+                panah.classList.remove("rotate-0")
+                panah.classList.add("rotate-90")
+                counter = true;
             }
-        }
-
-        // Berkas
-        if (validRoutes[3].includes(currentRoute)) {
-            openItemDropdown(listBerkas);
-            const parentList = listBerkas.parentNode;
-            const menu = parentList.querySelector("#menu");
-            if (currentRoute === validRoutes[2][0]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if (currentRoute === validRoutes[2][1]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            }
-        }
-
-        // Persetujuan
-        if (validRoutes[3].includes(currentRoute)) {
-            openItemDropdown(listPersetujuan);
-            const parentList = listPersetujuan.parentNode;
-            const menu = parentList.querySelector("#menu");
-            if (currentRoute === validRoutes[3][0]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if (currentRoute === validRoutes[3][1]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if (currentRoute === validRoutes[3][2]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(3) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            }
+            console.log(counter);
         }
     </script>
+
 </body>
 
 </html>

@@ -174,7 +174,7 @@
             const container = document.getElementById('container-keahlian');
 
             // Buat elemen tombol baru
-    
+
             button.classList.add('border-2', 'w-fit', 'border-gray-600', 'rounded-3xl', 'flex',
                 'flex-row', 'items-center', 'justify-center', 'px-2');
             button.id = 'deleteKeahlian' + keahlianCounter;

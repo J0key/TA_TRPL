@@ -23,7 +23,13 @@ class DosenPageController extends Controller
     }
 
     public function profileUpdate(){
-        return view('Profile');
+        return view('Dosen.ProfileUpdateView');
+    }
+    public function mahasiswaPendadaran(){
+        return view('Dosen.PendadaranMahasiswa');
+    }
+    public function mahasiswaBimbingan(){
+        return view('Dosen.BimbinganMahasiswa');
     }
 
 }

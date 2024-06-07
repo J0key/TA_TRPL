@@ -37,9 +37,12 @@
                             src="{{ asset('icon/Mahasiswa/Profile/ic_baseline-edit.png') }}"></img>
                     </button>
 
-                    <div class="bg-slate-100 rounded-full mt-12 p-16 self-center justify-self-center">
-                        <img src="{{ asset('icon/Mahasiswa/Profile/camera.png') }}" alt="">
-                    </div>
+                    <button class="self-center" onclick="saveImage()">
+                        <div class="flex flex-row bg-slate-100 w-56 h-56 rounded-full mt-12 p-16 items-center justify-center">
+                            <img class="w-16 h-16" src="{{ asset('icon/Mahasiswa/Profile/camera.png') }}" alt="">
+                        </div>
+                    </button>
+
 
                     <div id="container_profile" class="mt-6 ms-8 space-y-4">
                         {{-- <p class="text-md">Nama : Syra Athayya</p>

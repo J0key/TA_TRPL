@@ -148,9 +148,9 @@
                 </div>
             </form>
         </div>
-
-
     </main>
+
+
     @stack('script')
 @endsection
 

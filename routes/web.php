@@ -110,5 +110,6 @@ Route::get('/mahasiswa/pengumuman', [MahasiswaPageController::class,  'pengumuma
 Route::get('/dosen/dashboard', [DosenPageController::class,  'dashboard'])->name('dosen.dashboard');
 Route::get('/dosen/profile', [DosenPageController::class,  'profile'])->name('dosen.profile');
 Route::get('/dosen/profile/update', [DosenPageController::class,  'profileUpdate'])->name('dosen.profileUpdate');
-Route::get('/dosen/tugasakhir', [DosenPageController::class,  'tugasakhir'])->name('dosen.tugasakhir');
+Route::get('/dosen/mahasiswa/pendadaran', [DosenPageController::class,  'mahasiswaPendadaran'])->name('dosen.mahasiswaPendadaran');
+Route::get('/dosen/mahasiswa/bimbingan', [DosenPageController::class,  'mahasiswaBimbingan'])->name('dosen.mahasiswaBimbingan');
 Route::get('/dosen/pengumuman', [DosenPageController::class,  'pengumuman'])->name('dosen.pengumuman');
