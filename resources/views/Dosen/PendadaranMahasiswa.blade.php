@@ -171,18 +171,30 @@
     let currentPage = 1;
     let totalPages = 1;
 
-    async function fetchProjects(page = 1) {
-        try {
-            const response = await fetch(`http://127.0.0.1:8001/api/project?page=${page}`);
-            const data = await response.json();
-            totalPages = data.data.last_page;
-            displayProjects(data.data.data);
-            updatePagination();
-            setPageIndicator();
-        } catch (error) {
-            console.error('Error:', error);
+    async function fetchProjects(page = 1, filterName = '') {
+    try {
+        const response = await fetch(`http://127.0.0.1:8001/api/project?page=${page}&name=${filterName}`);
+        const data = await response.json();
+        totalPages = data.data.last_page;
+        displayProjects(data.data.data);
+        updatePagination();
+        setPageIndicator();
+    } catch (error) {
+        console.error('Error:', error);
         }
     }
+
+    function sortProjects(sortField, sortDirection) {
+        const projectsData = [...data.data.data];
+        projectsData.sort((a, b) => {
+            if (a[sortField] < b[sortField]) return sortDirection === 'asc' ? -1 : 1;
+            if (a[sortField] > b[sortField]) return sortDirection === 'asc' ? 1 : -1;
+            return 0;
+        });
+        displayProjects(projectsData);
+    }
+
+
 
     function displayProjects(projects) {
         const projectList = document.getElementById('project-list');

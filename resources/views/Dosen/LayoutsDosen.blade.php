@@ -45,7 +45,7 @@
 
             <ul class="mt-6">
                 <li class="mb-1 group py-2">
-                    <a href="#"
+                    <a href="{{ route('dosen.dashboard') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <img src="{{ asset('icon/Dosen/icon (1).png') }}" class="w-4 h-auto mr-4" alt="" />
                         <span class="text-md">Dashboard</span>
@@ -53,7 +53,7 @@
                 </li>
 
                 <li class="mb-1 group py-2">
-                    <a href="#"
+                    <a href="{{ route('dosen.profile') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <img src="{{ asset('icon/Dosen/u_user (1).png') }}" class="w-4 h-auto mr-4" alt="" />
                         <span class="text-md">Profile</span>
@@ -61,7 +61,7 @@
                 </li>
 
                 <li class="mb-1 py-2">
-                    <a id="list_user" href="#"
+                    <div
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md transition-all transition-transform">
                         <button class="flex flex-row items-center" type="button" onclick="navbarMahasiswa()">
                             <img src="{{ asset('icon/Dosen/Vector (7).png') }}" class="w-4 h-auto mr-4"
@@ -74,11 +74,11 @@
                             </i>
                         </button>
 
-                    </a>
+                    </div>
                     <div id="menu" class="justify-start mt-4 ms-5 hidden" style="transition: all 1s ease">
                         <div class="flex items-center" style="transition: all 1s ease">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('dosen.mahasiswaPendadaran') }}"
                                 class="ms-2 text-white font-medium hover:border-b-2 hover:border-white hover:text-gray-100">
                                 <span class="text-sm">Pendadaran</span>
                             </a>
@@ -86,7 +86,7 @@
 
                         <div class="flex items-center mt-4" style="transition: all 1s ease">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="#"
+                            <a href="{{ route('dosen.mahasiswaBimbingan') }}"
                                 class="ms-2 text-white font-medium hover:border-b-2 hover:border-white hover:text-gray-100">
                                 <span class="text-sm">Bimbingan</span>
                             </a>

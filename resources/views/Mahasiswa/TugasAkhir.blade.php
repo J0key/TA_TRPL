@@ -40,37 +40,29 @@
             <div class="flex items-center">
 
                 <ul class="ml-auto flex flex-row mt-6">
-
                     <li class="mr-4">
-                        <button type="button"
-                            class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
-                            <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
-                            <span class="text-[15px] ml-2">A-Z</span>
-                        </button>
-                    </li>
-                    <li class="mr-4">
-                        <button type="button"
+                        <button type="button" onclick="sortProjectsChanger('title');"
                             class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
                             <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
                             <span class="text-[15px] ml-2">Judul</span>
                         </button>
                     </li>
                     <li class="mr-4">
-                        <button type="button"
+                        <button type="button" onclick="sortProjectsChanger('lecturer');"
                             class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
                             <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
                             <span class="text-[15px] ml-2">Dosen</span>
                         </button>
                     </li>
                     <li class="mr-4">
-                        <button type="button"
+                        <button type="button" onclick="sortProjectsChanger('tools');"
                             class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
                             <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
-                            <span class="text-[15px] ml-2">Kategori</span>
+                            <span class="text-[15px] ml-2">Tools</span>
                         </button>
                     </li>
                     <li class="mr-4">
-                        <button type="button"
+                        <button type="button" onclick="sortProjectsChanger('created_at');"
                             class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
                             <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
                             <span class="text-[15px] ml-2">Uploaded</span>
@@ -99,50 +91,7 @@
                 </thead>
 
                 <tbody id="project-list" class="divide-y bg-white border-t border-gray-100">
-                    <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
-                        <td class="px-6 py-4">Pengembangan Backend Sistem Informasi berbasis web (propertio.id)</td>
-                        <td class="px-6 py-4">Cinurawa</td>
-                        <td class="px-6 py-4 ">Membuat back-end</td>
-                        <td class="px-6 py-4">Laravel</td>
-                        <td class="px-6 py-4">20 - 12 - 2024</td>
-                        <td class="px-6 py-4">
-                            <img class=" bg-slate-900 p-2 px-4 rounded-xl"
-                                src="{{ asset('icon/Mahasiswa/Tugas akhir/arrow.png') }}" alt="">
-                        </td>
-                    </tr>
-                    <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
-                        <td class="px-6 py-4">Pengembangan Backend Sistem Informasi berbasis web (propertio.id)</td>
-                        <td class="px-6 py-4">Cinurawa</td>
-                        <td class="px-6 py-4 ">Membuat back-end</td>
-                        <td class="px-6 py-4">Laravel</td>
-                        <td class="px-6 py-4">20 - 12 - 2024</td>
-                        <td class="px-6 py-4">
-                            <img class=" bg-slate-900 p-2 px-4 rounded-xl"
-                                src="{{ asset('icon/Mahasiswa/Tugas akhir/arrow.png') }}" alt="">
-                        </td>
-                    </tr>
-                    <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
-                        <td class="px-6 py-4">Pengembangan Backend Sistem Informasi berbasis web (propertio.id)</td>
-                        <td class="px-6 py-4">Cinurawa</td>
-                        <td class="px-6 py-4 ">Membuat back-end</td>
-                        <td class="px-6 py-4">Laravel</td>
-                        <td class="px-6 py-4">20 - 12 - 2024</td>
-                        <td class="px-6 py-4">
-                            <img class=" bg-slate-900 p-2 px-4 rounded-xl"
-                                src="{{ asset('icon/Mahasiswa/Tugas akhir/arrow.png') }}" alt="">
-                        </td>
-                    </tr>
-                    <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
-                        <td class="px-6 py-4">Pengembangan Backend Sistem Informasi berbasis web (propertio.id)</td>
-                        <td class="px-6 py-4">Cinurawa</td>
-                        <td class="px-6 py-4 ">Membuat back-end</td>
-                        <td class="px-6 py-4">Laravel</td>
-                        <td class="px-6 py-4">20 - 12 - 2024</td>
-                        <td class="px-6 py-4">
-                            <img class=" bg-slate-900 p-2 px-4 rounded-xl"
-                                src="{{ asset('icon/Mahasiswa/Tugas akhir/arrow.png') }}" alt="">
-                        </td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -150,8 +99,7 @@
         <div class="w-fit h-fit flex flex-row self-center justify-center mt-12 shadow-md shadow-slate-500">
             <button type="button" onclick="prevpage()" id="prev-page"
                 class="bg-semi_dark_green w-fit h-10 px-6 py-2 border-semi_dark_green border-2 rounded-s-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15"
-                    fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
                     <path
                         d="M4.96016 8L8.28516 11.5C8.51849 11.75 8.86849 11.75 9.10182 11.5C9.33516 11.25 9.33516 10.875 9.10182 10.625L6.24349 7.5L9.10182 4.375C9.33516 4.125 9.33516 3.75 9.10182 3.5C8.98516 3.375 8.86849 3.3125 8.69349 3.3125C8.51849 3.3125 8.40182 3.375 8.28516 3.5L4.96016 7C4.72682 7.3125 4.72682 7.6875 4.96016 8C4.96016 7.9375 4.96016 7.9375 4.96016 8Z"
                         fill="white" />
@@ -183,13 +131,15 @@
 <script>
     const prevButton = document.getElementById('prev-page');
     const nextButton = document.getElementById('next-page');
+    let data;
     let currentPage = 1;
     let totalPages = 1;
+    let sortcounter = 0;
 
-    async function fetchProjects(page = 1) {
+    async function fetchProjects(page = 1, filterName = '') {
         try {
-            const response = await fetch(`http://127.0.0.1:8001/api/project?page=${page}`);
-            const data = await response.json();
+            const response = await fetch(`http://127.0.0.1:8001/api/project?page=${page}&name=${filterName}`);
+            data = await response.json();
             totalPages = data.data.last_page;
             displayProjects(data.data.data);
             updatePagination();
@@ -197,6 +147,39 @@
         } catch (error) {
             console.error('Error:', error);
         }
+    }
+
+    function sortProjectsChanger(sortField) {
+        if (sortcounter == 0) {
+            sortProjects(sortField, 'asc')
+            sortcounter++;
+        } else {
+            sortProjects(sortField, 'desc')
+            sortcounter--;
+        }
+        // console.log()
+    }
+
+    function sortProjects(sortField, sortDirection) {
+        const projectsData = data.data.data;
+        if (sortField == "lecturer") {
+            projectsData.sort((a, b) => {
+                if (a.lecturer.user['first_name'] < b.lecturer.user['first_name']) return sortDirection ===
+                    'asc' ? -
+                    1 : 1;
+                if (a.lecturer.user['first_name'] > b.lecturer.user['first_name']) return sortDirection ===
+                    'asc' ?
+                    1 : -1;
+                return 0;
+            });
+        } else {
+            projectsData.sort((a, b) => {
+                if (a[sortField] < b[sortField]) return sortDirection === 'asc' ? -1 : 1;
+                if (a[sortField] > b[sortField]) return sortDirection === 'asc' ? 1 : -1;
+                return 0;
+            });
+        }
+        displayProjects(projectsData);
     }
 
     function displayProjects(projects) {
@@ -216,7 +199,7 @@
 
             const td2 = document.createElement('td');
             td2.classList.add('px-6', 'py-4');
-            td2.textContent = project['agency'];
+            td2.textContent = (project.lecturer.user["first_name"] + project.lecturer.user["last_name"]);
 
             const td3 = document.createElement('td');
             td3.classList.add('px-6', 'py-4');

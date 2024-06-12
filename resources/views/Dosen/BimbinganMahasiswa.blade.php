@@ -52,7 +52,7 @@
 
             <div class="text-[#404D61] mt-5">
                 <p class="font-semibold  text-3xl">Bimbingan Mahasiswa</p>
-                <p class="font-regular text-xl">32 results found</p>
+                <p class="font-regular text-xl">33 results found</p>
             </div>
 
             <div class="flex items-center">
@@ -103,7 +103,7 @@
 
         <div class="rounded-lg border border-gray-200 shadow-md mt-10 w-full overflow-scroll">
 
-            <table class="w-fit border-collapse bg-white text-left text-sm text-gray-500">
+            <table class="border-collapse w-full bg-white text-left text-sm text-gray-500">
                 <thead class="bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-4 font-medium text-gray-900">Nama</th>
@@ -176,109 +176,109 @@
     let currentPage = 1;
     let totalPages = 1;
 
-    async function fetchProjects(page = 1) {
-        try {
-            const response = await fetch(`http://127.0.0.1:8001/api/project?page=${page}`);
-            const data = await response.json();
-            totalPages = data.data.last_page;
-            displayProjects(data.data.data);
-            updatePagination();
-            setPageIndicator();
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
+    // async function fetchProjects(page = 1) {
+    //     try {
+    //         const response = await fetch(`http://127.0.0.1:8001/api/project?page=${page}`);
+    //         const data = await response.json();
+    //         totalPages = data.data.last_page;
+    //         displayProjects(data.data.data);
+    //         updatePagination();
+    //         setPageIndicator();
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // }
 
-    function displayProjects(projects) {
-        const projectList = document.getElementById('project-list');
-        projectList.innerHTML = ''; // Hapus semua project cards sebelumnya
-        // console.log(projects)
+    // function displayProjects(projects) {
+    //     const projectList = document.getElementById('project-list');
+    //     projectList.innerHTML = ''; // Hapus semua project cards sebelumnya
+    //     // console.log(projects)
 
 
-        projects.forEach(project => {
-            console.log(project["title"]);
-            const newTableRow = document.createElement('tr');
-            newTableRow.classList.add('mx-4', 'bg-grey-100', 'w-full', 'h-full', 'px-2', 'pb-2');
+    //     projects.forEach(project => {
+    //         console.log(project["title"]);
+    //         const newTableRow = document.createElement('tr');
+    //         newTableRow.classList.add('mx-4', 'bg-grey-100', 'w-full', 'h-full', 'px-2', 'pb-2');
 
-            const td1 = document.createElement('td');
-            td1.classList.add('px-6', 'py-4');
-            td1.textContent = project['title'];
+    //         const td1 = document.createElement('td');
+    //         td1.classList.add('px-6', 'py-4');
+    //         td1.textContent = project['title'];
 
-            const td2 = document.createElement('td');
-            td2.classList.add('px-6', 'py-4');
-            td2.textContent = project['agency'];
+    //         const td2 = document.createElement('td');
+    //         td2.classList.add('px-6', 'py-4');
+    //         td2.textContent = project['agency'];
 
-            const td3 = document.createElement('td');
-            td3.classList.add('px-6', 'py-4');
-            td3.textContent = project['description'];
+    //         const td3 = document.createElement('td');
+    //         td3.classList.add('px-6', 'py-4');
+    //         td3.textContent = project['description'];
 
-            const td4 = document.createElement('td');
-            td4.classList.add('px-6', 'py-4');
-            td4.textContent = project['tools'];
+    //         const td4 = document.createElement('td');
+    //         td4.classList.add('px-6', 'py-4');
+    //         td4.textContent = project['tools'];
 
-            const td5 = document.createElement('td');
-            td5.classList.add('px-6', 'py-4');
-            td5.textContent = project['created_at'];
+    //         const td5 = document.createElement('td');
+    //         td5.classList.add('px-6', 'py-4');
+    //         td5.textContent = project['created_at'];
 
-            const td6 = document.createElement('td');
-            td6.classList.add('px-6', 'py-4');
+    //         const td6 = document.createElement('td');
+    //         td6.classList.add('px-6', 'py-4');
 
-            const imgButton = document.createElement('button');
-            imgButton.classList.add('bg-slate-900', 'p-2', 'px-4', 'rounded-xl');
-            const img = document.createElement('img');
-            imgButton.setAttribute('onclick', 'toProjectDetails(' + project["id"] + ')');
-            imgButton.setAttribute('type', 'button');
-            img.setAttribute('src', "{{ asset('icon/Mahasiswa/Tugas akhir/arrow.png') }}");
+    //         const imgButton = document.createElement('button');
+    //         imgButton.classList.add('bg-slate-900', 'p-2', 'px-4', 'rounded-xl');
+    //         const img = document.createElement('img');
+    //         imgButton.setAttribute('onclick', 'toProjectDetails(' + project["id"] + ')');
+    //         imgButton.setAttribute('type', 'button');
+    //         img.setAttribute('src', "{{ asset('icon/Mahasiswa/Tugas akhir/arrow.png') }}");
 
-            imgButton.appendChild(img);
-            td6.appendChild(imgButton);
+    //         imgButton.appendChild(img);
+    //         td6.appendChild(imgButton);
 
-            newTableRow.appendChild(td1);
-            newTableRow.appendChild(td2);
-            newTableRow.appendChild(td3);
-            newTableRow.appendChild(td4);
-            newTableRow.appendChild(td5);
-            newTableRow.appendChild(td6);
-            projectList.appendChild(newTableRow);
+    //         newTableRow.appendChild(td1);
+    //         newTableRow.appendChild(td2);
+    //         newTableRow.appendChild(td3);
+    //         newTableRow.appendChild(td4);
+    //         newTableRow.appendChild(td5);
+    //         newTableRow.appendChild(td6);
+    //         projectList.appendChild(newTableRow);
 
-        });
-        // }
-    }
+    //     });
+    //     // }
+    // }
 
-    function updatePagination() {
-        const prevButton = document.getElementById("prev-page");
-        const nextButton = document.getElementById("next-page");
-        prevButton.disabled = currentPage === 1;
-        nextButton.disabled = currentPage === totalPages;
-    }
+    // function updatePagination() {
+    //     const prevButton = document.getElementById("prev-page");
+    //     const nextButton = document.getElementById("next-page");
+    //     prevButton.disabled = currentPage === 1;
+    //     nextButton.disabled = currentPage === totalPages;
+    // }
 
-    function prevpage() {
-        if (currentPage > 1) {
-            currentPage--;
-            fetchProjects(currentPage);
-        }
-    };
+    // function prevpage() {
+    //     if (currentPage > 1) {
+    //         currentPage--;
+    //         fetchProjects(currentPage);
+    //     }
+    // };
 
-    function nextpage() {
-        if (currentPage < totalPages) {
-            currentPage++;
-            fetchProjects(currentPage);
-        }
-    }
+    // function nextpage() {
+    //     if (currentPage < totalPages) {
+    //         currentPage++;
+    //         fetchProjects(currentPage);
+    //     }
+    // }
 
-    function setPageIndicator() {
-        for (let i = 0; i < 5; i++) {
-            let buttonPage = document.getElementById("page" + (i + 1).toString());
-            console.log(buttonPage.textContent);
-            buttonPage.style.backgroundColor = "#FFFFFF";
-            buttonPage.style.borderColor = "#FFFFFF";
+    // function setPageIndicator() {
+    //     for (let i = 0; i < 5; i++) {
+    //         let buttonPage = document.getElementById("page" + (i + 1).toString());
+    //         console.log(buttonPage.textContent);
+    //         buttonPage.style.backgroundColor = "#FFFFFF";
+    //         buttonPage.style.borderColor = "#FFFFFF";
 
-        }
+    //     }
 
-        const buttonCurrentPage = document.getElementById("page" + currentPage);
-        buttonCurrentPage.style.backgroundColor = "#D4DFDE";
-        buttonCurrentPage.style.borderColor = "#025E5A";
-    };
+    //     const buttonCurrentPage = document.getElementById("page" + currentPage);
+    //     buttonCurrentPage.style.backgroundColor = "#D4DFDE";
+    //     buttonCurrentPage.style.borderColor = "#025E5A";
+    // };
 
-    fetchProjects();
+    // fetchProjects();
 </script>
