@@ -6,12 +6,12 @@
 
         <div class="flex items-center justify-between">
 
-            <div class="text-[#404D61] mt-5">
+            <div class="text-[#404D61]">
                 <p class="font-semibold text-2xl">Profile</p>
             </div>
 
             <div class="flex items-center">
-                <ul class="ml-auto flex flex-row mt-6">
+                <ul class="ml-auto flex flex-row">
                     <li class="mr-8">
                         <img src="{{ asset('icon/lonceng.png') }}" alt="">
                     </li>
@@ -19,9 +19,12 @@
                         <img src="{{ asset('icon/dosen.png') }}" alt="">
                     </li>
                     <li class="mr-4">
-                        <p class="text-xl font-semibold">Syra Athaya</p>
+                        <p id="username_txt" class="text-xl font-semibold">Syra Athaya</p>
                     </li>
                 </ul>
+                <div class="px-6 py-3 bg-main_green text-white rounded-lg shadow-sm shadow-gray-700">
+                    <button id="logout-button" type="button">logout</button>
+                </div>
             </div>
         </div>
 
@@ -38,9 +41,9 @@
                     </button>
 
                     <button class="self-center" onclick="saveImage()">
-                        <div
-                            class="flex flex-row bg-slate-100 w-56 h-56 rounded-full mt-12 p-16 items-center justify-center">
-                            <img class="w-16 h-16" src="{{ asset('icon/Mahasiswa/Profile/camera.png') }}" alt="">
+                        <div class="flex flex-row bg-slate-100 w-56 h-56 rounded-full mt-10 items-center justify-center">
+                            <img id="profile_image" class="w-full h-full"
+                                src="{{ asset('icon/Mahasiswa/Profile/camera.png') }}" alt="">
                         </div>
                     </button>
 
@@ -77,15 +80,21 @@
                                 </div>
 
                                 <div id="container_web" class="flex flex-row items-center">
-                                    <img src="{{ asset('icon/Mahasiswa/Profile/globe.png') }}" alt="">
-                                    {{-- <p class="text-md ms-6">-</p> --}}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                        viewBox="0 0 26 26" fill="none">
+                                        <circle cx="13.0013" cy="12.9998" r="11.3333" stroke="#344948"
+                                            stroke-width="2.83333" />
+                                        <ellipse cx="13" cy="12.9998" rx="4.25" ry="11.3333"
+                                            stroke="#344948" stroke-width="2.83333" />
+                                        <path d="M1.66797 13H24.3346" stroke="#344948" stroke-width="2.83333"
+                                            stroke-linecap="round" />
+                                    </svg> {{-- <p class="text-md ms-6">-</p> --}}
                                 </div>
 
                                 <div id="container_noHp" class="flex flex-row items-center">
                                     <img src="{{ asset('icon/Mahasiswa/Profile/phone.png') }}" alt="">
                                     {{-- <p class="text-md ms-6">+62 6894 890 890</p> --}}
                                 </div>
-
                             </div>
 
 
@@ -189,25 +198,38 @@
         try {
             const token = localStorage.getItem('token');
             console.log(token);
-            const response = await fetch('http://127.0.0.1:8001/api/user', {
+            let response = await fetch('http://127.0.0.1:8001/api/user', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
             const userData = await response.json();
-            console.log(userData);
+            // console.log(userData);
+            const usernameObj = document.getElementById('username_txt');
+            usernameObj.textContent = userData.username;
 
-            const response2 = await fetch(`http://127.0.0.1:8001/api/student/1`);
-            const data = await response2.json();
-            // console.log(data.data);
-            displayProfile(data.data);
-            displayContacts(data.data);
+
+            response = await fetch(`http://127.0.0.1:8001/api/student`);
+            const data = await response.json();
+            data.data.data.forEach(Student => {
+                if (Student.user_id == userData.id) {
+                    // console.log(Student);
+                    displayProfile(Student);
+                    displayContacts(Student);
+                }
+            });
+            // console.log(data.data.data);
         } catch (error) {
             console.error('Error:', error);
         }
     }
 
     function displayProfile(projects) {
+
+        const profile_image = document.getElementById("profile_image");
+        profile_image.setAttribute('src', projects.user["profile_photo"]);
+        profile_image.classList
+
 
         const container_profile = document.getElementById('container_profile');
         container_profile.innerHTML = '';
@@ -250,7 +272,11 @@
 
         const webTxt = document.createElement('p');
         webTxt.classList.add('text-md', 'ms-6');
-        webTxt.textContent = "link portofolio"
+        if (projects["link_porto"] == null) {
+            webTxt.textContent = "Belum ada";
+        } else {
+            webTxt.textContent = projects["link_porto"];
+        }
         container_web.appendChild(webTxt);
 
         const noHpTxt = document.createElement('p');
@@ -260,16 +286,56 @@
 
         const linkedinTxt = document.createElement('p');
         linkedinTxt.classList.add('text-md', 'ms-6');
-        linkedinTxt.textContent = "link linkedin";
+        if (projects["link_porto"] == null) {
+            linkedinTxt.textContent = "Belum ada";
+        } else {
+            linkedinTxt.textContent = projects["link_linkedin"];
+        }
         container_linkedin.appendChild(linkedinTxt);
 
         const githubTxt = document.createElement('p');
         githubTxt.classList.add('text-md', 'ms-6');
-        githubTxt.textContent = "link github";
+        if (projects["link_porto"] == null) {
+            githubTxt.textContent = "Belum ada";
+        } else {
+            githubTxt.textContent = projects["link_github"];
+        }
         container_github.appendChild(githubTxt);
 
 
     }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        const logoutButton = document.getElementById('logout-button');
+        const token = localStorage.getItem('token');
+
+        logoutButton.addEventListener('click', async () => {
+            try {
+                // Kirim permintaan logout ke server
+                const response = await fetch('http://127.0.0.1:8001/api/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    // Hapus token dari localStorage
+                    localStorage.removeItem('token');
+                    alert('Anda berhasil logout');
+                    // Arahkan kembali ke halaman login
+                    window.location.href = "{{ route('login') }}";
+                } else {
+                    const data = await response.json();
+                    alert(`Error: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat logout. Silakan coba lagi.');
+            }
+        });
+    });
 
     fetchProjects();
 </script>
