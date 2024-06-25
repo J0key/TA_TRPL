@@ -23,7 +23,7 @@
                         <img src="{{ asset('icon/dosen.png') }}" alt="">
                     </li>
                     <li class="mr-4">
-                        <p class="text-xl font-semibold">Syra Athaya</p>
+                        <p class="text-xl font-semibold"></p>
                     </li>
                 </ul>
             </div>

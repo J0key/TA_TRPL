@@ -1,4 +1,4 @@
-@extends('partial.layouts')
+@extends('akademik.partial.layouts')
 
 @section('main')
     <main class="w-[1139px] ml-[322px] min-h-screen my-10 flex flex-col">
@@ -36,7 +36,7 @@
             </ul>
         </div>
 
-        
+
         <div class="flex items-center justify-between mt-8">
 
             <div class="text-[#404D61] mt-5">
@@ -101,9 +101,9 @@
                     <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
                         <th class="px-6 py-4 text-white ">
 
-                            <div class="bg-main_green w-fit p-2 rounded-xl">
+                            <button type="button" onclick="goToBimbingan()" class="bg-main_green w-fit p-2 rounded-xl">
                                 <img src="{{ asset('icon/eye.png') }}" alt="">
-                            </div>
+                            </button>
 
                         </th>
                         <td class="px-6 py-4">Shyra Athaya</td>
@@ -116,9 +116,9 @@
                     <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
                         <th class="px-6 py-4 text-white ">
 
-                            <div class="bg-dark_green w-fit p-2 rounded-xl">
+                            <button onclick="goToEditProses()" class="bg-dark_green w-fit p-2 rounded-xl">
                                 <img src="{{ asset('icon/pencil.png') }}" alt="">
-                            </div>
+                            </button>
 
                         </th>
                         <td class="px-6 py-4">Ikhwan Hanif</td>
@@ -132,9 +132,9 @@
                     <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
                         <th class="px-6 py-4 text-white ">
 
-                            <div class="bg-dark_green w-fit p-2 rounded-xl">
+                            <button onclick="goToEditRevisi()" class="bg-dark_green w-fit p-2 rounded-xl">
                                 <img src="{{ asset('icon/pencil.png') }}" alt="">
-                            </div>
+                            </button>
 
                         </th>
                         <td class="px-6 py-4">Andromedha Cynosura</td>
@@ -175,5 +175,18 @@
             </button>
         </div>
     </main>
-
+    @stack('script')
 @endsection
+<script>
+    function goToBimbingan() {
+        window.location.href = "{{ route('akademik.showPersetujuan_bimbingan') }}"
+    }
+
+    function goToEditProses() {
+        window.location.href = "{{ route('akademik.showPersetujuan_edit_proses') }}"
+    }
+
+    function goToEditRevisi() {
+        window.location.href = "{{ route('akademik.showPersetujuan_edit_revisi') }}"
+    }
+</script>

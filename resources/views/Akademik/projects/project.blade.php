@@ -1,4 +1,4 @@
-@extends('partial.layouts')
+@extends('Akademik.partial.layouts')
 
 @section('main')
     <main class="w-[1139px] ml-[322px] min-h-screen my-10 flex flex-col">
@@ -86,23 +86,23 @@
             <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 overflow-scroll">
                 <thead class="bg-white border-b-2 border-gray-300">
                     <tr>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Dosen</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Total Project</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Status</th>
-                        <th scope="col" class="w-40 px-6 py-4 font-medium text-gray-900 text-center">Action</th>
+                        <th scope="col" class="px-6 py-4 w-[50%] font-medium text-gray-900">Dosen</th>
+                        <th scope="col" class="px-6 py-4 w-[15%] font-medium text-gray-900">Total Project</th>
+                        <th scope="col" class="px-6 py-4 w-[15%]  font-medium text-gray-900">Status</th>
+                        <th scope="col" class="px-6 w-[20%]  py-4 font-medium text-gray-900 text-center">Action</th>
                     </tr>
                 </thead>
 
                 <tbody class="divide-y bg-gray-100 border-t border-gray-100">
                     <tr class="mx-4 bg-grey-100 w-full h-fit px-2">
-                        <td class="px-6 py-4 flex flex-row items-center">
+                        <td class="px-6 py-4 flex flex-row items-center w-">
                             <img src="{{ asset('icon/dosen.png') }}" class="w-8 h-auto" alt="">
                             <p class="ps-4"> Dinar Nugroho Pratomo, S.Kom, M.IM., M. Cs. </p>
                         </td>
-                        <td class="px-6 py-4">34</td>
-                        <td class="px-6 py-4">Active</td>
-                        <td class="px-6 py-4 w-40 flex flex-row justify-center">
-                            <div
+                        <td class="px-6 py-4 w-[15%]">34</td>
+                        <td class="px-6 py-4 w-[15%]">Active</td>
+                        <td class="px-6 py-4 flex flex-row justify-center">
+                            <button type="button" onclick="goToProjectDetail()"
                                 class="bg-dark_green py-2 px-4 w-fit h-fit flex flex-row items-center justify-center rounded-lg self-center">
                                 <p class="text-white">lihat detail</p>
                                 <i class="ri-arrow-right-s-line ml-auto text-white"
@@ -110,85 +110,10 @@
                             transition: transform 0.3s ease,
                                 display 0.3s ease;
                         "></i>
-                            </div>
+                            </button>
                         </td>
                     </tr>
-                    <tr class="mx-4 bg-grey-100 w-full h-fit px-2">
-                        <td class="px-6 py-4 flex flex-row items-center">
-                            <img src="{{ asset('icon/dosen.png') }}" class="w-8 h-auto" alt="">
-                            <p class="ps-4"> Dinar Nugroho Pratomo, S.Kom, M.IM., M. Cs. </p>
-                        </td>
-                        <td class="px-6 py-4">34</td>
-                        <td class="px-6 py-4">Active</td>
-                        <td class="px-6 py-4 w-40 flex flex-row justify-center">
-                            <div
-                                class="bg-dark_green py-2 px-4 w-fit h-fit flex flex-row items-center justify-center rounded-lg self-center">
-                                <p class="text-white">lihat detail</p>
-                                <i class="ri-arrow-right-s-line ml-auto text-white"
-                                    style="
-                            transition: transform 0.3s ease,
-                                display 0.3s ease;
-                        "></i>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="mx-4 bg-grey-100 w-full h-fit px-2">
-                        <td class="px-6 py-4 flex flex-row items-center">
-                            <img src="{{ asset('icon/dosen.png') }}" class="w-8 h-auto" alt="">
-                            <p class="ps-4"> Dinar Nugroho Pratomo, S.Kom, M.IM., M. Cs. </p>
-                        </td>
-                        <td class="px-6 py-4">34</td>
-                        <td class="px-6 py-4">Active</td>
-                        <td class="px-6 py-4 w-40 flex flex-row justify-center">
-                            <div
-                                class="bg-dark_green py-2 px-4 w-fit h-fit flex flex-row items-center justify-center rounded-lg self-center">
-                                <p class="text-white">lihat detail</p>
-                                <i class="ri-arrow-right-s-line ml-auto text-white"
-                                    style="
-                            transition: transform 0.3s ease,
-                                display 0.3s ease;
-                        "></i>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="mx-4 bg-grey-100 w-full h-fit px-2">
-                        <td class="px-6 py-4 flex flex-row items-center">
-                            <img src="{{ asset('icon/dosen.png') }}" class="w-8 h-auto" alt="">
-                            <p class="ps-4"> Dinar Nugroho Pratomo, S.Kom, M.IM., M. Cs. </p>
-                        </td>
-                        <td class="px-6 py-4">34</td>
-                        <td class="px-6 py-4">Active</td>
-                        <td class="px-6 py-4 w-40 flex flex-row justify-center">
-                            <div
-                                class="bg-dark_green py-2 px-4 w-fit h-fit flex flex-row items-center justify-center rounded-lg self-center">
-                                <p class="text-white">lihat detail</p>
-                                <i class="ri-arrow-right-s-line ml-auto text-white"
-                                    style="
-                            transition: transform 0.3s ease,
-                                display 0.3s ease;
-                        "></i>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="mx-4 bg-grey-100 w-full h-fit px-2">
-                        <td class="px-6 py-4 flex flex-row items-center">
-                            <img src="{{ asset('icon/dosen.png') }}" class="w-8 h-auto" alt="">
-                            <p class="ps-4"> Dinar Nugroho Pratomo, S.Kom, M.IM., M. Cs. </p>
-                        </td>
-                        <td class="px-6 py-4">34</td>
-                        <td class="px-6 py-4">Active</td>
-                        <td class="px-6 py-4 w-40 flex flex-row justify-center">
-                            <div
-                                class="bg-dark_green py-2 px-4 w-fit h-fit flex flex-row items-center justify-center rounded-lg self-center">
-                                <p class="text-white">lihat detail</p>
-                                <i class="ri-arrow-right-s-line ml-auto text-white"
-                                    style="
-                            transition: transform 0.3s ease,
-                                display 0.3s ease;
-                        "></i>
-                            </div>
-                        </td>
-                    </tr>
+
 
                 </tbody>
             </table>
@@ -221,4 +146,10 @@
             </button>
         </div>
     </main>
+    @stack('script')
 @endsection
+<script>
+    function goToProjectDetail() {
+        window.location.href = "{{ route('akademik.showProyekDetail') }}";
+    }
+</script>

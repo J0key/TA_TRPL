@@ -47,7 +47,7 @@
 
             <ul class="mt-8 ms-2 me-4">
                 <li class="mb-1 group py-2">
-                    <a href="{{ route('mahasiswa.dashboard') }}"
+                    <a id="to_dashboard" href="{{ route('mahasiswa.dashboard') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <img src="{{ asset('icon/Property 1=icon, Property 2=mahasiswa.png') }}" class="w-4 h-auto mr-4"
                             alt="" />
@@ -56,7 +56,7 @@
                 </li>
 
                 <li class="mb-1 group py-2">
-                    <a href="{{ route('mahasiswa.profile') }}"
+                    <a id="to_profile" href="{{ route('mahasiswa.profile') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <img src="{{ asset('icon/Mahasiswa/nav_profile.png') }}" class="w-4 h-auto mr-4"
                             alt="" />
@@ -65,7 +65,7 @@
                 </li>
 
                 <li class="mb-1 group py-2">
-                    <a href="{{ route('mahasiswa.tugasakhir') }}"
+                    <a id="to_tugas_akhir" href="{{ route('mahasiswa.tugasakhir') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <img src="{{ asset('icon/Mahasiswa/nav_ta.png') }}" class="w-4 h-auto mr-4" alt="" />
                         <span class=" text-sm">Tugas Akhir</span>
@@ -73,7 +73,7 @@
                 </li>
 
                 <li class="mb-1 group py-2">
-                    <a href="#"
+                    <a id="to_pengajuan_tugas_akhir" href="#"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <img src="{{ asset('icon/Mahasiswa/nav_pengajuan.png') }}" class="w-4 h-auto mr-4"
                             alt="" />
@@ -82,7 +82,7 @@
                 </li>
 
                 <li class="mb-1 group py-2">
-                    <a href="{{ route('mahasiswa.pengumuman') }}"
+                    <a id="to_pengumuman" href="{{ route('mahasiswa.pengumuman') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <img src="{{ asset('icon/Property 1=icon, Property 2=pengumuman.png') }}"
                             class="w-4 h-auto mr-4" alt="" />

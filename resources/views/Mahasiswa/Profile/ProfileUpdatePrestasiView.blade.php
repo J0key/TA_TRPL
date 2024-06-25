@@ -73,16 +73,7 @@
                     value="">
 
                 <div id="container-keahlian" class="flex flex-row w-full my-6 items-center space-x-4">
-                    {{-- <button type="button" onclick="deleteButton()"
-                        class="border-2 w-fit border-gray-600 rounded-3xl flex flex-row items-center justify-center px-2"
-                        id="deleteKeahlian">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                            fill="none">
-                            <path d="M11.25 4.75L4.75 11.25M4.75 4.75L11.25 11.25" stroke="black" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <p class="py-2 px-4">keahlian 1</p>
-                    </button> --}}
+
                 </div>
 
                 <p class=" bg-semi_dark_green text-white p-2 px-6 rounded-full w-fit mt-6">Prestasi</p>
@@ -126,7 +117,8 @@
 
                 <div class="form-group mt-2">
                     <label class=" block mb-2 font-semibold" for="description">Deskripsi (opsional)</label>
-                    <textarea class="form-control @error('description') is-invalid @enderror w-full p-2" id="description" name="description"></textarea>
+                    <textarea class="form-control @error('description') is-invalid @enderror w-full p-2" id="description"
+                        name="description"></textarea>
                     @if ($errors->has('description'))
                         <span class="text-danger">{{ $errors->first('description') }}</span>
                     @endif

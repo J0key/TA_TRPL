@@ -1,4 +1,4 @@
-@extends('partial.layouts')
+@extends('Akademik.partial.layouts')
 
 @section('main')
     <main class="w-[1139px] ml-[322px] min-h-screen my-10 flex flex-col">
@@ -44,25 +44,29 @@
                 <div class="w-full h-fit p-8 flex flex-col">
                     <p class="text-lg font-semibold">Penanggung Jawab</p>
                     <select id="search_item" name="query_type" class="border rounded p-2 mt-4">
-                        <option value="Project" class="py-2 w-fit block">lorem</option>
-                        <option value="Lecturer" class="py-2 w-fit block">ipsum</option>
+                        <option value="Project" class="py-2 w-fit block">Dosen 1</option>
+                        <option value="Lecturer" class="py-2 w-fit block">Dosen 2</option>
+                        <option value="Lecturer" class="py-2 w-fit block">Dosen 3</option>
                     </select>
                 </div>
                 <div class="w-full h-fit p-8 flex flex-col">
                     <p class="text-lg font-semibold">Judul Proyek</p>
-                    <input id="search_item" name="query_type" class="border border-gray-600 rounded p-2 mt-4" />
+                    <input id="search_item" name="query_type" class="border border-gray-600 rounded p-2 mt-4"
+                        value="Pengembangan Backend Sistem Informasi berbasis web (propertio.id)" />
                 </div>
                 <div class="w-full h-fit p-8 flex flex-col">
                     <p class="text-lg font-semibold">Deskripsi Proyek</p>
-                    <textarea id="search_item" name="query_type" class="border border-gray-600 rounded p-2 mt-4"></textarea>
+                    <textarea id="search_item" name="query_type" class="border border-gray-600 rounded p-2 mt-4">membuat back-end</textarea>
                 </div>
                 <div class="w-full h-fit p-8 flex flex-col">
                     <p class="text-lg font-semibold">Tools Proyek</p>
-                    <input id="search_item" name="query_type" class="border border-gray-600 rounded p-2 mt-4" />
+                    <input id="search_item" name="query_type" class="border border-gray-600 rounded p-2 mt-4"
+                        value="laravel" />
                 </div>
                 <div class="w-full h-fit p-8 flex flex-col">
                     <p class="text-lg font-semibold">Instansi</p>
-                    <input id="search_item" name="query_type" class="border border-gray-600 rounded p-2 mt-4" />
+                    <input id="search_item" name="query_type" class="border border-gray-600 rounded p-2 mt-4"
+                        value="cinurawa" />
                 </div>
             </div>
 

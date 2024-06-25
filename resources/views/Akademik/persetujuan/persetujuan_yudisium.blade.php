@@ -1,4 +1,4 @@
-@extends('partial.layouts')
+@extends('Akademik.partial.layouts')
 
 @section('main')
     <main class="w-[1139px] ml-[322px] min-h-screen my-10 flex flex-col">
@@ -27,10 +27,9 @@
                     </button>
                 </li>
                 <li class="mr-1">
-                    <button type="button"
+                    <button type="button" 
                         class="text-[#4C8F8B] w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 hover:text-gray-600">
                         <i class="ri-account-circle-line"></i>
-
                     </button>
                 </li>
             </ul>

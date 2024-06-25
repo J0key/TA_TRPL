@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AkademikController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\DosenPageController;
@@ -20,79 +21,52 @@ use App\Http\Controllers\MahasiswaPageController;
 // login
 Route::get('/', [AkunController::class, 'login'])->name('login');
 
-// Dashboard
-Route::get('/dashboard', [AkunController::class, 'dashboard'])->name('dashboard');
 
-// Akun
-// Mahasiswa
-Route::get('/mahasiswa', [AkunController::class, 'viewMahasiswa'])->name('mahasiswa');
-Route::get('/createMahasiswa', [AkunController::class, 'createMahasiswa'])->name('createMahasiswa');
-Route::put('/storeMahasiswa', [AkunController::class, 'storeMahasiswa'])->name('storeMahasiswa');
-// Akademik
-Route::get('/akademik', [AkunController::class, 'viewAkademik'])->name('akademik');
-// Kaprodi
-Route::get('/kaprodi', [AkunController::class, 'viewKaprodi'])->name('kaprodi');
-// Dosen
-Route::get('/dosen', [AkunController::class, 'viewDosen'])->name('dosen');
+// AKADEMIK
+Route::get('/akademik/dashboard', [AkademikController::class,  'dashboard'])->name('akademik.dashboard');
 
+// AKADEMIK-INFO PENGUMUMAN
+Route::get('/akademik/pengumuman', [AkademikController::class,  'showpengumuman'])->name('akademik.showpengumuman');
+Route::get('/akademik/pengumuman/add', [AkademikController::class,  'addPengumuman'])->name('akademik.addPengumuman');
+Route::post('/akademik/pengumuman/save', [AkademikController::class,  'savePengumuman'])->name('akademik.savePengumuman');
 
-// Berkas
-Route::get('/berkas_sidang', [BerkasController::class,  'sidang'])->name('berkas_sidang');
-Route::get('/createSidang', [BerkasController::class, 'createSidang'])->name('createSidang');
-Route::get('/berkas_yudisium', [BerkasController::class, 'yudisium'])->name('berkas_yudisium');
+// AKADEMIK-INFO USER
+Route::get('/akademik/show/user', [AkademikController::class,  'showUser'])->name('akademik.showUser');
+Route::get('/akademik/show/user/detail', [AkademikController::class,  'showUserDetail'])->name('akademik.showUserDetail');
+Route::get('/akademik/show/dosen', [AkademikController::class,  'showDosen'])->name('akademik.showDosen');
+Route::get('/akademik/show/dosen/bimbingan', [AkademikController::class,  'showDosenBimbingan'])->name('akademik.showDosenBimbingan');
 
+// AKADEMIK-MANAJEMEN AKUN
+Route::get('/akademik/akun/mahasiswa', [AkademikController::class,  'showAkunMahasiswa'])->name('akademik.showAkunMahasiswa');
+Route::get('/akademik/akun/mahasiswa/add', [AkademikController::class,  'addAkunMahasiswa'])->name('akademik.addAkunMahasiswa');
+Route::post('/akademik/akun/mahasiswa/save', [AkademikController::class,  'saveAkunMahasiswa'])->name('akademik.saveAkunMahasiswa');
+Route::get('/akademik/akun/mahasiswa/edit', [AkademikController::class,  'editAkunMahasiswa'])->name('akademik.editAkunMahasiswa');
+Route::post('/akademik/akun/mahasiswa/saveedit', [AkademikController::class,  'saveEditAkunMahasiswa'])->name('akademik.saveEditAkunMahasiswa');
 
-// Persetujuan
-// Tugas Akhir
-Route::get('/persetujuan', [AkunController::class, 'persetujuan'])->name('persetujuan');
-Route::get('/persetujuan_view', [AkunController::class, 'persetujuan_view'])->name('persetujuan_view');
-Route::get('/persetujuan_edit_proses', [AkunController::class, 'persetujuan_edit_proses'])->name('persetujuan_edit_proses');
-Route::get('/persetujuan_edit_revisi', [AkunController::class, 'persetujuan_edit_revisi'])->name('persetujuan_edit_revisi');
+Route::get('/akademik/akun/dosen', [AkademikController::class,  'showAkunDosen'])->name('akademik.showAkunDosen');
+Route::get('/akademik/akun/dosen/add', [AkademikController::class,  'addAkunDosen'])->name('akademik.addAkunDosen');
+Route::post('/akademik/akun/dosen/save', [AkademikController::class,  'saveAkunDosen'])->name('akademik.saveAkunDosen');
+Route::get('/akademik/akun/dosen/edit', [AkademikController::class,  'editAkunDosen'])->name('akademik.editAkunDosen');
+Route::post('/akademik/akun/dosen/saveedit', [AkademikController::class,  'saveEditAkunDosen'])->name('akademik.saveEditAkunDosen');
 
-Route::get('/persetujuan_sidang', [AkunController::class, 'persetujuan_sidang'])->name('persetujuan_sidang');
-Route::get('/persetujuan_yudisium', [AkunController::class, 'persetujuan_yudisium'])->name('persetujuan_yudisium');
-
-
-
-// Periode Registrasi
-
-//Project
-Route::get('/project', [AkunController::class, 'project'])->name('project');
-Route::get('/project_detail', [AkunController::class, 'project_detail'])->name('project_detail');
-Route::get('/project_add', [AkunController::class, 'project_add'])->name('project_add');
-Route::get('/project_update', [AkunController::class, 'project_update'])->name('project_update');
+// MANAJEMEN PERSEUJUAN
+Route::get('/akademik/persetujuanTA', [AkademikController::class,  'showPersetujuan'])->name('akademik.showPersetujuan');
+Route::get('/akademik/persetujuanTA/bimbingan', [AkademikController::class,  'showPersetujuan_bimbingan'])->name('akademik.showPersetujuan_bimbingan');
+Route::get('/akademik/persetujuanTA/edit-proses', [AkademikController::class,  'showPersetujuan_edit_proses'])->name('akademik.showPersetujuan_edit_proses');
+Route::get('/akademik/persetujuanTA/edir-revisi', [AkademikController::class,  'showPersetujuan_edit_revisi'])->name('akademik.showPersetujuan_edit_revisi');
 
 
-//Periode
-Route::get('/periode', [AkunController::class, 'periode'])->name('periode');
+// MANAJEMEN PERIODE
+Route::get('/akademik/periodeTA', [AkademikController::class,  'showPeriode'])->name('akademik.showPeriode');
 
 
-// login
-Route::get('/', [AkunController::class, 'login'])->name('login');
-
-// Dashboard
-Route::get('/dashboard', [AkunController::class, 'dashboard'])->name('dashboard');
-
-
-// Akun - Mahasiswa
-Route::get('/mahasiswa', [AkunController::class, 'viewMahasiswa'])->name('mahasiswa');
-Route::get('/createMahasiswa', [AkunController::class, 'createMahasiswa'])->name('createMahasiswa');
-Route::put('/storeMahasiswa', [AkunController::class, 'storeMahasiswa'])->name('storeMahasiswa');
-
-// Akun - Akademik
-Route::get('/akademik', [AkunController::class, 'viewAkademik'])->name('akademik');
-
-// Akun - Kaprodi
-Route::get('/kaprodi', [AkunController::class, 'viewKaprodi'])->name('kaprodi');
-
-// Akun - Dosen
-Route::get('/dosen', [AkunController::class, 'viewDosen'])->name('dosen');
+// AKADEMIK-MANAJEMEN PROYEK
+Route::get('/akademik/proyek', [AkademikController::class,  'showProyek'])->name('akademik.showProyek');
+Route::get('/akademik/proyek/detail', [AkademikController::class,  'showProyekDetail'])->name('akademik.showProyekDetail');
+Route::get('/akademik/proyek/add', [AkademikController::class,  'addProyek'])->name('akademik.addProyek');
+Route::get('/akademik/proyek/update', [AkademikController::class,  'updateProyek'])->name('akademik.updateProyek');
 
 
-// Berkas
-Route::get('/sidang', [BerkasController::class,  'sidang'])->name('sidang');
-Route::get('/createSidang', [BerkasController::class, 'createSidang'])->name('createSidang');
-Route::get('/yudisium', [BerkasController::class, 'yudisium'])->name('yudisium');
 
 // MAHASISWA
 // dashboard

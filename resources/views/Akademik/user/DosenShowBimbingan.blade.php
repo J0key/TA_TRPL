@@ -1,4 +1,4 @@
-@extends('Dosen.LayoutsDosen')
+@extends('Akademik.partial.layouts')
 
 @section('main')
     <main class="w-[1139px] ml-[330px] min-h-screen my-10 flex flex-col">
@@ -7,7 +7,7 @@
         <form action="" method="POST">
             @csrf
             <div
-                class="py-3 px-6 bg-[#FBFFFC] flex item-center shadow-md rounded-xl shadow-slate-800 border-2 border-main_green">
+                class="py-3 px-6 mt-2 bg-[#FBFFFC] flex item-center shadow-md rounded-xl shadow-slate-800 border-2 border-main_green">
                 <ul class="ml-4 flex items-center">
                     <li class="mr-4">
                         <button type="button"
@@ -50,49 +50,63 @@
 
         <div class="flex flex-row items-center w-full justify-between mt-8">
 
+            <button type="button" onclick="goToPrevPage()"
+                class="p-3 bg-semi_dark_green w-fit flex flex-row rounded-lg"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18L9 12L15 6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <p class="text-white text-md inline">Kembali</p>
+            </button>
+        </div>
+
+
+        <div class="flex flex-row items-center w-full justify-between mt-8">
+
             <div class="text-[#404D61] mt-5">
-                <p class="font-semibold  text-3xl">Sidang Pendadaran</p>
-                <p class="font-regular text-xl">1 0 results found</p>
+                <p class="font-semibold  text-3xl">Bimbingan Mahasiswa</p>
+                <p id="banyak-data" class="font-regular text-xl">0 results found</p>
             </div>
 
             <div class="flex items-center">
 
                 <ul class="ml-auto flex flex-row mt-6">
-
                     <li class="mr-4">
-                        <button type="button"
+                        <button type="button" onclick="sortProjectsChanger('angkatan');"
                             class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
                             <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
-                            <span class="text-[15px] ml-2">Sort All</span>
-                        </button>
-                    </li>
-
-
-                    <li class="mr-4">
-                        <button type="button"
-                            class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
-                            <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
-                            <span class="text-[15px] ml-2">Sort Dosen</span>
+                            <span class="text-[15px] ml-2">Angkatan</span>
                         </button>
                     </li>
                     <li class="mr-4">
-                        <div
-                            class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center rounded-xl">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
-                                fill="none">
-                                <path d="M15 18.0345L9 12.0345L15 6.03448" stroke="#757D8A" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <span class="text-[15px] ml-2 mr-2">Uploaded</span>
-
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
-                                fill="none">
-                                <path d="M9 6.03448L15 12.0345L9 18.0345" stroke="#757D8A" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-
-                        </div>
+                        <button type="button" onclick="exportToExcel()"
+                            class="text-white h-12 py-4 px-4 bg-slate-800 shadow-md shadow-black/15 flex items-center justify-center rounded-xl">
+                            <span class="text-[15px] ml-2">
+                                <svg class="inline me-2" xmlns="http://www.w3.org/2000/svg" width="16" height="17"
+                                    viewBox="0 0 16 17" fill="none">
+                                    <g clip-path="url(#clip0_144_19339)">
+                                        <path
+                                            d="M9.66699 1.3678H4.00033C3.6467 1.3678 3.30756 1.50827 3.05752 1.75832C2.80747 2.00837 2.66699 2.34751 2.66699 2.70113V13.3678C2.66699 13.7214 2.80747 14.0606 3.05752 14.3106C3.30756 14.5607 3.6467 14.7011 4.00033 14.7011H12.0003C12.3539 14.7011 12.6931 14.5607 12.9431 14.3106C13.1932 14.0606 13.3337 13.7214 13.3337 13.3678V5.03446L9.66699 1.3678Z"
+                                            stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M9.33301 1.3678V5.3678H13.333" stroke="white" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M10.6663 8.70105H5.33301" stroke="white" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M10.6663 11.3678H5.33301" stroke="white" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M6.66634 6.03442H5.33301" stroke="white" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_144_19339">
+                                            <rect width="16" height="16" fill="white"
+                                                transform="translate(0 0.0344238)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>Export to excel</span>
+                        </button>
                     </li>
+
 
                 </ul>
 
@@ -103,30 +117,50 @@
 
         <div class="rounded-lg border border-gray-200 shadow-md mt-10 w-full overflow-scroll">
 
-            <table class="w-fit border-collapse bg-white text-left text-sm text-gray-500">
-                <thead class="bg-gray-50">
+            <table class="border-collapse w-full bg-white text-left text-sm text-gray-500">
+                <thead class="bg-gray-50 w-full">
                     <tr>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Judul Proyek</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Penanggung Jawab</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Deskripsi</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tools</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tanggal Upload</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Action</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">NIM</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Nama</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Projek</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Sidang</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Nilai akhir</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Yudisium</th>
                     </tr>
                 </thead>
 
-                <tbody id="project-list" class="divide-y bg-white border-t border-gray-100">
-                    <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
-                        <td class="px-6 py-4">Pengembangan Backend Sistem Informasi berbasis web (propertio.id)</td>
-                        <td class="px-6 py-4">Cinurawa</td>
-                        <td class="px-6 py-4 ">Membuat back-end</td>
-                        <td class="px-6 py-4">Laravel</td>
-                        <td class="px-6 py-4">20 - 12 - 2024</td>
-                        <td class="px-6 py-4">
-                            <img class=" bg-slate-900 p-2 px-4 rounded-xl"
-                                src="{{ asset('icon/Mahasiswa/Tugas akhir/arrow.png') }}" alt="">
-                        </td>
+                <tbody id="project-list" class="divide-y w-full bg-white border-t border-gray-100">
+
+
+                    <tr class="mx-4 bg-grey-100 w-fit h-full px-2 pb-2">
+                        <td class="px-6 py-4">22/503872/SV/21552</td>
+                        <td class="px-6 py-4 "> Ikhwan Hanif Firdaus</td>
+                        <td class="px-6 py-4 ">SI Portofolio TA</td>
+                        <td class="px-6 py-4 ">-</td>
+                        <td class="px-6 py-4 ">90</td>
+                        <td class="px-6 py-4 ">-</td>
                     </tr>
+
+                    <tr class="mx-4 bg-grey-100 w-fit h-full px-2 pb-2">
+                        <td class="px-6 py-4">22/503872/SV/21552</td>
+                        <td class="px-6 py-4 "> Ikhwan Hanif Firdaus</td>
+                        <td class="px-6 py-4 ">SI Portofolio TA</td>
+                        <td class="px-6 py-4 ">-</td>
+                        <td class="px-6 py-4 ">90</td>
+                        <td class="px-6 py-4 ">-</td>
+                    </tr>
+
+
+                    <tr class="mx-4 bg-grey-100 w-fit h-full px-2 pb-2">
+                        <td class="px-6 py-4">22/503872/SV/21552</td>
+                        <td class="px-6 py-4 "> Ikhwan Hanif Firdaus</td>
+                        <td class="px-6 py-4 ">SI Portofolio TA</td>
+                        <td class="px-6 py-4 ">-</td>
+                        <td class="px-6 py-4 ">90</td>
+                        <td class="px-6 py-4 ">-</td>
+                    </tr>
+
+
 
                 </tbody>
             </table>
@@ -168,13 +202,19 @@
 <script>
     const prevButton = document.getElementById('prev-page');
     const nextButton = document.getElementById('next-page');
+    let data;
     let currentPage = 1;
     let totalPages = 1;
+    let sortcounter = 0;
+
+    function goToDetailMahasiswa() {
+        window.location.href = "{{ route('akademik.showUserDetail') }}";
+    }
 
     async function fetchProjects(page = 1, filterName = '') {
         try {
-            const response = await fetch(`http://127.0.0.1:8001/api/project?page=${page}&name=${filterName}`);
-            const data = await response.json();
+            const response = await fetch(`http://127.0.0.1:8001/api/student?page=${page}&name=${filterName}`);
+            data = await response.json();
             totalPages = data.data.last_page;
             displayProjects(data.data.data);
             updatePagination();
@@ -184,17 +224,38 @@
         }
     }
 
-    function sortProjects(sortField, sortDirection) {
-        const projectsData = [...data.data.data];
-        projectsData.sort((a, b) => {
-            if (a[sortField] < b[sortField]) return sortDirection === 'asc' ? -1 : 1;
-            if (a[sortField] > b[sortField]) return sortDirection === 'asc' ? 1 : -1;
-            return 0;
-        });
-        displayProjects(projectsData);
+    function sortProjectsChanger(sortField) {
+        if (sortcounter == 0) {
+            sortProjects(sortField, 'asc')
+            sortcounter++;
+        } else {
+            sortProjects(sortField, 'desc')
+            sortcounter--;
+        }
+        // console.log()
     }
 
-
+    function sortProjects(sortField, sortDirection) {
+        const projectsData = data.data.data;
+        if (sortField == "lecturer") {
+            projectsData.sort((a, b) => {
+                if (a.lecturer.user['first_name'] < b.lecturer.user['first_name']) return sortDirection ===
+                    'asc' ? -
+                    1 : 1;
+                if (a.lecturer.user['first_name'] > b.lecturer.user['first_name']) return sortDirection ===
+                    'asc' ?
+                    1 : -1;
+                return 0;
+            });
+        } else {
+            projectsData.sort((a, b) => {
+                if (a[sortField] < b[sortField]) return sortDirection === 'asc' ? -1 : 1;
+                if (a[sortField] > b[sortField]) return sortDirection === 'asc' ? 1 : -1;
+                return 0;
+            });
+        }
+        displayProjects(projectsData);
+    }
 
     function displayProjects(projects) {
         const projectList = document.getElementById('project-list');
@@ -203,42 +264,59 @@
 
 
         projects.forEach(project => {
-            console.log(project["title"]);
             const newTableRow = document.createElement('tr');
             newTableRow.classList.add('mx-4', 'bg-grey-100', 'w-full', 'h-full', 'px-2', 'pb-2');
 
             const td1 = document.createElement('td');
             td1.classList.add('px-6', 'py-4');
-            td1.textContent = project['title'];
+            td1.textContent = project['NIM'];
 
             const td2 = document.createElement('td');
-            td2.classList.add('px-6', 'py-4');
-            td2.textContent = project['agency'];
+            td2.classList.add('px-6');
+            td2.textContent = (project.user['first_name'] + project.user['last_name']);
 
             const td3 = document.createElement('td');
-            td3.classList.add('px-6', 'py-4');
-            td3.textContent = project['description'];
+            td3.classList.add('px-6');
+            td3.textContent = project['phone_number'];
 
             const td4 = document.createElement('td');
-            td4.classList.add('px-6', 'py-4');
-            td4.textContent = project['tools'];
+            td4.classList.add('px-6', 'flex', 'flex-row', 'h-full', 'bg-slate-300', 'w-full', 'items-center',
+                'justify-center');
+            let imgButton = document.createElement('div');
+            imgButton.classList.add('bg-slate-900', 'p-2', 'px-2', 'rounded-lg', 'h-fit');
+            let img = document.createElement('img');
+            img.classList.add('w-2')
+            if (project['judul'] == 0) {
+                img.setAttribute('src', "{{ asset('icon/false.png') }}");
+            } else {
+                img.setAttribute('src', "{{ asset('icon/true.png') }}");
+            }
+            // imgButton.appendChild(img);
+            // td4.appendChild(imgButton);
+
 
             const td5 = document.createElement('td');
-            td5.classList.add('px-6', 'py-4');
-            td5.textContent = project['created_at'];
+            td5.classList.add('px-6', 'flex', 'flex-row', 'h-fit');
+            imgButton.innerHTML = '';
+            if (project['sidang'] == 0) {
+                img.setAttribute('src', "{{ asset('icon/false.png') }}");
+            } else {
+                img.setAttribute('src', "{{ asset('icon/true.png') }}");
+            }
+            imgButton.appendChild(img);
+            td5.appendChild(imgButton);
 
             const td6 = document.createElement('td');
-            td6.classList.add('px-6', 'py-4');
-
-            const imgButton = document.createElement('button');
-            imgButton.classList.add('bg-slate-900', 'p-2', 'px-4', 'rounded-xl');
-            const img = document.createElement('img');
-            imgButton.setAttribute('onclick', 'toProjectDetails(' + project["id"] + ')');
-            imgButton.setAttribute('type', 'button');
-            img.setAttribute('src', "{{ asset('icon/Mahasiswa/Tugas akhir/arrow.png') }}");
-
+            td6.classList.add('px-6', 'flex', 'flex-row', 'h-fit');
+            imgButton.innerHTML = '';
+            if (project['yudisium'] == 0) {
+                img.setAttribute('src', "{{ asset('icon/false.png') }}");
+            } else {
+                img.setAttribute('src', "{{ asset('icon/true.png') }}");
+            }
             imgButton.appendChild(img);
             td6.appendChild(imgButton);
+
 
             newTableRow.appendChild(td1);
             newTableRow.appendChild(td2);
@@ -276,7 +354,7 @@
     function setPageIndicator() {
         for (let i = 0; i < 5; i++) {
             let buttonPage = document.getElementById("page" + (i + 1).toString());
-            console.log(buttonPage.textContent);
+            // console.log(buttonPage.textContent);
             buttonPage.style.backgroundColor = "#FFFFFF";
             buttonPage.style.borderColor = "#FFFFFF";
 
@@ -287,5 +365,5 @@
         buttonCurrentPage.style.borderColor = "#025E5A";
     };
 
-    fetchProjects();
+    // fetchProjects();
 </script>

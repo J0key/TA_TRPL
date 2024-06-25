@@ -1,4 +1,4 @@
-@extends('partial.layouts')
+@extends('akademik.partial.layouts')
 
 @section('main')
     <main class="w-[1139px] ml-[322px] min-h-screen my-10 flex flex-col">
@@ -59,9 +59,9 @@
             </div>
         </div>
 
-        <div class="w-full h-fit flex flex-row mt-10 space-x-8">
+        <div class="w-full h-fit flex flex-row mt-10 space-x-8 justify-center">
             <div
-                class="w-[50%] h-full p-8 px-10 bg-white rounded-lg shadow-md shadow-slate-500 flex flex-col items-center ">
+                class="w-[60%] h-full p-8 px-10 bg-white rounded-lg shadow-md shadow-slate-500 flex flex-col items-center ">
                 <p class="text-3xl font-semibold">TUGAS AKHIR</p>
                 <div class=" w-full border-b-2 border-gray-500 my-4"></div>
                 <p class="text-md font-regular mb-4">Status Registrasi</p>
@@ -92,7 +92,7 @@
 
             </div>
 
-            <div
+            {{-- <div
                 class="w-[50%] h-full p-8 px-10 bg-white rounded-lg shadow-md shadow-slate-500 flex flex-col items-center ">
                 <p class="text-3xl font-semibold">YUDISIUM</p>
                 <div class=" w-full border-b-2 border-gray-500 my-4"></div>
@@ -123,7 +123,7 @@
 
                 </button>
 
-            </div>
+            </div> --}}
 
 
         </div>

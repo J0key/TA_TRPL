@@ -1,4 +1,4 @@
-@extends('partial.layouts')
+@extends('Akademik.partial.layouts')
 
 @section('main')
     <main class="w-[1139px] ml-[322px] min-h-screen flex flex-col">
@@ -32,7 +32,6 @@
                     <button type="button"
                         class="text-[#4C8F8B] w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 hover:text-gray-600">
                         <i class="ri-account-circle-line"></i>
-
                     </button>
                 </li>
             </ul>
@@ -76,7 +75,8 @@
             </div>
         </div>
 
-        <button class="bg-semi_dark_green px-4 py-2 w-fit h-fit mt-12 rounded-lg text-white text-lg">
+        <button type="button" onclick="goToAddProject()"
+            class="bg-semi_dark_green px-4 py-2 w-fit h-fit mt-12 rounded-lg text-white text-lg">
             <i class="ri-arrow-left-s-line mr-2"
                 style="
         transition: transform 0.3s ease,
@@ -150,9 +150,9 @@
                     <tr class="mx-4 bg-grey-100 h-fit px-2">
                         <th class="px-4 py-4 text-white">
                             <div class="flex flex-row justify-center">
-                                <div class="bg-dark_green w-fit p-2 rounded-xl">
+                                <button onclick="goToEditProject()" class="bg-dark_green w-fit p-2 rounded-xl">
                                     <img class="w-4 h-auto" src="{{ asset('icon/pencil.png') }}" alt="">
-                                </div>
+                                </button>
                                 <button onclick="openModal()" class=" bg-red-600 w-fit p-2 rounded-xl ms-2">
                                     <img class="w-4 h-auto" src="{{ asset('icon/trash_bin.png') }}" alt="">
                                 </button>
@@ -253,6 +253,14 @@
 @endsection
 
 <script>
+    function goToAddProject() {
+        window.location.href = "{{ route('akademik.addProyek') }}"
+    }
+
+    function goToEditProject() {
+        window.location.href = "{{ route('akademik.updateProyek') }}"
+    }
+
     function openModal() {
         const modal = document.getElementById('modal');
         // Ubah tampilan modal menjadi flex

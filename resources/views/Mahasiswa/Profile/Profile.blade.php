@@ -38,7 +38,8 @@
                     </button>
 
                     <button class="self-center" onclick="saveImage()">
-                        <div class="flex flex-row bg-slate-100 w-56 h-56 rounded-full mt-12 p-16 items-center justify-center">
+                        <div
+                            class="flex flex-row bg-slate-100 w-56 h-56 rounded-full mt-12 p-16 items-center justify-center">
                             <img class="w-16 h-16" src="{{ asset('icon/Mahasiswa/Profile/camera.png') }}" alt="">
                         </div>
                     </button>
@@ -186,8 +187,18 @@
     async function fetchProjects(page = 1) {
 
         try {
-            const response = await fetch(`http://127.0.0.1:8001/api/student/1`);
-            const data = await response.json();
+            const token = localStorage.getItem('token');
+            console.log(token);
+            const response = await fetch('http://127.0.0.1:8001/api/user', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const userData = await response.json();
+            console.log(userData);
+
+            const response2 = await fetch(`http://127.0.0.1:8001/api/student/1`);
+            const data = await response2.json();
             // console.log(data.data);
             displayProfile(data.data);
             displayContacts(data.data);
