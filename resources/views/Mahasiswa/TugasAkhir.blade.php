@@ -32,15 +32,14 @@
 
 
         <div class="flex flex-row items-center w-full justify-between mt-8">
-
             <div class="text-[#404D61] mt-5">
                 <p class="font-semibold  text-3xl">Tugas Akhir</p>
                 <p class="font-regular text-xl">0 results found</p>
             </div>
 
-            <div class="flex items-center">
 
-                <ul class="ml-auto flex flex-row mt-6">
+            <div class="flex items-center ">
+                <ul class="ml-auto flex flex-row mt-6 ">
                     <li class="mr-4">
                         <button type="button" onclick="sortProjectsChanger('title');"
                             class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
@@ -69,35 +68,35 @@
                             <span class="text-[15px] ml-2">Uploaded</span>
                         </button>
                     </li>
-
                 </ul>
-
-
             </div>
 
         </div>
 
-        <div class="rounded-lg border border-gray-200 shadow-md mt-10 w-full overflow-scroll">
+       {{-- table start --}}
+       <div class="rounded-lg border border-gray-200 shadow-md mt-10 w-full overflow-scroll">
+        <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900" style="min-width: 200px;">Judul Proyek</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900" style="min-width: 180px;">Penanggung Jawab</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900" style="min-width: 300px;">Deskripsi</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900" style="min-width: 120px;">Tools</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900" style="min-width: 150px;">Tanggal Upload</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900" style="min-width: 100px;">Action</th>
+                </tr>
+            </thead>
 
-            <table class="w-fit border-collapse bg-white text-left text-sm text-gray-500">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Judul Proyek</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Penanggung Jawab</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Deskripsi</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tools</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tanggal Upload</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Action</th>
-                    </tr>
-                </thead>
-
-                <tbody id="project-list" class="divide-y bg-white border-t border-gray-100">
-
+            <tbody id="project-list" class="divide-y bg-white border-t border-gray-100">
                 </tbody>
-            </table>
-        </div>
+        </table>
+    </div>
 
-        <div class="w-fit h-fit flex flex-row self-center justify-center mt-12 shadow-md shadow-slate-500">
+        {{-- table end --}}
+
+
+        {{-- pagination start --}}
+        <div class="w-fit h-fit flex flex-row self-center justify-center mt-12 ">
             <button type="button" onclick="prevpage()" id="prev-page"
                 class="bg-semi_dark_green w-fit h-10 px-6 py-2 border-semi_dark_green border-2 rounded-s-xl">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
@@ -126,7 +125,13 @@
                 </svg>
             </button>
         </div>
+        {{-- pagination end --}}
+
     </main>
+
+
+
+
     @stack('script')
 @endsection
 <script>
