@@ -30,6 +30,9 @@ class MahasiswaPageController extends Controller
         return view('Mahasiswa.tugasakhir');
     }
 
+    public function pengajuan(){
+        return view('Mahasiswa.pengajuan');
+    }
     public function pengumuman(){
         return view('Mahasiswa.pengumuman');
     }

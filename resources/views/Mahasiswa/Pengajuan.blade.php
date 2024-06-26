@@ -7,10 +7,9 @@
         <div class="flex flex-row w-full h-fit justify-between items-center">
             <form class="" action="">
                 <div class="flex flex-row w-fit bg-semi_dark_green p-2 rounded-full items-center mt-4">
-                    <button type="submit">
-                        <img class="w-8 h-8 ms-2" src="{{ asset('icon/Mahasiswa/Tugas akhir/u_search (1).png') }}" alt="Search Icon">
-                    </button>
-                    <input class="h-fit bg-semi_dark_green border-semi_dark_green  text-white rounded-3xl" type="text" placeholder="Search here...">
+                    <img class="w-8 h-8 ms-2" src="{{ asset('icon/Mahasiswa/Tugas akhir/u_search (1).png') }}" alt="">
+                    <input class="h-fit bg-semi_dark_green border-semi_dark_green text-white rounded-3xl" type="text"
+                        placeholder="Search here...">
                 </div>
             </form>
 
@@ -34,7 +33,7 @@
         <div class="flex flex-row items-center w-full justify-between mt-8">
 
             <div class="text-[#404D61] mt-5">
-                <p class="font-semibold  text-3xl">Tugas Akhir</p>
+                <p class="font-semibold  text-3xl">Pengajuan</p>
                 <p class="font-regular text-xl">0 results found</p>
             </div>
 
@@ -56,10 +55,10 @@
                         </button>
                     </li>
                     <li class="mr-4">
-                        <button type="button" onclick="sortProjectsChanger('tools');"
+                        <button type="button" onclick="sortProjectsChanger('kategori');"
                             class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
                             <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
-                            <span class="text-[15px] ml-2">Tools</span>
+                            <span class="text-[15px] ml-2">Kategori</span>
                         </button>
                     </li>
                     <li class="mr-4">

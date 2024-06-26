@@ -73,7 +73,7 @@
                 </li>
 
                 <li class="mb-1 group py-2">
-                    <a id="to_pengajuan_tugas_akhir" href="#"
+                    <a id="to_pengajuan_tugas_akhir" href="{{ route('mahasiswa.pengajuan')}}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <img src="{{ asset('icon/Mahasiswa/nav_pengajuan.png') }}" class="w-4 h-auto mr-4"
                             alt="" />
@@ -156,16 +156,20 @@
         // });
 
         // const menu = document.getElementById("menu");
-        const listUser = document.getElementById("list_user");
-        const listAccount = document.getElementById("list_account");
-        const listPersetujuan = document.getElementById("list_persetujuan");
-        const listBerkas = document.getElementById("list_berkas");
+        const listDashboard = document.getElementById("to_dashboard");
+        const listProfile = document.getElementById("to_profile");
+        const listTA = document.getElementById("to_tugas_akhir");
+        const listPengajuan = document.getElementById("to_pengajuan_tugas_akhir");
+        const listPengumuman = document.getElementById("to_pengumuman");
+
 
         const arrayList = [
-            listUser,
-            listAccount,
-            listBerkas,
-            listPersetujuan,
+            listDashboard,
+            listProfile,
+            listTA,
+            listPengajuan,
+            listPengumuman,
+
         ];
 
         function tutupDropDown(list, menu) {
@@ -213,38 +217,29 @@
         }
 
         const validRoutes = [
-            ["/user_mahasiswa", "/user_dosen"],
-            ["/mahasiswa", "/dosen", "/akademik", "/kaprodi"],
-            ["/berkas_sidang", "/berkas_yudisium"],
-            ["/persetujuan", "/persetujuan_sidang", "/persetujuan_yudisium"]
-
-
+            ["/mahasiswa/dashboard"],
+            ["/mahasiswa/profile", "/mahasiswa/profile/update", "/mahasiswa/profile_prestasi/update", "/mahasiswa/profile_pengalaman/update"],
+            ["/mahasiswa/tugasakhir"],
+            ["/mahasiswa/tugasakhir"],
+            ["/mahasiswa/pengumuman"]
         ];
+
         const currentRoute = getCurrentRoute();
         // Account
         if (validRoutes[1].includes(currentRoute)) {
-            openItemDropdown(listAccount);
-            const parentList = listAccount.parentNode;
+            openItemDropdown(listDashboard);
+            const parentList = listDashboard.parentNode;
             const menu = parentList.querySelector("#menu");
             if (currentRoute === validRoutes[1][0]) {
                 const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if (currentRoute === validRoutes[1][1]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if (currentRoute === validRoutes[1][2]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(3) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if (currentRoute === validRoutes[1][3]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(4) > a");
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
             }
         }
 
         // Berkas
-        if (validRoutes[3].includes(currentRoute)) {
-            openItemDropdown(listBerkas);
-            const parentList = listBerkas.parentNode;
+        if (validRoutes[2].includes(currentRoute)) {
+            openItemDropdown(listProfile);
+            const parentList = listProfile.parentNode;
             const menu = parentList.querySelector("#menu");
             if (currentRoute === validRoutes[2][0]) {
                 const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
@@ -253,21 +248,23 @@
                 const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
             }
+            else if (currentRoute === validRoutes[2][2]) {
+                const firstChildDiv = menu.querySelector("div:nth-child(3) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            }
+            else if (currentRoute === validRoutes[2][3]) {
+                const firstChildDiv = menu.querySelector("div:nth-child(4) > a");
+                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+            }
         }
 
         // Persetujuan
         if (validRoutes[3].includes(currentRoute)) {
-            openItemDropdown(listPersetujuan);
-            const parentList = listPersetujuan.parentNode;
+            openItemDropdown(listTA);
+            const parentList = listTA.parentNode;
             const menu = parentList.querySelector("#menu");
             if (currentRoute === validRoutes[3][0]) {
                 const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if (currentRoute === validRoutes[3][1]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if (currentRoute === validRoutes[3][2]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(3) > a");
                 firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
             }
         }
