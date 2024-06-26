@@ -96,7 +96,8 @@
             </table>
         </div>
 
-        <div class="w-fit h-fit flex flex-row self-center justify-center mt-12 shadow-md shadow-slate-500">
+        {{-- pagination start --}}
+        <div class="w-fit h-fit flex flex-row self-center justify-center mt-12 ">
             <button type="button" onclick="prevpage()" id="prev-page"
                 class="bg-semi_dark_green w-fit h-10 px-6 py-2 border-semi_dark_green border-2 rounded-s-xl">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
@@ -125,6 +126,7 @@
                 </svg>
             </button>
         </div>
+        {{-- pagination end --}}
     </main>
     @stack('script')
 @endsection

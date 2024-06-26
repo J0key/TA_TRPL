@@ -49,7 +49,7 @@
                 <li class="mb-1 group py-2">
                     <a id="to_dashboard" href="{{ route('mahasiswa.dashboard') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                        <img src="{{ asset('icon/Property 1=icon, Property 2=mahasiswa.png') }}" class="w-4 h-auto mr-4"
+                        <img src="{{ asset('icon/Property 1=icon, Property 2=mahasiswa.png') }}" class="w-5 h-5 mr-4"
                             alt="" />
                         <span class="text-md">Dashboard</span>
                     </a>
@@ -58,26 +58,26 @@
                 <li class="mb-1 group py-2">
                     <a id="to_profile" href="{{ route('mahasiswa.profile') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                        <img src="{{ asset('icon/Mahasiswa/nav_profile.png') }}" class="w-4 h-auto mr-4"
+                        <img src="{{ asset('icon/Mahasiswa/nav_profile.png') }}" class="w-6 h-6 mr-4"
                             alt="" />
-                        <span class="text-sm">Profile</span>
+                        <span class="text-md">Profile</span>
                     </a>
                 </li>
 
                 <li class="mb-1 group py-2">
                     <a id="to_tugas_akhir" href="{{ route('mahasiswa.tugasakhir') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                        <img src="{{ asset('icon/Mahasiswa/nav_ta.png') }}" class="w-4 h-auto mr-4" alt="" />
-                        <span class=" text-sm">Tugas Akhir</span>
+                        <img src="{{ asset('icon/Mahasiswa/nav_ta.png') }}" class="w-5 h-5 mr-4" alt="" />
+                        <span class=" text-md">Tugas Akhir</span>
                     </a>
                 </li>
 
                 <li class="mb-1 group py-2">
                     <a id="to_pengajuan_tugas_akhir" href="{{ route('mahasiswa.pengajuan')}}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                        <img src="{{ asset('icon/Mahasiswa/nav_pengajuan.png') }}" class="w-4 h-auto mr-4"
+                        <img src="{{ asset('icon/Mahasiswa/nav_pengajuan.png') }}" class="w-5 h-5 mr-4"
                             alt="" />
-                        <span class="text-sm">Pengajuan Tugas Akhir</span>
+                        <span class="text-md">Pengajuan</span>
                     </a>
                 </li>
 
@@ -86,7 +86,7 @@
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <img src="{{ asset('icon/Property 1=icon, Property 2=pengumuman.png') }}"
                             class="w-4 h-auto mr-4" alt="" />
-                        <span class="text-sm">Pengumuman</span>
+                        <span class="text-md">Pengumuman</span>
                     </a>
                 </li>
             </ul>
