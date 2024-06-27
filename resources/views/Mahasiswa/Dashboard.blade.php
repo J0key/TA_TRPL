@@ -154,7 +154,12 @@
 @endsection
 
 <script>
-    async function fetchProjects(page = 1, filterName = '') {
+    const token = localStorage.getItem('token');
+    if (token == null) {
+        window.location.href = "{{ route('login') }}";
+    }
+
+    async function fetchProjects() {
         try {
             let url = `http://127.0.0.1:8001/api/project`;
             // FETCH TOTAL SLOT DOSEN
@@ -163,6 +168,22 @@
             let tmpArrayDosen = [];
             let totalProjekTersedia = 0;
             let totalProjekDiambil = 0;
+
+
+            // FETCH DATA USER
+            console.log(token);
+            response = await fetch('http://127.0.0.1:8001/api/user', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (response.ok) {
+                const userData = await response.json();
+                console.log(userData.username);
+                const usernameObj = document.getElementById('username_txt');
+                usernameObj.textContent = userData.username;
+            }
+
             while (url != null) {
                 let response = await fetch(url);
                 data = await response.json();
@@ -182,28 +203,15 @@
                 });
             }
 
-
             const quota_txt = document.getElementById("quota_txt");
             const projek_count_txt = document.getElementById("projek_count_txt");
             quota_txt.textContent = kuotaTerpakai + " / " + totalSlotDosen;
             projek_count_txt.textContent = kuotaTerpakai + " / " + totalProjekTersedia;
 
-
-            // FETCH DATA USER
-            const token = localStorage.getItem('token');
-            console.log(token);
-            response = await fetch('http://127.0.0.1:8001/api/user', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            const userData = await response.json();
-            console.log(userData.username);
-            const usernameObj = document.getElementById('username_txt');
-            usernameObj.textContent = userData.username;
         } catch (error) {
             console.error('Error:', error);
         }
+
     }
 
 

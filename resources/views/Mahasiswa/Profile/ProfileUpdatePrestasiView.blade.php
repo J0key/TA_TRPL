@@ -22,12 +22,12 @@
 
         <div class="flex items-center justify-between">
 
-            <div class="text-[#404D61] mt-5">
+            <div class="text-[#404D61]">
                 <p class="font-semibold text-2xl">Update Profile</p>
             </div>
 
             <div class="flex items-center">
-                <ul class="ml-auto flex flex-row mt-6">
+                <ul class="ml-auto flex flex-row">
                     <li class="mr-8">
                         <img src="{{ asset('icon/lonceng.png') }}" alt="">
                     </li>
@@ -35,9 +35,12 @@
                         <img src="{{ asset('icon/dosen.png') }}" alt="">
                     </li>
                     <li class="mr-4">
-                        <p class="text-xl font-semibold">Syra Athaya</p>
+                        <p id="username_txt" class="text-xl font-semibold">Syra Athaya</p>
                     </li>
                 </ul>
+                <div class="px-6 py-3 bg-main_green text-white rounded-lg shadow-sm shadow-gray-700">
+                    <button id="logout-button" type="button">logout</button>
+                </div>
             </div>
         </div>
 
@@ -60,19 +63,25 @@
                 <p class=" text-gray-600 mt-6 font-semibold">Dianjurkan menambahkan minimal 3 keahlian untuk ditampilkan
                     pada profile.</p>
 
-                <select type="dropdown" id="keahlian" name="keahlian" onchange="printIsi(this.value)"
+                <select type="dropdown" onchange="printIsi(this.value)"
                     class="form-control rounded-lg border-gray-500 w-full py-4 px-4 mt-4" value="">
                     <option value="">Pilih Opsi</option>
-                    <option value="option1">Opsi 1</option>
-                    <option value="option2">Opsi 2</option>
-                    <option value="option3">Opsi 3</option>
+                    <option value="Front-End">Front-End</option>
+                    <option value="Back-End">Back-End</option>
+                    <option value="Full-Stack">Full-Stack</option>
+                    <option value="Mobile Developer">Mobile Developer</option>
+                    <option value="System Analyst">System Analyst</option>
+                    <option value="Project Manager">Project Manager</option>
+                    <option value="Data Analyst">Data Analyst</option>
+                    <option value="Software Testing">Software Testing</option>
+                    <option value="Artificial Inteligence">Artificial Inteligence</option>
                 </select>
 
                 <input type="text" id="skill" name="skill" required style=""
                     class="form-control rounded-lg border-gray-500 w-full focus:border-semi_dark_green" hidden
                     value="">
 
-                <div id="container-keahlian" class="flex flex-row w-full my-6 items-center space-x-4">
+                <div id="container-keahlian" class="flex flex-row w-full my-6 items-center space-x-4 space flex-wrap">
 
                 </div>
 
@@ -83,34 +92,34 @@
                     <div class="flex flex-col basis-1/2 space-y-10">
 
                         <div class="form-group">
-                            <label class=" block mb-2 font-semibold" for="achievement name">Nama Prestasi</label>
-                            <input type="text" id="achievement name" name="achievement name" required style=""
+                            <label class=" block mb-2 font-semibold" for="achievement_name">Nama Prestasi</label>
+                            <input type="text" id="achievement_name" name="achievement_name" required style=""
                                 class="form-control rounded-lg border-gray-500 w-full focus:border-semi_dark_green ou"
-                                value="{{ old('achievement name') }}">
+                                value="{{ old('achievement_name') }}">
                         </div>
 
                         <div class="form-group mt-6">
-                            <label class=" block mb-2 font-semibold" for="achievement level">Tingkat Kejuaraan</label>
-                            <input type="text" id="achievement level" name="achievement level" required
+                            <label class=" block mb-2 font-semibold" for="achievement_level">Tingkat Kejuaraan</label>
+                            <input type="text" id="achievement_level" name="achievement_level" required
                                 class="form-control rounded-lg border-gray-500  w-full"
-                                value="{{ old('achievement level') }}">
+                                value="{{ old('achievement_level') }}">
                         </div>
                     </div>
 
 
                     <div class="flex flex-col basis-1/2 space-y-10">
                         <div class="form-group">
-                            <label class=" block mb-2 font-semibold" for="type of achievement">Jenis Prestasi</label>
-                            <input type="text" id="type of achievement" name="type of achievement" required
+                            <label class=" block mb-2 font-semibold" for="achievement_type">Jenis Prestasi</label>
+                            <input type="text" id="achievement_type" name="achievement_type" required
                                 class="form-control rounded-lg border-gray-500 w-full"
-                                value="{{ old('type of achievement') }}">
+                                value="{{ old('achievement_type') }}">
                         </div>
 
                         <div class="form-group mt-6">
-                            <label class=" block mb-2 font-semibold" for="achievement year">Tahun Kejuaraan</label>
-                            <input type="text" id="achievement year" name="achievement year"
+                            <label class=" block mb-2 font-semibold" for="achievement_year">Tahun Kejuaraan</label>
+                            <input type="text" id="achievement_year" name="achievement_year"
                                 class="form-control rounded-lg border-gray-500 w-full"
-                                value="{{ old('achievement year') }}">
+                                value="{{ old('achievement_year') }}">
                         </div>
                     </div>
                 </div>
@@ -125,7 +134,7 @@
                 </div>
 
                 <div class="w-full flex flex-row justify-end mt-10">
-                    <button class="" type="submit">
+                    <button id="submit_btn" class="" type="button">
                         <div class="px-20 py-2 bg-button_green rounded-md text-white flex flex-row items-center w-fit">
                             <p class="">SUBMIT</p>
                         </div>
@@ -219,6 +228,115 @@
     function toProfilePage() {
         window.location.href = "{{ route('mahasiswa.profile') }}";
     }
+
+
+    async function fetchProjects(page = 1) {
+
+        try {
+            const token = localStorage.getItem('token');
+            console.log(token);
+            let response = await fetch('http://127.0.0.1:8001/api/user', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const userData = await response.json();
+            // console.log(userData);
+            const usernameObj = document.getElementById('username_txt');
+            usernameObj.textContent = userData.username;
+
+
+            response = await fetch(`http://127.0.0.1:8001/api/student`);
+            const data = await response.json();
+            data.data.data.forEach(Student => {
+                if (Student.user_id == userData.id) {
+                    // console.log(Student);
+                    displayProfile(Student);
+                    displayContacts(Student);
+                }
+            });
+            // console.log(data.data.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        const logoutButton = document.getElementById('logout-button');
+        const token = localStorage.getItem('token');
+        const submitButton = document.getElementById('submit_btn');
+
+        logoutButton.addEventListener('click', async () => {
+            try {
+                // Kirim permintaan logout ke server
+                const response = await fetch('http://127.0.0.1:8001/api/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    // Hapus token dari localStorage
+                    localStorage.removeItem('token');
+                    alert('Anda berhasil logout');
+                    // Arahkan kembali ke halaman login
+                    window.location.href = "{{ route('login') }}";
+                } else {
+                    const data = await response.json();
+                    alert(`Error: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat logout. Silakan coba lagi.');
+            }
+        });
+
+
+        submitButton.addEventListener('click', async () => {
+            const skill = document.getElementById('skill');
+            const achievement_name = document.getElementById('achievement_name');
+            const achievement_level = document.getElementById('achievement_level');
+            const achievement_type = document.getElementById('achievement_type');
+            const achievement_year = document.getElementById('achievement_year');
+            const description = document.getElementById('description');
+
+            const data = {
+                achievement_name: achievement_name.value,
+                achievement_level: achievement_level.value,
+                skill: skill.value,
+                achievement_type: achievement_type.value,
+                achievement_year: achievement_year.value,
+                description: description.value,
+            }
+            // console.log(data);
+            try {
+                const response = await fetch('http://127.0.0.1:8001/api/skill', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert('Berhasil mengupdate data');
+                    window.location.href = "{{ route('mahasiswa.profile') }}";
+                } else {
+                    const data = await response.json();
+                    alert(`Error: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat mengupdate data. Silakan coba lagi.');
+            }
+        });
+
+    });
+
+    fetchProjects();
 
     ;
 </script>

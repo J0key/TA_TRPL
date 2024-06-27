@@ -5,14 +5,14 @@
 
 
         <div class="flex items-center justify-between">
-
-            <div class="flex flex-row bg-semi_dark_green p-2 rounded-full items-center ">
-                <img class="w-8 h-8 ms-2" src="{{ asset('icon/Mahasiswa/Tugas akhir/u_search (1).png') }}" alt="">
-                <form action="">
+            <form action="">
+                <div class="flex flex-row bg-semi_dark_green p-2 rounded-full items-center ">
+                    <img class="w-8 h-8 ms-2" src="{{ asset('icon/Mahasiswa/Tugas akhir/u_search (1).png') }}" alt="">
                     <input class=" bg-semi_dark_green border-semi_dark_green text-white rounded-3xl" type="text"
                         value="Search here...">
-                </form>
-            </div>
+                </div>
+            </form>
+
 
 
             <div class="flex items-center">
