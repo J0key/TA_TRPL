@@ -4,15 +4,14 @@
     <main class="w-[1139px] ml-[330px] min-h-screen my-10 flex flex-col">
 
 
-        <div class="flex items-center justify-between">
-            <form action="">
-                <div class="flex flex-row bg-semi_dark_green p-2 rounded-full items-center ">
+        <div class="flex flex-row w-full h-fit justify-between items-center">
+            <form class="" action="">
+                <div class="flex flex-row w-fit bg-semi_dark_green p-2 rounded-full items-center mt-4">
                     <img class="w-8 h-8 ms-2" src="{{ asset('icon/Mahasiswa/Tugas akhir/u_search (1).png') }}" alt="">
-                    <input class=" bg-semi_dark_green border-semi_dark_green text-white rounded-3xl" type="text"
-                        value="Search here...">
+                    <input class="h-fit bg-semi_dark_green border-semi_dark_green text-white rounded-3xl" type="text"
+                        placeholder="Search here...">
                 </div>
             </form>
-
 
 
                 {{-- modal --}}
@@ -77,45 +76,70 @@
         </div>
 
 
-        <div class="flex items-center justify-between mt-8">
+        <div class="flex flex-row items-center w-full justify-between mt-8">
 
             <div class="text-[#404D61] mt-5">
-                <p class="font-semibold  text-3xl">Pengumuman</p>
-                <p class="font-regular text-xl">10 results found</p>
+                <p class="font-semibold  text-3xl">Pengajuan</p>
+                <p class="font-regular text-xl">0 results found</p>
+            </div>
+
+            <div class="flex items-center">
+
+                <ul class="ml-auto flex flex-row mt-6">
+                    <li class="mr-4">
+                        <button type="button" onclick="sortProjectsChanger('title');"
+                            class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
+                            <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
+                            <span class="text-[15px] ml-2">Judul</span>
+                        </button>
+                    </li>
+                    <li class="mr-4">
+                        <button type="button" onclick="sortProjectsChanger('lecturer');"
+                            class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
+                            <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
+                            <span class="text-[15px] ml-2">Dosen</span>
+                        </button>
+                    </li>
+                    <li class="mr-4">
+                        <button type="button" onclick="sortProjectsChanger('kategori');"
+                            class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
+                            <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
+                            <span class="text-[15px] ml-2">Kategori</span>
+                        </button>
+                    </li>
+                    <li class="mr-4">
+                        <button type="button" onclick="sortProjectsChanger('created_at');"
+                            class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
+                            <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
+                            <span class="text-[15px] ml-2">Uploaded</span>
+                        </button>
+                    </li>
+
+                </ul>
+
+
             </div>
 
         </div>
 
-        <div id="container_berita"
-            class="flex flex-col rounded-lg border bg-white border-gray-200 shadow-lg mt-10 w-full overflow-scroll p-10">
-            {{-- <div class="flex flex-col">
-                <p class="text-xl font-semibold">PENGISIAN SKRINING KESEHATAN MENTAL MAHASISWA UGM</p>
-                <p class="text-sm mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt
-                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                    qui officia deserunt mollit anim id est laborum.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.</p>
+        <div class="rounded-lg border border-gray-200 shadow-md mt-10 w-full overflow-scroll">
 
-                <button>
-                    <img class="bg-slate-900 rounded-xl p-2 w-8 h-8 mt-10"
-                        src="{{ asset('icon/Mahasiswa/octicon_project-16.png') }}" alt="">
-                </button>
+            <table class="w-fit border-collapse bg-white text-left text-sm text-gray-500">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Judul Proyek</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Penanggung Jawab</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Deskripsi</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tools</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tanggal Upload</th>
+                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Action</th>
+                    </tr>
+                </thead>
 
-                <div class="flex flex-row items-center text-xs mt-12 space-x-4 text-slate-500">
-                    <p>22 - 04 -2024 </p>
-                    <div class="w-1 h-1 bg-slate-500 rounded-full"></div>
-                    <p>updated 12 - 04 - 2024 </p>
-                </div>
-                <div class="w-full h-1 bg-slate-300 my-10"></div>
+                <tbody id="project-list" class="divide-y bg-white border-t border-gray-100">
 
-            </div> --}}
-
+                </tbody>
+            </table>
         </div>
 
         {{-- pagination start --}}
@@ -159,15 +183,10 @@
     let currentPage = 1;
     let totalPages = 1;
     let sortcounter = 0;
-    const token = localStorage.getItem('token');
 
     async function fetchProjects(page = 1, filterName = '') {
         try {
-            const response = await fetch(`http://127.0.0.1:8001/api/announcement?page=${page}&name=${filterName}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
+            const response = await fetch(`http://127.0.0.1:8001/api/project?page=${page}&name=${filterName}`);
             data = await response.json();
             totalPages = data.data.last_page;
             displayProjects(data.data.data);
@@ -178,54 +197,93 @@
         }
     }
 
-
-    function displayProjects(projects) {
-        const containerBerita = document.getElementById('container_berita');
-        if (projects.length == 0) {
-            const emptyText = document.createElement('p');
-            emptyText.classList.add('text-lg', 'text-black', 'w-full', 'text-center');
-            emptyText.textContent = "Tidak ada pengumuman"
-            containerBerita.appendChild(emptyText);
+    function sortProjectsChanger(sortField) {
+        if (sortcounter == 0) {
+            sortProjects(sortField, 'asc')
+            sortcounter++;
         } else {
-            projects.forEach(project => {
-                const container_content = document.createElement('div');
-                container_content.classList.add('flex', 'flex-col');
+            sortProjects(sortField, 'desc')
+            sortcounter--;
+        }
+        // console.log()
+    }
 
-                const tittle = document.createElement('p');
-                tittle.classList.add('text-xl', 'font-semibold');
-                tittle.textContent = project.title;
-
-                const detail = document.createElement('p');
-                detail.classList.add('text-sm', 'mt-4');
-                detail.textContent = project.detail;
-
-                const buttonAtc = document.createElement('button');
-                const logoAtc = document.createElement('img');
-                logoAtc.classList.add('bg-slate-900', 'rounded-xl', 'p-2', 'w-8', 'h-8', 'mt-10');
-                logoAtc.setAttribute('src', "{{ asset('icon/Mahasiswa/octicon_project-16.png') }}");
-                buttonAtc.appendChild(logoAtc);
-
-                const container_footer = document.createElement('div');
-                container_footer.classList.add('flex', 'flex-row', 'items-center', 'text-xs', 'mt-12',
-                    'space-x-4', 'text-black');
-                const uploadDate = document.createElement('p');
-                const projectCreatedAt = new Date(project.created_at);
-                uploadDate.textContent = projectCreatedAt.toLocaleDateString();
-                container_footer.appendChild(uploadDate);
-
-                const pembatas = document.createElement('div');
-                pembatas.classList.add('w-full', 'h-1', 'bg-slate-300', 'my-10');
-
-
-                container_content.appendChild(tittle);
-                container_content.appendChild(detail);
-                container_content.appendChild(buttonAtc);
-                container_content.appendChild(container_footer);
-                container_content.appendChild(pembatas);
-
-                containerBerita.appendChild(container_content);
+    function sortProjects(sortField, sortDirection) {
+        const projectsData = data.data.data;
+        if (sortField == "lecturer") {
+            projectsData.sort((a, b) => {
+                if (a.lecturer.user['first_name'] < b.lecturer.user['first_name']) return sortDirection ===
+                    'asc' ? -
+                    1 : 1;
+                if (a.lecturer.user['first_name'] > b.lecturer.user['first_name']) return sortDirection ===
+                    'asc' ?
+                    1 : -1;
+                return 0;
+            });
+        } else {
+            projectsData.sort((a, b) => {
+                if (a[sortField] < b[sortField]) return sortDirection === 'asc' ? -1 : 1;
+                if (a[sortField] > b[sortField]) return sortDirection === 'asc' ? 1 : -1;
+                return 0;
             });
         }
+        displayProjects(projectsData);
+    }
+
+    function displayProjects(projects) {
+        const projectList = document.getElementById('project-list');
+        projectList.innerHTML = ''; // Hapus semua project cards sebelumnya
+        // console.log(projects)
+
+
+        projects.forEach(project => {
+            console.log(project["title"]);
+            const newTableRow = document.createElement('tr');
+            newTableRow.classList.add('mx-4', 'bg-grey-100', 'w-full', 'h-full', 'px-2', 'pb-2');
+
+            const td1 = document.createElement('td');
+            td1.classList.add('px-6', 'py-4');
+            td1.textContent = project['title'];
+
+            const td2 = document.createElement('td');
+            td2.classList.add('px-6', 'py-4');
+            td2.textContent = (project.lecturer.user["first_name"] + project.lecturer.user["last_name"]);
+
+            const td3 = document.createElement('td');
+            td3.classList.add('px-6', 'py-4');
+            td3.textContent = project['description'];
+
+            const td4 = document.createElement('td');
+            td4.classList.add('px-6', 'py-4');
+            td4.textContent = project['tools'];
+
+            const td5 = document.createElement('td');
+            td5.classList.add('px-6', 'py-4');
+            td5.textContent = project['created_at'];
+
+            const td6 = document.createElement('td');
+            td6.classList.add('px-6', 'py-4');
+
+            const imgButton = document.createElement('button');
+            imgButton.classList.add('bg-slate-900', 'p-2', 'px-4', 'rounded-xl');
+            const img = document.createElement('img');
+            imgButton.setAttribute('onclick', 'toProjectDetails(' + project["id"] + ')');
+            imgButton.setAttribute('type', 'button');
+            img.setAttribute('src', "{{ asset('icon/Mahasiswa/Tugas akhir/arrow.png') }}");
+
+            imgButton.appendChild(img);
+            td6.appendChild(imgButton);
+
+            newTableRow.appendChild(td1);
+            newTableRow.appendChild(td2);
+            newTableRow.appendChild(td3);
+            newTableRow.appendChild(td4);
+            newTableRow.appendChild(td5);
+            newTableRow.appendChild(td6);
+            projectList.appendChild(newTableRow);
+
+        });
+        // }
     }
 
     function updatePagination() {
