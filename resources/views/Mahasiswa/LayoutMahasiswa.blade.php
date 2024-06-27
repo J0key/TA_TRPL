@@ -14,6 +14,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     </script>
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+
     <title>TA - TRPL</title>
     <style>
         body {

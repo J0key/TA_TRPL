@@ -1,7 +1,7 @@
 @extends('Mahasiswa.LayoutMahasiswa')
 
 @section('main')
-    <main class="w-[1139px] ml-[330px] min-h-screen my-10 flex flex-col">
+    <main class="w-full ml-[330px] mr-[50px] min-h-screen  flex flex-col">
 
 
         <div class="flex items-center justify-between">

@@ -15,10 +15,9 @@
         transition: transform 0.3s ease-in-out;
     } */
 </style>
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 
 @section('main')
-    <main class="w-[1139px] ml-[330px] min-h-screen my-10 flex flex-col">
+    <main class="w-full ml-[330px] mr-[50px] min-h-screen  flex flex-col">
         <div class="flex items-center justify-between">
 
             <div class="text-[#404D61]">
@@ -26,34 +25,6 @@
             </div>
 
             <div class="flex flex-row items-center">
-                {{-- <ul class="ml-auto flex flex-row">
-                    <li class="mr-8">
-                        <div class="">
-                            <div class="\">
-                                   <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                class="text-gray-600 w-6 h-6"
-                                viewBox="0 0 16 16"
-                              >
-                                <path
-                                  d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                    </li>
-                    <li class="mr-8">
-                        <img src="{{ asset('icon/dosen.png') }}" alt="">
-                    </li>
-                    <li class="mr-4">
-                        <p id="username_txt" class="text-xl font-semibold"></p>
-                    </li>
-                </ul>
-                <div class="px-6 py-3 bg-main_green text-white rounded-lg shadow-sm shadow-gray-700">
-                    <button id="logout-button" type="button">logout</button>
-                </div> --}}
-
                 {{-- modal --}}
                 <div class=" flex justify-center items-center z-10">
                     <div class="mr-1 font-bold">
@@ -114,9 +85,10 @@
                 </div>
                 {{-- modal --}}
             </div>
+
         </div>
 
-        <div class="w-full mt-8 py-8 px-8 pb-20 bg-semi_dark_green flex flex-col rounded-3xl relative">
+        <div class="w-full mt-8 py-8 px-8 pb-20 bg-semi_dark_green flex flex-col rounded-3xl relative ">
             <p class="text-xl text-white">Periode Semester Ganjil 2024</p>
             <p class="text-lg text-white mt-4">28 February 2024</p>
             <img src="{{ asset('icon/Mahasiswa/buletan.png') }}" class=" absolute top-0 right-0 rounded-tr-3xl"
@@ -173,57 +145,90 @@
 
         </div>
 
-        <p class="font text-2xl mt-12">Report Bimbingan</p>
+        <p class="font-medium text-2xl mt-12">Report Bimbingan</p>
 
-        <div class="rounded-lg border border-gray-200 shadow-md mt-10 w-full">
+        <div >
+            <div class=" border border-gray-200 shadow-md mt-10 w-full rounded-full">
+                <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 overflow-scroll">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 font-bold text-gray-900">Ke</th>
+                            <th scope="col" class="px-6 py-4 font-bold text-gray-900">Tanggal</th>
+                            <th scope="col" class="px-6 py-4 font-bold text-gray-900">Proyek Akhir</th>
+                            <th scope="col" class="px-6 py-4 font-bold text-gray-900">Deskripsi</th>
+                            <th scope="col" class="px-6 py-4 font-bold text-gray-900">Catatan</th>
+                        </tr>
+                    </thead>
 
-            <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 overflow-scroll">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Ke</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tanggal</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Proyek Akhir</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Deskripsi</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Catatan</th>
-                    </tr>
-                </thead>
-
-                <tbody class="divide-y bg-white border-t border-gray-100">
-                    <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
-                        <td class="px-6 py-4">1</td>
-                        <td class="px-6 py-4">30/04/2024</td>
-                        <td class="px-6 py-4 ">Rancang Bangun Aplikasi Sistem Informasi Portofolio TA</td>
-                        <td class="px-6 py-4">Lorem Ipsum</td>
-                        <td class="px-6 py-4 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor</td>
-                    </tr>
-                    <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
-                        <td class="px-6 py-4">2</td>
-                        <td class="px-6 py-4">30/04/2024</td>
-                        <td class="px-6 py-4 ">Rancang Bangun Aplikasi Sistem Informasi Portofolio TA</td>
-                        <td class="px-6 py-4">Lorem Ipsum</td>
-                        <td class="px-6 py-4 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor</td>
-                    </tr>
-                    <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
-                        <td class="px-6 py-4">3</td>
-                        <td class="px-6 py-4">30/04/2024</td>
-                        <td class="px-6 py-4 ">Rancang Bangun Aplikasi Sistem Informasi Portofolio TA</td>
-                        <td class="px-6 py-4">Lorem Ipsum</td>
-                        <td class="px-6 py-4 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor</td>
-                    </tr>
-                    <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
-                        <td class="px-6 py-4">4</td>
-                        <td class="px-6 py-4">30/04/2024</td>
-                        <td class="px-6 py-4 ">Rancang Bangun Aplikasi Sistem Informasi Portofolio TA</td>
-                        <td class="px-6 py-4">Lorem Ipsum</td>
-                        <td class="px-6 py-4 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor</td>
-                    </tr>
-                </tbody>
-            </table>
+                    <tbody class="divide-y bg-white border-t border-gray-100">
+                        <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
+                            <td class="px-6 py-4">1</td>
+                            <td class="px-6 py-4">30/04/2024</td>
+                            <td class="px-6 py-4 ">Rancang Bangun Aplikasi Sistem Informasi Portofolio TA</td>
+                            <td class="px-6 py-4">Lorem Ipsum</td>
+                            <td class="px-6 py-4 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor</td>
+                        </tr>
+                        <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
+                            <td class="px-6 py-4">2</td>
+                            <td class="px-6 py-4">30/04/2024</td>
+                            <td class="px-6 py-4 ">Rancang Bangun Aplikasi Sistem Informasi Portofolio TA</td>
+                            <td class="px-6 py-4">Lorem Ipsum</td>
+                            <td class="px-6 py-4 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor</td>
+                        </tr>
+                        <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
+                            <td class="px-6 py-4">3</td>
+                            <td class="px-6 py-4">30/04/2024</td>
+                            <td class="px-6 py-4 ">Rancang Bangun Aplikasi Sistem Informasi Portofolio TA</td>
+                            <td class="px-6 py-4">Lorem Ipsum</td>
+                            <td class="px-6 py-4 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor</td>
+                        </tr>
+                        <tr class="mx-4 bg-grey-100 w-full h-full px-2 pb-2">
+                            <td class="px-6 py-4">4</td>
+                            <td class="px-6 py-4">30/04/2024</td>
+                            <td class="px-6 py-4 ">Rancang Bangun Aplikasi Sistem Informasi Portofolio TA</td>
+                            <td class="px-6 py-4">Lorem Ipsum</td>
+                            <td class="px-6 py-4 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                tempor</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
+        {{-- pagination start --}}
+        <div class="w-fit h-fit flex flex-row self-center justify-center mt-12 ">
+            <button type="button" onclick="prevpage()" id="prev-page"
+                class="bg-semi_dark_green w-fit h-10 px-6 py-2 border-semi_dark_green border-2 rounded-s-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
+                    <path
+                        d="M4.96016 8L8.28516 11.5C8.51849 11.75 8.86849 11.75 9.10182 11.5C9.33516 11.25 9.33516 10.875 9.10182 10.625L6.24349 7.5L9.10182 4.375C9.33516 4.125 9.33516 3.75 9.10182 3.5C8.98516 3.375 8.86849 3.3125 8.69349 3.3125C8.51849 3.3125 8.40182 3.375 8.28516 3.5L4.96016 7C4.72682 7.3125 4.72682 7.6875 4.96016 8C4.96016 7.9375 4.96016 7.9375 4.96016 8Z"
+                        fill="white" />
+                </svg>
+            </button>
+            <button id="page1"
+                class="bg-white hover:bg-[#D4DFDE] w-fit h-10 px-6 py-2 border-slate-400 border-y-2 border-x-2 text-md">1</button>
+            <button id="page2"
+                class="bg-white  hover:bg-[#D4DFDE]  w-fit h-10 px-6 py-2 border-slate-400 border-y-2 border-x-2 text-md">2</button>
+            <button id="page3"
+                class="bg-white  hover:bg-[#D4DFDE]  w-fit h-10 px-6 py-2 border-slate-400 border-y-2 border-x-2 text-md">3</button>
+            <button id="page4"
+                class="bg-white  hover:bg-[#D4DFDE]  w-fit h-10 px-6 py-2 border-slate-400 border-y-2 border-x-2 text-md">4</button>
+            <button id="page5"
+                class="bg-white  hover:bg-[#D4DFDE]  w-fit h-10 px-6 py-2 border-slate-400 border-y-2 text-md">5</button>
+            <button type="button" onclick="nextpage()" id="next-page"
+                class=" bg-semi_dark_green w-fit h-10 px-6 py-2 border-semi_dark_green border-2 rounded-e-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15"
+                    fill="none">
+                    <path
+                        d="M9.06525 7.05646L5.76359 3.52521C5.70936 3.46663 5.64484 3.42013 5.57376 3.3884C5.50267 3.35667 5.42643 3.34033 5.34942 3.34033C5.27241 3.34033 5.19617 3.35667 5.12508 3.3884C5.054 3.42013 4.98948 3.46663 4.93525 3.52521C4.82661 3.64231 4.76563 3.80071 4.76562 3.96583C4.76563 4.13095 4.82661 4.28935 4.93525 4.40646L7.82275 7.53146L4.93525 10.6252C4.82661 10.7423 4.76562 10.9007 4.76562 11.0658C4.76562 11.2309 4.82661 11.3894 4.93525 11.5065C4.98928 11.5655 5.05371 11.6125 5.1248 11.6447C5.19589 11.6769 5.27224 11.6936 5.34942 11.694C5.4266 11.6936 5.50295 11.6769 5.57404 11.6447C5.64514 11.6125 5.70956 11.5655 5.76359 11.5065L9.06525 7.97521C9.12446 7.91668 9.17172 7.84565 9.20404 7.76659C9.23636 7.68752 9.25305 7.60214 9.25305 7.51583C9.25305 7.42952 9.23636 7.34414 9.20404 7.26508C9.17172 7.18601 9.12446 7.11498 9.06525 7.05646Z"
+                        fill="white" fill-opacity="0.75" />
+                </svg>
+            </button>
+        </div>
+        {{-- pagination end --}}
     </main>
     @stack('script')
 @endsection
