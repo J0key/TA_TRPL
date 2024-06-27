@@ -22,12 +22,12 @@
 
         <div class="flex items-center justify-between">
 
-            <div class="text-[#404D61] mt-5">
+            <div class="text-[#404D61]">
                 <p class="font-semibold text-2xl">Update Profile</p>
             </div>
 
             <div class="flex items-center">
-                <ul class="ml-auto flex flex-row mt-6">
+                <ul class="ml-auto flex flex-row">
                     <li class="mr-8">
                         <img src="{{ asset('icon/lonceng.png') }}" alt="">
                     </li>
@@ -35,9 +35,12 @@
                         <img src="{{ asset('icon/dosen.png') }}" alt="">
                     </li>
                     <li class="mr-4">
-                        <p class="text-xl font-semibold">Syra Athaya</p>
+                        <p id="username_txt" class="text-xl font-semibold">Syra Athaya</p>
                     </li>
                 </ul>
+                <div class="px-6 py-3 bg-main_green text-white rounded-lg shadow-sm shadow-gray-700">
+                    <button id="logout-button" type="button">logout</button>
+                </div>
             </div>
         </div>
 
@@ -66,43 +69,42 @@
                         <div class="flex flex-col basis-1/2 space-y-10">
 
                             <div class="form-group">
-                                <label class=" block mb-2 font-semibold" for="job position">Posisi</label>
-                                <input type="text" id="job position" name="job position" required style=""
+                                <label class=" block mb-2 font-semibold" for="position">Posisi</label>
+                                <input type="text" id="position" name="position" required style=""
                                     class="form-control rounded-lg border-gray-500 w-full focus:border-semi_dark_green ou"
-                                    value="{{ old('job position') }}">
+                                    value="{{ old('position') }}">
                             </div>
 
                             <div class="form-group mt-6">
-                                <label class=" block mb-2 font-semibold" for="job type">Jenis Pekerjaan</label>
-                                <input type="text" id="job type" name="job type" required
-                                    class="form-control rounded-lg border-gray-500  w-full" value="{{ old('job type') }}">
+                                <label class=" block mb-2 font-semibold" for="field">Jenis Pekerjaan</label>
+                                <input type="text" id="field" name="field" required
+                                    class="form-control rounded-lg border-gray-500  w-full" value="{{ old('field') }}">
                             </div>
                         </div>
 
 
                         <div class="flex flex-col basis-1/2 space-y-10">
                             <div class="form-group">
-                                <label class=" block mb-2 font-semibold" for="company name">Nama Perusahaan</label>
-                                <input type="text" id="company name" name="company name" required
+                                <label class=" block mb-2 font-semibold" for="company_name">Nama Perusahaan</label>
+                                <input type="text" id="company_name" name="company_name" required
                                     class="form-control rounded-lg border-gray-500 w-full"
-                                    value="{{ old('company name') }}">
+                                    value="{{ old('company_name') }}">
                             </div>
 
                             <div class="form-group mt-6">
-                                <label class=" block mb-2 font-semibold" for="work duration">Durasi Bekerja</label>
-                                <input type="text" id="work duration" name="work duration"
-                                    class="form-control rounded-lg border-gray-500 w-full"
-                                    value="{{ old('work duration') }}">
+                                <label class=" block mb-2 font-semibold" for="duration">Durasi Bekerja</label>
+                                <input type="text" id="duration" name="duration"
+                                    class="form-control rounded-lg border-gray-500 w-full" value="{{ old('duration') }}">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group mt-2">
-                        <label class=" block mb-2 font-semibold" for="job description">Deskripsi (opsional)</label>
-                        <textarea class="form-control @error('job description') is-invalid @enderror w-full rounded-lg p-2" id="job description"
-                            name="job description"></textarea>
-                        @if ($errors->has('job description'))
-                            <span class="text-danger">{{ $errors->first('job description') }}</span>
+                        <label class=" block mb-2 font-semibold" for="description">Deskripsi (opsional)</label>
+                        <textarea class="form-control @error('description') is-invalid @enderror w-full rounded-lg p-2" id="description"
+                            name="description"></textarea>
+                        @if ($errors->has('description'))
+                            <span class="text-danger">{{ $errors->first('description') }}</span>
                         @endif
                     </div>
 
@@ -132,7 +134,7 @@
             </div>
 
             <div class="w-full flex flex-row mt-10">
-                <button class="w-fit" type="button">
+                <button class="w-fit" type="button" onclick="tambahArray()" disabled>
                     <div class="px-4 py-2 bg-dark_green text-white flex flex-row items-center w-fit rounded-xl">
                         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12"
                             fill="none">
@@ -146,7 +148,7 @@
             </div>
 
             <div class="w-full flex flex-row mt-10 justify-end">
-                <button class="w-fit" type="submit">
+                <button id="submit_btn" class="w-fit" type="button">
                     <div class="px-20 py-2 bg-button_green rounded-md text-white flex flex-row items-center w-fit">
                         <p class="">SUBMIT</p>
                     </div>
@@ -168,27 +170,249 @@
 
     var pekerjaanCounter = 1;
 
-    const container_pekerjaan = document.getElementById("container_data")
-    function tambahArray(){
+    async function fetchProjects(page = 1) {
+
+        try {
+            const token = localStorage.getItem('token');
+            console.log(token);
+            let response = await fetch('http://127.0.0.1:8001/api/user', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const userData = await response.json();
+            // console.log(userData);
+            const usernameObj = document.getElementById('username_txt');
+            usernameObj.textContent = userData.username;
+
+
+            response = await fetch(`http://127.0.0.1:8001/api/student`);
+            const data = await response.json();
+            data.data.data.forEach(Student => {
+                if (Student.user_id == userData.id) {
+                    // console.log(Student);
+                    displayProfile(Student);
+                    displayContacts(Student);
+                }
+            });
+            // console.log(data.data.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+
+    function tambahArray() {
+        const container_pekerjaan = document.getElementById("container_data")
         pekerjaanCounter++;
         const container_1 = document.createElement('div');
-        container_1.classList.add("flex", "flex-col", "w-full");
+        container_1.classList.add("flex", "flex-col", "w-full", "mt-6");
 
         const header = document.createElement('p');
-        header.classList.add("font-semibold", "text-lg", "mb-6");
+        header.classList.add("font-semibold", "text-lg", "mb-6", "mt-6");
         header.textContent = "Pekerjaan " + pekerjaanCounter;
 
         const container_2 = document.createElement('div');
-        container_2.classList.add("w-full", "relative", "flex", "flex-row", "items-center", "pt-2", "pb-8", "space-x-12");
+        container_2.classList.add("w-full", "relative", "flex", "flex-row", "items-center", "pt-2", "pb-8",
+            "space-x-12");
 
         const container_2_1 = document.createElement('div');
         container_2_1.classList.add("flex", "flex-col", "basis-1/2", "space-y-10");
 
         const container_2_1_1 = document.createElement('div');
-        container_2_1_1.classList.add("flex", "flex-col", "basis-1/2", "space-y-10");
+        container_2_1_1.classList.add("form-group");
+
+        const label_posisi = document.createElement('label');
+        label_posisi.classList.add("block", "mb-2", "font-semibold");
+        label_posisi.setAttribute('for', 'position');
+        label_posisi.textContent = "Posisi";
+        const positionInput = document.createElement('input');
+        positionInput.type = 'text';
+        positionInput.id = 'position';
+        positionInput.name = 'position';
+        positionInput.required = true;
+        positionInput.classList.add(
+            'form-control',
+            'rounded-lg',
+            'border-gray-500',
+            'w-full',
+            'focus:border-semi_dark_green',
+            'ou'
+        );
+        positionInput.value = '{{ old('position') }}';
 
 
+        const container_2_1_2 = document.createElement('div');
+        container_2_1_2.classList.add("form-group");
+
+        const label_field = document.createElement('label');
+        label_field.classList.add("block", "mb-2", "font-semibold");
+        label_field.setAttribute('for', 'field');
+        label_field.textContent = "Jenis Pekerjaan";
+        const fieldInput = document.createElement('input');
+        fieldInput.type = 'text';
+        fieldInput.id = 'field';
+        fieldInput.name = 'field';
+        fieldInput.required = true;
+        fieldInput.classList.add(
+            'form-control',
+            'rounded-lg',
+            'border-gray-500',
+            'w-full',
+            'focus:border-semi_dark_green',
+            'ou'
+        );
+        fieldInput.value = '{{ old('field') }}';
+
+        container_2_1_1.appendChild(label_posisi);
+        container_2_1_1.appendChild(positionInput);
+        container_2_1_2.appendChild(label_field);
+        container_2_1_2.appendChild(fieldInput);
+        container_2_1.appendChild(container_2_1_1);
+        container_2_1.appendChild(container_2_1_2);
+
+
+        const container_2_2 = document.createElement('div');
+        container_2_2.classList.add("flex", "flex-col", "basis-1/2", "space-y-10");
+
+        const container_2_2_1 = document.createElement('div');
+        container_2_2_1.classList.add("form-group");
+
+        const label_company_name = document.createElement('label');
+        label_company_name.classList.add("block", "mb-2", "font-semibold");
+        label_company_name.setAttribute('for', 'company_name');
+        label_company_name.textContent = "Nama Perusahaan";
+        const company_name_Input = document.createElement('input');
+        company_name_Input.type = 'text';
+        company_name_Input.id = 'company_name';
+        company_name_Input.name = 'company_name';
+        company_name_Input.required = true;
+        company_name_Input.classList.add(
+            'form-control',
+            'rounded-lg',
+            'border-gray-500',
+            'w-full',
+            'focus:border-semi_dark_green',
+            'ou'
+        );
+        company_name_Input.value = '{{ old('company_name') }}';
+
+
+        const container_2_2_2 = document.createElement('div');
+        container_2_2_2.classList.add("form-group");
+
+        const label_duration = document.createElement('label');
+        label_duration.classList.add("block", "mb-2", "font-semibold");
+        label_duration.setAttribute('for', 'duration');
+        label_duration.textContent = "Durasi Bekerja";
+        const durationInput = document.createElement('input');
+        durationInput.type = 'text';
+        durationInput.id = 'duration';
+        durationInput.name = 'duration';
+        durationInput.required = true;
+        durationInput.classList.add(
+            'form-control',
+            'rounded-lg',
+            'border-gray-500',
+            'w-full',
+            'focus:border-semi_dark_green',
+            'ou'
+        );
+        durationInput.value = '{{ old('duration') }}';
+
+        container_2_2_1.appendChild(label_company_name);
+        container_2_2_1.appendChild(company_name_Input);
+        container_2_2_2.appendChild(label_duration);
+        container_2_2_2.appendChild(durationInput);
+        container_2_2.appendChild(container_2_2_1);
+        container_2_2.appendChild(container_2_2_2);
+
+
+        container_2.appendChild(container_2_1);
+        container_2.appendChild(container_2_2);
+        container_1.appendChild(header);
+        container_1.appendChild(container_2);
+        container_pekerjaan.appendChild(container_1);
     }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        const logoutButton = document.getElementById('logout-button');
+        const token = localStorage.getItem('token');
+        const submitButton = document.getElementById('submit_btn');
+
+        logoutButton.addEventListener('click', async () => {
+            try {
+                // Kirim permintaan logout ke server
+                const response = await fetch('http://127.0.0.1:8001/api/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    // Hapus token dari localStorage
+                    localStorage.removeItem('token');
+                    alert('Anda berhasil logout');
+                    // Arahkan kembali ke halaman login
+                    window.location.href = "{{ route('login') }}";
+                } else {
+                    const data = await response.json();
+                    alert(`Error: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat logout. Silakan coba lagi.');
+            }
+        });
+
+
+        submitButton.addEventListener('click', async () => {
+            const position = document.getElementById('position');
+            const field = document.getElementById('field');
+            const company_name = document.getElementById('company_name');
+            const duration = document.getElementById('duration');
+            const description = document.getElementById('description');
+            const start_date = document.getElementById('start date');
+            const end_date = document.getElementById('end date');
+
+            const data = {
+                position: position.value,
+                field: field.value,
+                company_name: company_name.value,
+                duration: duration.value,
+                description: description.value,
+                start_date: start_date.value,
+                end_date: end_date.value,
+            }
+            // console.log(data);
+            try {
+                const response = await fetch('http://127.0.0.1:8001/api/experience', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert('Berhasil mengupdate data');
+                    window.location.href = "{{ route('mahasiswa.profile') }}";
+                } else {
+                    const data = await response.json();
+                    alert(`Error: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat mengupdate data. Silakan coba lagi.');
+            }
+        });
+
+    });
+
+    fetchProjects();
 
     // function deleteArray(id) {
     //     const pElement = document.querySelector('#' + id + ' p');

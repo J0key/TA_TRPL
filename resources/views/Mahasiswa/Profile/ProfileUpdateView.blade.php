@@ -305,5 +305,6 @@
 
     });
 
+
     fetchProjects();
 </script>

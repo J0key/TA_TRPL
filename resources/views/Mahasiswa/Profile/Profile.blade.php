@@ -109,7 +109,7 @@
 
                 <div class="flex flex-col space-y-6 basis-4/5">
                     <div class="bg-white w-full shadow-lg shadow-slate rounded-3xl flex flex-col relative p-6">
-                        <button type="button" onclick="toEditContact()">
+                        <button id="edit_contact_btn" type="button" onclick="toEditContact()">
                             <img class="absolute top-0 right-0 mt-4 me-4"
                                 src="{{ asset('icon/Mahasiswa/Profile/ic_baseline-edit.png') }}"></img>
                         </button>
@@ -166,18 +166,14 @@
 
                         <div class="flex flex-row items-center mt-6">
                             <img src="{{ asset('icon/Mahasiswa/Profile/MortarBoard.png') }}" alt="">
-                            <p class="text-md ms-6">UI/UX , Project Manager, Database, Web Programming, AI</p>
+                            <p id="skill_txt" class="text-md ms-6">
+                            </p>
                         </div>
 
                         <div class="flex flex-row mt-6 items-start">
                             <img src="{{ asset('icon/Mahasiswa/Profile/Trophy (1).png') }}" alt="">
-                            <ul class="ms-8 list-disc ">
-                                <li>
-                                    <p>Peraih Medali Emas LKTI 2023</p>
-                                </li>
-                                <li>
-                                    <p>Juara Himpunan 3 LIDM</p>
-                                </li>
+                            <ul id="container_skill" class="ms-8 list-disc ">
+
                             </ul>
                         </div>
 
@@ -190,18 +186,18 @@
                     <img class="absolute top-0 right-0 mt-4 me-4"
                         src="{{ asset('icon/Mahasiswa/Profile/ic_baseline-edit.png') }}"></img>
                 </button>
-                <p class=" bg-semi_dark_green text-white p-2 px-6 rounded-full w-fit">Pengalaman</p>
-                <div class="flex flex-row mt-6 ms-4 w-fit">
+                <p class=" bg-semi_dark_green text-white p-4 px-6 rounded-full w-fit mb-6">Pengalaman</p>
+                {{-- <div class="flex flex-row mt-6 ms-4 w-fit">
                     <img class="w-10 h-10" src="{{ asset('icon/Mahasiswa/Profile/telkomsel.png') }}" alt="">
                     <div class="flex-col ms-6">
                         <p>PT. TELKOMSEL</p>
                         <p>3 bulan</p>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="flex-col ms-6 mt-4">
-                    <ul class="ms-8 list-disc space-y-4">
-                        <li>
+                    <ul id="container_pengalaman" class="list-disc space-y-6 mb-4">
+                        {{-- <li>
                             <p>UI UX DESIGNER</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                                 labore
@@ -212,7 +208,7 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                                 labore
                                 et dolore magna aliqua.</p>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
@@ -224,6 +220,8 @@
 @endsection
 
 <script>
+    let idStudent = null;
+
     function toEditPrestasi() {
         window.location.href = "{{ route('mahasiswa.profilePrestasiUpdate') }}";
     }
@@ -256,11 +254,33 @@
             const data = await response.json();
             data.data.data.forEach(Student => {
                 if (Student.user_id == userData.id) {
-                    // console.log(Student);
+                    idStudent = Student.id;
+                    // console.log(idStudent);
                     displayProfile(Student);
                     displayContacts(Student);
                 }
             });
+
+            response = await fetch(`http://127.0.0.1:8001/api/experience`, {
+
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const dataPengalaman = await response.json();
+            displayPengalaman(dataPengalaman.data);
+
+
+            response = await fetch(`http://127.0.0.1:8001/api/skill`, {
+
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const dataSkill = await response.json();
+            displaySkill(dataSkill.data);
+
+
             // console.log(data.data.data);
         } catch (error) {
             console.error('Error:', error);
@@ -346,6 +366,59 @@
         container_github.appendChild(githubTxt);
 
 
+    }
+
+    function displayPengalaman(listDataPengalaman) {
+        const container_pengalaman = document.getElementById("container_pengalaman");
+
+
+        listDataPengalaman.forEach(pengalaman => {
+            // console.log(pengalaman);
+            const Pengalaman = document.createElement("li");
+            Pengalaman.classList.add("ms-8", "list-disc", "space-y-4");
+
+            const company_name = document.createElement("p")
+            company_name.textContent = pengalaman.company_name;
+
+            const duration = document.createElement("p")
+            duration.textContent = "Durasi : " + pengalaman.duration;
+
+
+            const position = document.createElement("p")
+            position.textContent = "Role : " + pengalaman.position;
+
+            const description = document.createElement("p")
+            description.textContent = "Deskripsi pekerjaan : " + pengalaman.description;
+
+            Pengalaman.appendChild(company_name);
+            Pengalaman.appendChild(duration);
+            Pengalaman.appendChild(position);
+            Pengalaman.appendChild(description);
+            container_pengalaman.appendChild(Pengalaman);
+
+        });
+    }
+
+    function displaySkill(dataSkill) {
+        let stringSkill = "";
+        const skill_txt = document.getElementById("skill_txt");
+        const container_skill = document.getElementById("container_skill");
+
+        dataSkill.forEach(skill => {
+            skill_txt.textContent = skill.skill;
+            const achievementList = document.createElement("li");
+            // skill_txt.classList.add();
+
+            const achievement = document.createElement("p")
+            achievement.textContent = skill.achievement_name + skill.achievement_level;
+
+            const achievement_year = document.createElement("p")
+            achievement_year.textContent = skill.achievement_year;
+
+            achievementList.appendChild(achievement);
+            achievementList.appendChild(achievement_year);
+            container_skill.appendChild(achievementList);
+        });
     }
 
     document.addEventListener("DOMContentLoaded", async () => {
