@@ -77,6 +77,7 @@ use App\Http\Controllers\MahasiswaPageController;
     Route::get('/mahasiswa/profile/update', [MahasiswaPageController::class,  'profileUpdate'])->name('mahasiswa.profileUpdate');
     Route::get('/mahasiswa/profile_prestasi/update', [MahasiswaPageController::class,  'profilePrestasiUpdate'])->name('mahasiswa.profilePrestasiUpdate');
     Route::get('/mahasiswa/profile_pengalaman/update', [MahasiswaPageController::class,  'profilePengalamanUpdate'])->name('mahasiswa.profilePengalamanUpdate');
+    Route::get('/mahasiswa/pengajuan', [MahasiswaPageController::class,  'pengajuan'])->name('mahasiswa.pengajuan');
     Route::get('/mahasiswa/tugasakhir', [MahasiswaPageController::class,  'tugasakhir'])->name('mahasiswa.tugasakhir');
     Route::get('/mahasiswa/pengumuman', [MahasiswaPageController::class,  'pengumuman'])->name('mahasiswa.pengumuman');
 
