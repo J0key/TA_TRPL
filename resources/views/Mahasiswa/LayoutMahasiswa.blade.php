@@ -14,7 +14,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     </script>
-    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    {{-- <script src="../path/to/flowbite/dist/flowbite.min.js"></script> --}}
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 
@@ -62,8 +62,7 @@
                 <li class="mb-1 group py-2">
                     <a id="to_profile" href="{{ route('mahasiswa.profile') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
-                        <img src="{{ asset('icon/Mahasiswa/nav_profile.png') }}" class="w-6 h-6 mr-4"
-                            alt="" />
+                        <img src="{{ asset('icon/Mahasiswa/nav_profile.png') }}" class="w-6 h-6 mr-4" alt="" />
                         <span class="text-md">Profile</span>
                     </a>
                 </li>
@@ -77,7 +76,7 @@
                 </li>
 
                 <li class="mb-1 group py-2">
-                    <a id="to_pengajuan_tugas_akhir" href="{{ route('mahasiswa.pengajuan')}}"
+                    <a id="to_pengajuan_tugas_akhir" href="{{ route('mahasiswa.pengajuan') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <img src="{{ asset('icon/Mahasiswa/nav_pengajuan.png') }}" class="w-5 h-5 mr-4"
                             alt="" />
@@ -211,67 +210,67 @@
             const iconElement = item.querySelector("i");
 
             // Open the dropdown
-            iconElement.style.transform = "rotate(90deg)";
-            menu.style.display = "inline-block";
-            item.style.backgroundColor = "#5B9692";
+            // iconElement.style.transform = "rotate(90deg)";
+            // menu.style.display = "inline-block";
+            // item.style.backgroundColor = "#5B9692";
         }
 
-        function getCurrentRoute() {
-            return window.location.pathname;
-        }
+        // function getCurrentRoute() {
+        //     return window.location.pathname;
+        // }
 
-        const validRoutes = [
-            ["/mahasiswa/dashboard"],
-            ["/mahasiswa/profile", "/mahasiswa/profile/update", "/mahasiswa/profile_prestasi/update", "/mahasiswa/profile_pengalaman/update"],
-            ["/mahasiswa/tugasakhir"],
-            ["/mahasiswa/tugasakhir"],
-            ["/mahasiswa/pengumuman"]
-        ];
+        // const validRoutes = [
+        //     ["/mahasiswa/dashboard"],
+        //     ["/mahasiswa/profile", "/mahasiswa/profile/update", "/mahasiswa/profile_prestasi/update", "/mahasiswa/profile_pengalaman/update"],
+        //     ["/mahasiswa/tugasakhir"],
+        //     ["/mahasiswa/tugasakhir"],
+        //     ["/mahasiswa/pengumuman"]
+        // ];
 
-        const currentRoute = getCurrentRoute();
+        // const currentRoute = getCurrentRoute();
         // Account
-        if (validRoutes[1].includes(currentRoute)) {
-            openItemDropdown(listDashboard);
-            const parentList = listDashboard.parentNode;
-            const menu = parentList.querySelector("#menu");
-            if (currentRoute === validRoutes[1][0]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            }
-        }
+        // if (validRoutes[1].includes(currentRoute)) {
+        //     openItemDropdown(listDashboard);
+        //     const parentList = listDashboard.parentNode;
+        //     const menu = parentList.querySelector("#menu");
+        //     if (currentRoute === validRoutes[1][0]) {
+        //         const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
+        //         firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+        //     }
+        // }
 
-        // Berkas
-        if (validRoutes[2].includes(currentRoute)) {
-            openItemDropdown(listProfile);
-            const parentList = listProfile.parentNode;
-            const menu = parentList.querySelector("#menu");
-            if (currentRoute === validRoutes[2][0]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            } else if (currentRoute === validRoutes[2][1]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            }
-            else if (currentRoute === validRoutes[2][2]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(3) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            }
-            else if (currentRoute === validRoutes[2][3]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(4) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            }
-        }
+        // // Berkas
+        // if (validRoutes[2].includes(currentRoute)) {
+        //     openItemDropdown(listProfile);
+        //     const parentList = listProfile.parentNode;
+        //     const menu = parentList.querySelector("#menu");
+        //     if (currentRoute === validRoutes[2][0]) {
+        //         const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
+        //         firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+        //     } else if (currentRoute === validRoutes[2][1]) {
+        //         const firstChildDiv = menu.querySelector("div:nth-child(2) > a");
+        //         firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+        //     }
+        //     else if (currentRoute === validRoutes[2][2]) {
+        //         const firstChildDiv = menu.querySelector("div:nth-child(3) > a");
+        //         firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+        //     }
+        //     else if (currentRoute === validRoutes[2][3]) {
+        //         const firstChildDiv = menu.querySelector("div:nth-child(4) > a");
+        //         firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+        //     }
+        // }
 
-        // Persetujuan
-        if (validRoutes[3].includes(currentRoute)) {
-            openItemDropdown(listTA);
-            const parentList = listTA.parentNode;
-            const menu = parentList.querySelector("#menu");
-            if (currentRoute === validRoutes[3][0]) {
-                const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
-                firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
-            }
-        }
+        // // Persetujuan
+        // if (validRoutes[3].includes(currentRoute)) {
+        //     openItemDropdown(listTA);
+        //     const parentList = listTA.parentNode;
+        //     const menu = parentList.querySelector("#menu");
+        //     if (currentRoute === validRoutes[3][0]) {
+        //         const firstChildDiv = menu.querySelector("div:nth-child(1) > a");
+        //         firstChildDiv.classList.add("bg-main_green_hover", "text-gray-100");
+        //     }
+        // }
     </script>
 </body>
 
