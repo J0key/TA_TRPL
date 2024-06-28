@@ -15,10 +15,9 @@
         transition: transform 0.3s ease-in-out;
     } */
 </style>
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 
 @section('main')
-    <main class="w-[1139px] ml-[330px] min-h-screen my-10 flex flex-col">
+    <main class="w-full ml-[330px] mr-[50px] min-h-screen  flex flex-col">
         <div class="flex items-center justify-between">
 
             <div class="text-[#404D61]">
@@ -26,34 +25,6 @@
             </div>
 
             <div class="flex flex-row items-center">
-                {{-- <ul class="ml-auto flex flex-row">
-                    <li class="mr-8">
-                        <div class="">
-                            <div class="\">
-                                   <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                class="text-gray-600 w-6 h-6"
-                                viewBox="0 0 16 16"
-                              >
-                                <path
-                                  d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                    </li>
-                    <li class="mr-8">
-                        <img src="{{ asset('icon/dosen.png') }}" alt="">
-                    </li>
-                    <li class="mr-4">
-                        <p id="username_txt" class="text-xl font-semibold"></p>
-                    </li>
-                </ul>
-                <div class="px-6 py-3 bg-main_green text-white rounded-lg shadow-sm shadow-gray-700">
-                    <button id="logout-button" type="button">logout</button>
-                </div> --}}
-
                 {{-- modal --}}
                 <div class=" flex justify-center items-center z-10">
                     <div class="mr-1 font-bold">
@@ -128,9 +99,10 @@
                 </div>
                 {{-- modal --}}
             </div>
+
         </div>
 
-        <div class="w-full mt-8 py-8 px-8 pb-20 bg-semi_dark_green flex flex-col rounded-3xl relative">
+        <div class="w-full mt-8 py-8 px-8 pb-20 bg-semi_dark_green flex flex-col rounded-3xl relative ">
             <p class="text-xl text-white">Periode Semester Ganjil 2024</p>
             <p class="text-lg text-white mt-4">28 February 2024</p>
             <img src="{{ asset('icon/Mahasiswa/buletan.png') }}" class=" absolute top-0 right-0 rounded-tr-3xl"
@@ -214,20 +186,20 @@
 
         </div>
 
-        <p class="font text-2xl mt-12">Report Bimbingan</p>
+        <p class="font-medium text-2xl mt-12">Report Bimbingan</p>
 
-        <div class="rounded-lg border border-gray-200 shadow-md mt-10 w-full">
-
-            <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 overflow-scroll">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Ke</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Tanggal</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Proyek Akhir</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Deskripsi</th>
-                        <th scope="col" class="px-6 py-4 font-medium text-gray-900">Catatan</th>
-                    </tr>
-                </thead>
+        <div >
+            <div class=" border border-gray-200 shadow-md mt-10 w-full rounded-full">
+                <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 overflow-scroll">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 font-bold text-gray-900">Ke</th>
+                            <th scope="col" class="px-6 py-4 font-bold text-gray-900">Tanggal</th>
+                            <th scope="col" class="px-6 py-4 font-bold text-gray-900">Proyek Akhir</th>
+                            <th scope="col" class="px-6 py-4 font-bold text-gray-900">Deskripsi</th>
+                            <th scope="col" class="px-6 py-4 font-bold text-gray-900">Catatan</th>
+                        </tr>
+                    </thead>
 
                 <tbody id="table_body" class="divide-y bg-white border-t border-gray-100">
 

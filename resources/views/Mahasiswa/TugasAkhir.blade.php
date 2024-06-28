@@ -1,7 +1,7 @@
 @extends('Mahasiswa.LayoutMahasiswa')
 
 @section('main')
-    <main class="w-[1139px] ml-[330px] min-h-screen my-10 flex flex-col">
+    <main class="w-full ml-[330px] mr-[50px] min-h-screen  flex flex-col">
 
 
         <div class="flex flex-row w-full h-fit justify-between items-center">
@@ -40,10 +40,21 @@
 
             <div class="flex items-center ">
                 <ul class="ml-auto flex flex-row mt-6 ">
-                    <li class="mr-4">
-                        <button type="button" onclick="sortProjectsChanger('title');"
+                    <li class="mr-4" id="sortTitle">
+                        <button type="button" onclick="sortProjectsChanger('title'); toggleIcon(this);"
                             class="text-[#4C8F8B] h-12 py-4 px-4 bg-[#FBFFFC] shadow-md shadow-black/15 flex items-center justify-center hover:bg-gray-50 hover:text-gray-600 rounded-xl">
-                            <img src="{{ asset('icon/sort1.png') }}" class="w-6 h-6" alt="">
+                            <span class="icon-container">
+                                <svg class="h-6 w-6 text-gray-500 active-icon " fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                                </svg>
+                                <svg class="h-6 w-6 text-gray-500 inactive-icon hidden" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
+                                </svg>
+                            </span>
                             <span class="text-[15px] ml-2">Judul</span>
                         </button>
                     </li>
@@ -164,6 +175,20 @@
             sortcounter--;
         }
         // console.log()
+    }
+
+    function toggleIcon(button) {
+        const iconContainer = button.querySelector('.icon-container');
+        const activeIcon = iconContainer.querySelector('.active-icon');
+        const inactiveIcon = iconContainer.querySelector('.inactive-icon');
+
+        if (sortcounter % 2 === 0) { // Even count means ascending
+            activeIcon.classList.remove('hidden');
+            inactiveIcon.classList.add('hidden');
+        } else { // Odd count means descending
+            activeIcon.classList.add('hidden');
+            inactiveIcon.classList.remove('hidden');
+        }
     }
 
     function sortProjects(sortField, sortDirection) {
