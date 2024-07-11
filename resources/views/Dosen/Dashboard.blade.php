@@ -6,7 +6,7 @@
         <form action="" method="POST">
             @csrf
             <div
-                class="py-3 px-6 bg-[#FBFFFC] flex item-center shadow-md rounded-xl shadow-slate-800 border-2 border-main_green">
+                class="py-3 px-6 mt-6 bg-[#FBFFFC] flex item-center shadow-md rounded-xl shadow-slate-800 border-2 border-main_green">
                 <ul class="ml-4 flex items-center">
                     <li class="mr-4">
                         <button type="button"

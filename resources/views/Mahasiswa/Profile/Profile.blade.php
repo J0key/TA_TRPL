@@ -218,6 +218,11 @@
     let idStudent = null;
     let skillData = null;
 
+    const token = localStorage.getItem('token');
+    if (token == null) {
+        window.location.href = "{{ route('login') }}";
+    }
+
     function toEditPrestasi() {
         window.location.href = "{{ route('mahasiswa.profilePrestasiUpdate') }}";
     }
@@ -241,7 +246,8 @@
                 }
             });
             const userData = await response.json();
-            // console.log(userData);
+            console.log(userData);
+            skillData = userData.profile_data[0].skill;
             const usernameObj = document.getElementById('username_txt');
             usernameObj.textContent = userData.user_data.username;
 
@@ -251,7 +257,6 @@
             data.data.data.forEach(Student => {
                 if (Student.user_id == userData.user_data.id) {
                     idStudent = Student.id;
-                    skillData = Student.skill;
                     console.log(skillData);
                     displayProfile(Student);
                     displayContacts(Student);
@@ -265,6 +270,8 @@
                 }
             });
             const dataPengalaman = await response.json();
+            // console.log("data pengalaman : ")
+            // console.log(dataPengalaman);
             displayPengalaman(dataPengalaman.data);
 
 
@@ -275,6 +282,7 @@
                 }
             });
             const dataSkill = await response.json();
+            console.log(dataSkill);
             displaySkill(dataSkill.data);
 
 
@@ -366,7 +374,7 @@
     }
 
     function displayPengalaman(listDataPengalaman) {
-        console.log(listDataPengalaman);
+        // console.log(listDataPengalaman);
         const container_pengalaman = document.getElementById("container_pengalaman");
 
         listDataPengalaman.forEach(pengalaman => {
@@ -400,9 +408,10 @@
         let stringSkill = "";
         const skill_txt = document.getElementById("skill_txt");
         const container_skill = document.getElementById("container_skill");
+        skill_txt.textContent = skillData;
+
 
         dataSkill.forEach(skill => {
-            skill_txt.textContent = skillData;
             const achievementList = document.createElement("li");
 
             const achievement = document.createElement("p")

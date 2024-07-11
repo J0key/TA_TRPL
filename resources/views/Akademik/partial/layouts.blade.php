@@ -99,7 +99,7 @@
                     <div id="menu1" class="justify-start mt-4 ms-5 hidden" style="transition: all 1s ease">
                         <div class="flex items-center" style="transition: all 1s ease">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="{{ route('akademik.showAkunMahasiswa') }}"
+                            <a href="{{ route('akademik.showUser') }}"
                                 class="ms-2 text-white font-medium hover:border-b-2 hover:border-white hover:text-gray-100">
                                 <span class="text-sm">Mahasiswa</span>
                             </a>
@@ -155,7 +155,7 @@
 
                         <div class="flex items-center mt-4" style="transition: all 1s ease">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="{{ route('dosen.mahasiswaBimbingan') }}"
+                            <a href="{{ route('akademik.showAkunDosen') }}"
                                 class="ms-2 text-white font-medium hover:border-b-2 hover:border-white hover:text-gray-100">
                                 <span class="text-sm">Dosen</span>
                             </a>
@@ -202,7 +202,7 @@
                     <div id="menu3" class="justify-start mt-4 ms-5 hidden" style="transition: all 1s ease">
                         <div class="flex items-center" style="transition: all 1s ease">
                             <div class="w-2 h-2 rounded bg-white"></div>
-                            <a href="{{ route('dosen.mahasiswaPendadaran') }}"
+                            <a href="{{ route('akademik.showPersetujuan') }}"
                                 class="ms-2 text-white font-medium hover:border-b-2 hover:border-white hover:text-gray-100">
                                 <span class="text-sm">Tugas Akhir</span>
                             </a>
@@ -211,7 +211,7 @@
                 </li>
 
                 <li class="mb-1 group py-2">
-                    <a id="to_pengumuman" href="{{ route('mahasiswa.pengumuman') }}"
+                    <a id="to_pengumuman" href="{{ route('akademik.showPeriode') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 20 19"
                             fill="none">
@@ -223,7 +223,7 @@
                     </a>
                 </li>
                 <li class="mb-1 group py-2">
-                    <a id="to_pengumuman" href="{{ route('mahasiswa.pengumuman') }}"
+                    <a id="to_pengumuman" href="{{ route('akademik.showProyek') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 20 19"
                             fill="none">

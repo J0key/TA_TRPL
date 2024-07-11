@@ -45,7 +45,7 @@ use App\Http\Controllers\MahasiswaPageController;
     Route::get('/akademik/akun/mahasiswa/edit', [AkademikController::class,  'editAkunMahasiswa'])->name('akademik.editAkunMahasiswa');
     Route::post('/akademik/akun/mahasiswa/saveedit', [AkademikController::class,  'saveEditAkunMahasiswa'])->name('akademik.saveEditAkunMahasiswa');
 
-    Route::get('/akademik/akun/dosen', [AkademikController::class,  'showAkunDosen'])->name('akademik.showAkunDosen');
+    Route::get('/akademik/akun/dosen', [AkademikController::class,  'showDosen'])->name('akademik.showAkunDosen');
     Route::get('/akademik/akun/dosen/add', [AkademikController::class,  'addAkunDosen'])->name('akademik.addAkunDosen');
     Route::post('/akademik/akun/dosen/save', [AkademikController::class,  'saveAkunDosen'])->name('akademik.saveAkunDosen');
     Route::get('/akademik/akun/dosen/edit', [AkademikController::class,  'editAkunDosen'])->name('akademik.editAkunDosen');

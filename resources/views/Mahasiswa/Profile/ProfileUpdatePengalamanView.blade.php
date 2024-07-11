@@ -20,26 +20,64 @@
         @endif
 
 
-        <div class="flex items-center justify-between">
+        <div class="flex flex-row items-center justify-between">
 
             <div class="text-[#404D61]">
-                <p class="font-semibold text-2xl">Update Profile</p>
+                <p class="font-semibold text-2xl">Profile</p>
             </div>
 
-            <div class="flex items-center">
-                <ul class="ml-auto flex flex-row">
-                    <li class="mr-8">
-                        <img src="{{ asset('icon/lonceng.png') }}" alt="">
-                    </li>
-                    <li class="mr-8">
-                        <img src="{{ asset('icon/dosen.png') }}" alt="">
-                    </li>
-                    <li class="mr-4">
-                        <p id="username_txt" class="text-xl font-semibold">Syra Athaya</p>
-                    </li>
-                </ul>
-                <div class="px-6 py-3 bg-main_green text-white rounded-lg shadow-sm shadow-gray-700">
-                    <button id="logout-button" type="button">logout</button>
+            <div class=" flex justify-center items-center z-10">
+                <div class="mr-1 font-bold">
+                    <div class="\">
+                               <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" class="text-[#025E5A] w-6 h-6" viewBox="0 0 16 16">
+                        <path
+                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                        </svg>
+                    </div>
+                </div>
+                <div x-data="{ open: false }" class=" w-64 flex justify-center items-center z-10">
+                    <div @click="open = !open" class="relative border-b-4 border-transparent py-3"
+                        :class="{ 'border-[#025E5A] transform transition duration-300 ': open }"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100">
+                        <div class="flex justify-center items-center space-x-3 cursor-pointer">
+                            <div class="w-12 h-12 rounded-full overflow-hidden border-2 dark:border-white border-gray-900">
+                                <img src="https://images.unsplash.com/photo-1610397095767-84a5b4736cbd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+                                    alt="" class="w-full h-full object-cover">
+                            </div>
+                            <div class="font-semibold  text-[#404D61] text-lg " id="username_txt">
+                                <div class="cursor-pointer"></div>
+                            </div>
+                        </div>
+                        <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75"
+                            x-transition:leave-start="transform opacity-100 scale-100"
+                            x-transition:leave-end="transform opacity-0 scale-95"
+                            class="absolute w-60 px-5 py-3  bg-white rounded-lg shadow border dark:border-transparent mt-5">
+                            <ul class="space-y-3 text-gray-900">
+
+                                <li class="font-medium">
+                                    <a href="#"
+                                        class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600">
+                                        <div class="mr-3 text-red-600" id="logout-button">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -164,6 +202,11 @@
 @endsection
 
 <script>
+    const token = localStorage.getItem('token');
+    if (token == null) {
+        window.location.href = "{{ route('login') }}";
+    }
+
     let keahlian = [];
     // Mendapatkan referensi ke dropdown
     var listuser = document.getElementById("keahlian");
@@ -183,13 +226,13 @@
             const userData = await response.json();
             // console.log(userData);
             const usernameObj = document.getElementById('username_txt');
-            usernameObj.textContent = userData.username;
+            usernameObj.textContent = userData.user_data.username;
 
 
             response = await fetch(`http://127.0.0.1:8001/api/student`);
             const data = await response.json();
             data.data.data.forEach(Student => {
-                if (Student.user_id == userData.id) {
+                if (Student.user_id == userData.user_data.id) {
                     // console.log(Student);
                     displayProfile(Student);
                     displayContacts(Student);

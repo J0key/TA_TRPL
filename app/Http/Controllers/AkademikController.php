@@ -36,7 +36,6 @@ class AkademikController extends Controller
     }
 
 
-
     public function showProyekDetail(){
         return(view('Akademik.projects.project_detail'));
     }
