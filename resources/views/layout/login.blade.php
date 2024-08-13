@@ -28,8 +28,9 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl dark:text-white">
                         Sign In to Your Account
                     </h1>
-                    <form id="login-form" class="space-y-4 md:space-y-6" action="#">
-                        <div>
+                        <form id="login-form" class="space-y-4 md:space-y-6" action="#">
+                            @csrf
+                            <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-white dark:text-white">Your
                                 email</label>
                             <input type="email" name="email" id="email"
@@ -42,6 +43,7 @@
                             <input type="password" name="password" id="password" placeholder="••••••••"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required="">
+                            <p id="error_password" class="mt-2 text-white hidden"></p>
                         </div>
                         <div class="flex items-center justify-between">
                             <div class="flex items-start">
@@ -69,24 +71,32 @@
 </body>
 
 <script>
-
     const token = localStorage.getItem('token');
     if (token != null) {
         window.location.href = "{{ route('mahasiswa.dashboard') }}";
     }
-
     const errorMessageElement = document.getElementById('error-message');
+    const errorPassword = document.getElementById('error_password');
+
     document.addEventListener("DOMContentLoaded", () => {
         const loginForm = document.getElementById("login-form");
-
         loginForm.addEventListener("submit", async (e) => {
             e.preventDefault();
-
             const formData = new FormData(loginForm);
+
+            if (formData.get("password").length < 8) {
+                errorPassword.style.display = "flex";
+                errorPassword.textContent = "Input must be at least an 8 character";
+                // console.log("sjqisq");
+                return null;
+            }
+
             const data = {
                 email: formData.get("email"),
                 password: formData.get("password")
             };
+
+
             try {
                 const response = await fetch('http://127.0.0.1:8001/api/login', {
                     method: 'POST',
@@ -97,13 +107,17 @@
                 });
 
                 const result = await response.json();
+
+                // console.log('Response status:', response.status);
+                // console.log('Response body:', result);
+
                 if (response.ok) {
-                    alert('Login successful!');
+                    alert('Login Berhasil!');
                     localStorage.setItem('token', result.token);
                     const userData = await getUserData(result.token);
-                    if (userData.role == "Admin") {
+                    if (userData.role === "Admin") {
                         window.location.href = "{{ route('akademik.dashboard') }}";
-                    } else if (userData.role == "Dosen") {
+                    } else if (userData.role === "Dosen") {
                         window.location.href = "{{ route('dosen.dashboard') }}";
                     } else {
                         window.location.href = "{{ route('mahasiswa.dashboard') }}";
@@ -112,8 +126,8 @@
                     alert(`Error: ${result.message}`);
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
+                // console.error('Error:', error);
+                alert('Server Error.');
             }
         });
     });

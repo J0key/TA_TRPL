@@ -4,7 +4,7 @@
     <main class="w-full ml-[330px] mr-[50px] min-h-screen  flex flex-col">
 
 
-        <div class="flex flex-row items-center justify-between">
+        <div class="flex items-center justify-between mt-4">
 
             <div class="text-[#404D61]">
                 <p class="font-semibold text-2xl">Profile</p>
@@ -219,9 +219,9 @@
     let skillData = null;
 
     const token = localStorage.getItem('token');
-    if (token == null) {
-        window.location.href = "{{ route('login') }}";
-    }
+    // if (token == null) {
+    //     window.location.href = "{{ route('login') }}";
+    // }
 
     function toEditPrestasi() {
         window.location.href = "{{ route('mahasiswa.profilePrestasiUpdate') }}";

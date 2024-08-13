@@ -172,7 +172,7 @@
             </div>
 
             <div class="w-full flex flex-row mt-10">
-                <button class="w-fit" type="button" onclick="tambahArray()" disabled>
+                <button class="w-fit" type="button" onclick="tambahArray()">
                     <div class="px-4 py-2 bg-dark_green text-white flex flex-row items-center w-fit rounded-xl">
                         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12"
                             fill="none">
@@ -203,47 +203,9 @@
 
 <script>
     const token = localStorage.getItem('token');
-    if (token == null) {
-        window.location.href = "{{ route('login') }}";
-    }
-
-    let keahlian = [];
-    // Mendapatkan referensi ke dropdown
-    var listuser = document.getElementById("keahlian");
-
-    var pekerjaanCounter = 1;
-
-    async function fetchProjects(page = 1) {
-
-        try {
-            const token = localStorage.getItem('token');
-            console.log(token);
-            let response = await fetch('http://127.0.0.1:8001/api/user', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            const userData = await response.json();
-            // console.log(userData);
-            const usernameObj = document.getElementById('username_txt');
-            usernameObj.textContent = userData.user_data.username;
-
-
-            response = await fetch(`http://127.0.0.1:8001/api/student`);
-            const data = await response.json();
-            data.data.data.forEach(Student => {
-                if (Student.user_id == userData.user_data.id) {
-                    // console.log(Student);
-                    displayProfile(Student);
-                    displayContacts(Student);
-                }
-            });
-            // console.log(data.data.data);
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
-
+    // if (token == null) {
+    //     window.location.href = "{{ route('login') }}";
+    // }
 
     function tambahArray() {
         const container_pekerjaan = document.getElementById("container_data")
@@ -378,6 +340,42 @@
         container_pekerjaan.appendChild(container_1);
     }
 
+    let keahlian = [];
+    // Mendapatkan referensi ke dropdown
+    var listuser = document.getElementById("keahlian");
+
+    var pekerjaanCounter = 1;
+
+    async function fetchProjects(page = 1) {
+        try {
+            const token = localStorage.getItem('token');
+            console.log(token);
+            let response = await fetch('http://127.0.0.1:8001/api/user', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const userData = await response.json();
+            // console.log(userData);
+            const usernameObj = document.getElementById('username_txt');
+            usernameObj.textContent = userData.user_data.username;
+
+
+            response = await fetch(`http://127.0.0.1:8001/api/student`);
+            const data = await response.json();
+            data.data.data.forEach(Student => {
+                if (Student.user_id == userData.user_data.id) {
+                    // console.log(Student);
+                    displayProfile(Student);
+                    displayContacts(Student);
+                }
+            });
+            // console.log(data.data.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
     document.addEventListener("DOMContentLoaded", async () => {
         const logoutButton = document.getElementById('logout-button');
         const token = localStorage.getItem('token');
@@ -457,76 +455,74 @@
 
     fetchProjects();
 
-    // function deleteArray(id) {
-    //     const pElement = document.querySelector('#' + id + ' p');
-    //     const button = document.querySelector('#' + id);
-    //     const textContent = pElement.textContent;
-    //     let indexToRemove = keahlian.indexOf(textContent);
-    //     if (indexToRemove !== -1) {
-    //         keahlian.splice(indexToRemove, 1);
-    //     }
-    //     button.remove()
+    function deleteArray(id) {
+        const pElement = document.querySelector('#' + id + ' p');
+        const button = document.querySelector('#' + id);
+        const textContent = pElement.textContent;
+        let indexToRemove = keahlian.indexOf(textContent);
+        if (indexToRemove !== -1) {
+            keahlian.splice(indexToRemove, 1);
+        }
+        button.remove()
 
-    // }
+    }
 
+    function printIsi(selectedValue) {
 
-    // Tambahkan event listener ke dropdown
-    // function printIsi(selectedValue) {
+        if (selectedValue != "") {
+            // Tambahkan nilai baru ke array cars
+            keahlian.push(selectedValue);
 
-    //     if (selectedValue != "") {
-    //         // Tambahkan nilai baru ke array cars
-    //         keahlian.push(selectedValue);
-
-    //         // keahlian.forEach(element => {
-    //         //     console.log(element);
-    //         // });
+            // keahlian.forEach(element => {
+            //     console.log(element);
+            // });
 
 
-    //         // Dapatkan elemen container tempat tombol akan ditempatkan
-    //         const container = document.getElementById('container-keahlian');
+            // Dapatkan elemen container tempat tombol akan ditempatkan
+            const container = document.getElementById('container-keahlian');
 
-    //         // Buat elemen tombol baru
+            // Buat elemen tombol baru
 
-    //         button.classList.add('border-2', 'w-fit', 'border-gray-600', 'rounded-3xl', 'flex',
-    //             'flex-row', 'items-center', 'justify-center', 'px-2');
-    //         button.id = 'deleteKeahlian' + keahlianCounter;
-    //         keahlianCounter++;
-    //         button.setAttribute('onclick', 'deleteArray(this.id)');
-    //         button.setAttribute('type', 'button');
-
-
-    //         // Tambahkan ikon SVG
-    //         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    //         svg.setAttribute('width', '16');
-    //         svg.setAttribute('height', '16');
-    //         svg.setAttribute('viewBox', '0 0 16 16');
-    //         svg.setAttribute('fill', 'none');
-    //         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    //         path.setAttribute('d', 'M11.25 4.75L4.75 11.25M4.75 4.75L11.25 11.25');
-    //         path.setAttribute('stroke', 'black');
-    //         path.setAttribute('stroke-width', '1.5');
-    //         path.setAttribute('stroke-linecap', 'round');
-    //         path.setAttribute('stroke-linejoin', 'round');
-    //         svg.appendChild(path);
-    //         button.appendChild(svg);
-
-    //         // Tambahkan teks pada tombol
-    //         const text = document.createElement('p');
-    //         text.classList.add('py-2', 'px-4');
-    //         text.textContent = selectedValue;
-    //         button.appendChild(text);
-
-    //         // Tambahkan tombol ke dalam container
-    //         container.appendChild(button);
-
-    //         const dropdown_keahlian = document.getElementById('skill');
-    //         let keahlianJoin = keahlian.join(", ");
-    //         dropdown_keahlian.setAttribute('value', keahlianJoin);
-    //         console.log(dropdown_keahlian.value);
-    //     }
+            button.classList.add('border-2', 'w-fit', 'border-gray-600', 'rounded-3xl', 'flex',
+                'flex-row', 'items-center', 'justify-center', 'px-2');
+            button.id = 'deleteKeahlian' + keahlianCounter;
+            keahlianCounter++;
+            button.setAttribute('onclick', 'deleteArray(this.id)');
+            button.setAttribute('type', 'button');
 
 
-    // }
+            // Tambahkan ikon SVG
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', '16');
+            svg.setAttribute('height', '16');
+            svg.setAttribute('viewBox', '0 0 16 16');
+            svg.setAttribute('fill', 'none');
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', 'M11.25 4.75L4.75 11.25M4.75 4.75L11.25 11.25');
+            path.setAttribute('stroke', 'black');
+            path.setAttribute('stroke-width', '1.5');
+            path.setAttribute('stroke-linecap', 'round');
+            path.setAttribute('stroke-linejoin', 'round');
+            svg.appendChild(path);
+            button.appendChild(svg);
+
+            // Tambahkan teks pada tombol
+            const text = document.createElement('p');
+            text.classList.add('py-2', 'px-4');
+            text.textContent = selectedValue;
+            button.appendChild(text);
+
+            // Tambahkan tombol ke dalam container
+            container.appendChild(button);
+
+            const dropdown_keahlian = document.getElementById('skill');
+            let keahlianJoin = keahlian.join(", ");
+            dropdown_keahlian.setAttribute('value', keahlianJoin);
+            console.log(dropdown_keahlian.value);
+        }
+
+
+    }
 
     function toProfilePage() {
         window.location.href = "{{ route('mahasiswa.profile') }}";

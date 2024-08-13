@@ -171,7 +171,7 @@
 
         {{-- table start --}}
         <div class="rounded-lg border border-gray-200 shadow-md mt-10 w-full overflow-scroll">
-            <table class="w-fit border-collapse bg-white text-left text-sm text-gray-500">
+            <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
                 <thead class="bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-4 font-medium text-gray-900">Judul Proyek</th>

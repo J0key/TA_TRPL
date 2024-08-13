@@ -96,7 +96,7 @@
         </button>
 
 
-        <div class="flex flex-col w-full bg-white shadow-md shadow-clifford rounded-xl mt-10">
+        <div class="flex flex-col w-full bg-white shadow-md shadow-clifford rounded-xl mt-10 mb-16">
             <form action="" method="POST">
                 @csrf
                 <div class=" w-full relative flex flex-row p-16 pb-12 space-x-12">
@@ -105,14 +105,14 @@
 
                         <div class="form-group">
                             <label class=" block mb-2" for="first_name">Nama Depan</label>
-                            <input type="text" id="first_name" disabled name="first_name" required style=""
+                            <input type="text" id="first_name" disabled name="first_name" style=""
                                 class="form-control rounded-lg border-gray-500 w-full focus:border-semi_dark_green ou"
                                 value="{{ old('first_name') }}">
                         </div>
 
                         <div class="form-group mt-6">
                             <label class=" block mb-2" for="NIM">NIM</label>
-                            <input type="text" id="NIM" name="NIM" required disabled
+                            <input type="text" id="NIM" name="NIM" disabled
                                 class="form-control rounded-lg border-gray-500  w-full" value="{{ old('NIM') }}">
                         </div>
 
@@ -145,14 +145,15 @@
                     <div class="flex flex-col basis-1/2 space-y-10">
                         <div class="form-group">
                             <label class=" block mb-2" for="last_name">Nama Belakang</label>
-                            <input type="text" id="last_name" disabled name="last_name" required
+                            <input type="text" id="last_name" disabled name="last_name"
                                 class="form-control rounded-lg border-gray-500 w-full" value="{{ old('last_name') }}">
                         </div>
 
                         <div class="form-group mt-6">
                             <label class=" block mb-2" for="semester">Semester</label>
                             <input type="text" id="semester" name="semester"
-                                class="form-control rounded-lg border-gray-500 w-full" value="{{ old('semester') }}">
+                                class="form-control rounded-lg border-gray-500 w-full" required=""
+                                value="{{ old('semester') }}">
                         </div>
 
                         <div class="form-group mt-6">
@@ -319,27 +320,62 @@
                 link_porto: link_porto.value,
                 link_linkedin: link_linkedin.value
             }
-            console.log(data);
-            try {
-                const response = await fetch(`http://127.0.0.1:8001/api/student/${idstudent}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
+
+            document.getElementById('submit_btn').addEventListener('click', function() {
+                let isValid = true;
+
+                // Ambil semua input yang diperlukan
+                const requiredFields = [
+                    'SKS',
+                    'semester',
+                    'IPK',
+                    'phone_number',
+                    'link_github',
+                    'link_linkedin',
+                    'link_porto'
+                ];
+
+                requiredFields.forEach(field => {
+                    const input = document.getElementById(field);
+                    if (input && input.value.trim() === '') {
+                        isValid = false;
+                        input.classList.add(
+                            'border-red-500'
+                            ); // Tambahkan kelas untuk menandai kesalahan
+                    } else {
+                        input.classList.remove(
+                            'border-red-500'); // Hapus tanda kesalahan
+                    }
                 });
 
-                if (response.ok) {
-                    alert('Berhasil mengupdate data');
-                    window.location.href = "{{ route('mahasiswa.profile') }}";
+                if (isValid) {
+                    try {
+                        const response = await fetch(
+                            `http://127.0.0.1:8001/api/student/${idstudent}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(data)
+                            });
+
+                        if (response.ok) {
+                            alert('Berhasil mengupdate data');
+                            window.location.href = "{{ route('mahasiswa.profile') }}";
+                        } else {
+                            const data = await response.json();
+                            alert(`Error: ${data.message}`);
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert(
+                            'Terjadi kesalahan saat mengupdate data. Silakan coba lagi.');
+                    }
                 } else {
-                    const data = await response.json();
-                    alert(`Error: ${data.message}`);
+                    alert("Harap isi semua kolom yang diperlukan.");
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Terjadi kesalahan saat mengupdate data. Silakan coba lagi.');
-            }
+            });
+
         });
 
 
