@@ -188,7 +188,7 @@
 
         <p class="font-medium text-2xl mt-12">Report Bimbingan</p>
 
-        <div >
+        <div>
             <div class=" border border-gray-200 shadow-md mt-10 w-full rounded-full">
                 <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 overflow-scroll">
                     <thead class="bg-gray-50">
@@ -201,14 +201,14 @@
                         </tr>
                     </thead>
 
-                <tbody id="table_body" class="divide-y bg-white border-t border-gray-100">
+                    <tbody id="table_body" class="divide-y bg-white border-t border-gray-100">
 
-                </tbody>
-            </table>
-            <div id="empty_filed" class="w-full bg-white">
+                    </tbody>
+                </table>
+                <div id="empty_filed" class="w-full bg-white">
 
+                </div>
             </div>
-        </div>
     </main>
     @stack('script')
 @endsection
@@ -216,14 +216,14 @@
 <script>
     let userData = null;
 
-    // const token = localStorage.getItem('token');
-    // if (token == null) {
-    //     window.location.href = "{{ route('login') }}";
-    // }
+    const token = localStorage.getItem('token');
+    if (token == null) {
+        window.location.href = "{{ route('login') }}";
+    }
 
     async function fetchProjects() {
         try {
-            let url = `http://127.0.0.1:8001/api/project`;
+            let url = `http://127.0.0.1:8001/api/counseling`;
             // FETCH TOTAL SLOT DOSEN
             let totalSlotDosen = 0;
             let kuotaTerpakai = 0;
@@ -234,7 +234,7 @@
 
             // FETCH DATA USER
             console.log(token);
-            response = await fetch('http://127.0.0.1:8001/api/user', {
+            let response = await fetch('http://127.0.0.1:8001/api/user', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -247,24 +247,35 @@
                 usernameObj.textContent = userData.user_data.username;
             }
 
-            while (url != null) {
-                let response = await fetch(url);
-                data = await response.json();
-                url = data.data.next_page_url;
-                data.data.data.forEach(detailProjek => {
-                    if (detailProjek.status == "bimbingan") {
-                        kuotaTerpakai += 1;
-                    }
-                    if (detailProjek.isApproved == "Approved") {
-                        totalProjekTersedia += 1;
-                    }
-                    if (!tmpArrayDosen.includes(detailProjek['lecturer'].id)) {
-                        tmpArrayDosen.push(detailProjek['lecturer'].id);
-                        totalSlotDosen += detailProjek['lecturer'].max_quota;
-                    }
-                    detailProjek
-                });
-            }
+            response = await fetch(url, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            data = await response.json();
+            // url = data.data.next_page_url;
+            console.log(data);
+
+
+            // while (url != null) {
+            //     let response = await fetch(url);
+            //     data = await response.json();
+            //     url = data.data.next_page_url;
+            //     data.data.data.forEach(detailProjek => {
+            //         if (detailProjek.status == "bimbingan") {
+            //             kuotaTerpakai += 1;
+            //         }
+            //         if (detailProjek.isApproved == "Approved") {
+            //             totalProjekTersedia += 1;
+            //         }
+            //         if (!tmpArrayDosen.includes(detailProjek['lecturer'].id)) {
+            //             tmpArrayDosen.push(detailProjek['lecturer'].id);
+            //             totalSlotDosen += detailProjek['lecturer'].max_quota;
+            //         }
+            //         detailProjek
+            //     });
+            // }
 
             const quota_txt = document.getElementById("quota_txt");
             const projek_count_txt = document.getElementById("projek_count_txt");

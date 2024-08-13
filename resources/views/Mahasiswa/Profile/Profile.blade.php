@@ -219,9 +219,9 @@
     let skillData = null;
 
     const token = localStorage.getItem('token');
-    // if (token == null) {
-    //     window.location.href = "{{ route('login') }}";
-    // }
+    if (token == null) {
+        window.location.href = "{{ route('login') }}";
+    }
 
     function toEditPrestasi() {
         window.location.href = "{{ route('mahasiswa.profilePrestasiUpdate') }}";

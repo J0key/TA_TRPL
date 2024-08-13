@@ -33,7 +33,7 @@
 <body id="body" class="text-gray-800 font-inter bg-[#EFEFEF]">
     <!-- start: Sidebar -->
     <div class="flex flex-row flex-auto">
-        <div class="fixed left-0 top-0 w-72 h-full p-4 z-50 sidebar-menu transition-transform bg-main_green shadow-lg shadow-slate-800"
+        <div class="fixed left-0 top-0 w-72 h-full p-4 z-50 sidebar-menu transition-transform bg-semi_dark_green shadow-lg shadow-slate-800 overflow-hidden"
             style="text-align: center">
             <div class="flex flex-row justify-center items-center my-6">
                 <img class="w-16" src="{{ asset('icon/ugm_logo.png') }}" alt="" />
@@ -105,6 +105,10 @@
 
 
             </ul>
+            <div class="absolute bottom-0 left-0 ms-[-160px] mb-[-160px] w-80 h-96 bg-[#347677] rounded-full z-0">
+            </div>
+            <div class="absolute bottom-0 right-0 me-[-120px] mb-[-190px] w-80 h-80 bg-main_green rounded-full z-0">
+            </div>
         </div>
         <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
         <!-- end: Sidebar -->

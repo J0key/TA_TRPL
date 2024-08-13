@@ -100,7 +100,17 @@
 
                 <div class="flex flex-col w-full">
 
-                    <p class="font-semibold text-lg mb-6">Pekerjaan 1</p>
+                    <div class="flex flex-row w-full items-center mb-6">
+                        <p class="font-semibold text-lg">Pekerjaan 1</p>
+                        <button class="ms-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17"
+                                fill="none">
+                                <path
+                                    d="M13.4596 2.83333H10.9805L10.2721 2.125H6.73047L6.02214 2.83333H3.54297V4.25H13.4596M4.2513 13.4583C4.2513 13.8341 4.40056 14.1944 4.66623 14.4601C4.93191 14.7257 5.29225 14.875 5.66797 14.875H11.3346C11.7104 14.875 12.0707 14.7257 12.3364 14.4601C12.602 14.1944 12.7513 13.8341 12.7513 13.4583V4.95833H4.2513V13.4583Z"
+                                    fill="#344948" />
+                            </svg>
+                        </button>
+                    </div>
 
                     <div class=" w-full relative flex flex-row items-center pt-2 pb-8 space-x-12">
 
@@ -203,19 +213,45 @@
 
 <script>
     const token = localStorage.getItem('token');
-    // if (token == null) {
-    //     window.location.href = "{{ route('login') }}";
-    // }
+    if (token == null) {
+        window.location.href = "{{ route('login') }}";
+    }
 
     function tambahArray() {
         const container_pekerjaan = document.getElementById("container_data")
         pekerjaanCounter++;
+
         const container_1 = document.createElement('div');
         container_1.classList.add("flex", "flex-col", "w-full", "mt-6");
 
+        const container_1_1 = document.createElement('div');
+        container_1_1.classList.add("flex", "flex-row", "w-full", "mb-6");
+
         const header = document.createElement('p');
-        header.classList.add("font-semibold", "text-lg", "mb-6", "mt-6");
+        header.classList.add("font-semibold", "text-lg", "mt-6");
         header.textContent = "Pekerjaan " + pekerjaanCounter;
+
+        const buttonDelete = document.createElement('button');
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("width", "17");
+        svg.setAttribute("height", "17");
+        svg.setAttribute("viewBox", "0 0 17 17");
+        svg.setAttribute("fill", "none");
+
+        // Buat elemen path
+        const path = document.createElementNS(svgNS, "path");
+        path.setAttribute("d",
+            "M13.4596 2.83333H10.9805L10.2721 2.125H6.73047L6.02214 2.83333H3.54297V4.25H13.4596M4.2513 13.4583C4.2513 13.8341 4.40056 14.1944 4.66623 14.4601C4.93191 14.7257 5.29225 14.875 5.66797 14.875H11.3346C11.7104 14.875 12.0707 14.7257 12.3364 14.4601C12.602 14.1944 12.7513 13.8341 12.7513 13.4583V4.95833H4.2513V13.4583Z"
+        );
+        path.setAttribute("fill", "#344948");
+
+        // Tambahkan path ke dalam SVG
+        svg.appendChild(path);
+        buttonDelete.appendChild(svg);
+
+        container_1_1.appendChild(header);
+        container_1_1.appendChild(buttonDelete);
 
         const container_2 = document.createElement('div');
         container_2.classList.add("w-full", "relative", "flex", "flex-row", "items-center", "pt-2", "pb-8",
@@ -250,10 +286,13 @@
         const container_2_1_2 = document.createElement('div');
         container_2_1_2.classList.add("form-group");
 
+
         const label_field = document.createElement('label');
         label_field.classList.add("block", "mb-2", "font-semibold");
         label_field.setAttribute('for', 'field');
         label_field.textContent = "Jenis Pekerjaan";
+
+
         const fieldInput = document.createElement('input');
         fieldInput.type = 'text';
         fieldInput.id = 'field';
@@ -335,7 +374,8 @@
 
         container_2.appendChild(container_2_1);
         container_2.appendChild(container_2_2);
-        container_1.appendChild(header);
+        container_1.appendChild(container_1_1);
+        container_1.appendChild(buttonDelete);
         container_1.appendChild(container_2);
         container_pekerjaan.appendChild(container_1);
     }

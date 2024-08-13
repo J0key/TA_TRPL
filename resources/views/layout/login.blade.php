@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
 </head>
 
 <body>
@@ -28,9 +27,9 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl dark:text-white">
                         Sign In to Your Account
                     </h1>
-                        <form id="login-form" class="space-y-4 md:space-y-6" action="#">
-                            @csrf
-                            <div>
+                    <form id="login-form" class="space-y-4 md:space-y-6" action="#">
+                        {{-- @csrf --}}
+                        <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-white dark:text-white">Your
                                 email</label>
                             <input type="email" name="email" id="email"
@@ -71,10 +70,10 @@
 </body>
 
 <script>
-    const token = localStorage.getItem('token');
-    if (token != null) {
-        window.location.href = "{{ route('mahasiswa.dashboard') }}";
-    }
+    // const token = localStorage.getItem('token');
+    // if (token != null) {
+    //     window.location.href = "{{ route('mahasiswa.dashboard') }}";
+    // }
     const errorMessageElement = document.getElementById('error-message');
     const errorPassword = document.getElementById('error_password');
 
@@ -87,7 +86,6 @@
             if (formData.get("password").length < 8) {
                 errorPassword.style.display = "flex";
                 errorPassword.textContent = "Input must be at least an 8 character";
-                // console.log("sjqisq");
                 return null;
             }
 
@@ -96,6 +94,7 @@
                 password: formData.get("password")
             };
 
+            console.log(data);
 
             try {
                 const response = await fetch('http://127.0.0.1:8001/api/login', {
@@ -108,13 +107,11 @@
 
                 const result = await response.json();
 
-                // console.log('Response status:', response.status);
-                // console.log('Response body:', result);
-
                 if (response.ok) {
                     alert('Login Berhasil!');
                     localStorage.setItem('token', result.token);
                     const userData = await getUserData(result.token);
+                    console.log(localStorage.getItem('token'));
                     if (userData.role === "Admin") {
                         window.location.href = "{{ route('akademik.dashboard') }}";
                     } else if (userData.role === "Dosen") {
@@ -126,8 +123,7 @@
                     alert(`Error: ${result.message}`);
                 }
             } catch (error) {
-                // console.error('Error:', error);
-                alert('Server Error.');
+                console.log(error);
             }
         });
     });
@@ -136,6 +132,7 @@
         try {
             const response = await fetch('http://127.0.0.1:8001/api/user', {
                 headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
             });
