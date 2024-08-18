@@ -225,13 +225,14 @@
         container_1.classList.add("flex", "flex-col", "w-full", "mt-6");
 
         const container_1_1 = document.createElement('div');
-        container_1_1.classList.add("flex", "flex-row", "w-full", "mb-6");
+        container_1_1.classList.add("flex", "flex-row", "w-full", "my-4", "items-center");
 
         const header = document.createElement('p');
-        header.classList.add("font-semibold", "text-lg", "mt-6");
+        header.classList.add("font-semibold", "text-lg");
         header.textContent = "Pekerjaan " + pekerjaanCounter;
 
         const buttonDelete = document.createElement('button');
+        buttonDelete.classList.add("ms-4")
         const svgNS = "http://www.w3.org/2000/svg";
         const svg = document.createElementNS(svgNS, "svg");
         svg.setAttribute("width", "17");
@@ -375,7 +376,7 @@
         container_2.appendChild(container_2_1);
         container_2.appendChild(container_2_2);
         container_1.appendChild(container_1_1);
-        container_1.appendChild(buttonDelete);
+        // container_1.appendChild(buttonDelete);
         container_1.appendChild(container_2);
         container_pekerjaan.appendChild(container_1);
     }

@@ -1,77 +1,120 @@
 @extends('Akademik.partial.layouts')
 
 @section('main')
-    <main class="w-[1139px] ml-[322px] min-h-screen flex flex-col ps-6">
+    <main class="w-full ml-[330px] mr-[50px] min-h-screen flex flex-col">
 
-        <form action="" method="POST">
-            @csrf
-            <div
-                class="py-3 px-6 mt-10 bg-[#FBFFFC] flex item-center shadow-md rounded-xl shadow-slate-800 border-2 border-main_green">
-                <ul class="ml-4 flex items-center">
-                    <li class="mr-4">
-                        <button type="button"
-                            class="text-[#4C8F8B] ms-[-20px] rounded flex items-center justify-center hover:bg-gray-50 hover:text-gray-600">
-                            <svg class="me-8" xmlns="http://www.w3.org/2000/svg" width="24" height="20"
-                                viewBox="0 0 34 32" fill="none">
-                                <path
-                                    d="M32.9862 29.1261L26.8367 23.2994C29.2238 20.4564 30.3797 16.8478 30.067 13.2156C29.7542 9.58344 27.9965 6.20379 25.1552 3.77157C22.3139 1.33935 18.605 0.0394391 14.7912 0.139126C10.9773 0.238814 7.34843 1.73052 4.65063 4.30752C1.95283 6.88452 0.391198 10.3509 0.286838 13.994C0.182477 17.6371 1.54332 21.1799 4.08955 23.894C6.63578 26.608 10.1739 28.2871 13.9763 28.5858C17.7787 28.8846 21.5564 27.7804 24.5327 25.5002L30.6325 31.3269C30.7866 31.4753 30.9699 31.5931 31.1719 31.6735C31.3739 31.7538 31.5906 31.7952 31.8094 31.7952C32.0282 31.7952 32.2449 31.7538 32.4468 31.6735C32.6488 31.5931 32.8322 31.4753 32.9862 31.3269C33.285 31.0316 33.452 30.6371 33.452 30.2265C33.452 29.8158 33.285 29.4213 32.9862 29.1261ZM15.2339 25.5002C12.939 25.5002 10.6957 24.8502 8.78766 23.6323C6.87957 22.4145 5.39241 20.6835 4.51421 18.6583C3.63602 16.6331 3.40624 14.4046 3.85394 12.2546C4.30164 10.1047 5.40671 8.12981 7.0294 6.57978C8.65209 5.02975 10.7195 3.97416 12.9703 3.54651C15.221 3.11886 17.5539 3.33835 19.6741 4.17722C21.7942 5.01609 23.6064 6.43667 24.8813 8.25931C26.1562 10.082 26.8367 12.2248 26.8367 14.4169C26.8367 17.3564 25.6143 20.1755 23.4383 22.254C21.2624 24.3325 18.3111 25.5002 15.2339 25.5002Z"
-                                    fill="#347677" />
-                            </svg>
-                            <input class=" border-none text-text-main_green" type="text" name="searchBar" id="searchBar"
-                                placeholder="Search here...">
-                        </button>
-                    </li>
 
-                </ul>
-                <ul class="ml-auto flex items-center">
-                    <li class="mr-1">
-                        <button type="button"
-                            class="text-[#4C8F8B] w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 hover:text-gray-600">
-                            <i class="ri-sun-line"></i>
-                        </button>
-                    </li>
-                    <li class="mr-1">
-                        <button type="button"
-                            class="text-[#4C8F8B] w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 hover:text-gray-600">
-                            <i class="ri-notification-4-fill"></i>
-                        </button>
-                    </li>
-                    <li class="mr-1">
-                        <button type="button"
-                            class="text-[#4C8F8B] w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 hover:text-gray-600">
-                            <i class="ri-account-circle-line"></i>
+        <div class="flex items-center justify-between mt-4">
 
-                        </button>
-                    </li>
-                </ul>
+
+            <div class="text-[#404D61]">
+                <p class="font-semibold text-2xl">Tambah Pengumuman</p>
             </div>
-        </form>
+
+            <div class="flex flex-row items-center">
+                {{-- modal --}}
+                <div class=" flex justify-center items-center z-10">
+                    <div class="mr-1 font-bold">
+                        <div class="\">
+                       <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" class="text-[#025E5A] w-6 h-6" viewBox="0 0 16 16">
+                            <path
+                                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div x-data="{ open: false }" class=" w-64 flex justify-center items-center z-10">
+                        <div @click="open = !open" class="relative border-b-4 border-transparent py-3"
+                            :class="{ 'border-[#025E5A] transform transition duration-300 ': open }"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75"
+                            x-transition:leave-start="transform opacity-100 scale-100">
+                            <div class="flex justify-center items-center space-x-3 cursor-pointer">
+                                <div
+                                    class="w-12 h-12 rounded-full overflow-hidden border-2 dark:border-white border-gray-900">
+                                    <img src="https://images.unsplash.com/photo-1610397095767-84a5b4736cbd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+                                        alt="" class="w-full h-full object-cover">
+                                </div>
+                                <div class="font-semibold  text-[#404D61] text-lg " id="username_txt">
+                                    <div class="cursor-pointer"></div>
+                                </div>
+                            </div>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute w-60 px-5 py-3  bg-white rounded-lg shadow border dark:border-transparent mt-5">
+                                <ul class="space-y-3 text-gray-900">
+                                    {{-- <li class="font-medium">
+                        <a href="#" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
+                          <div class="mr-3">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                          </div>
+                          Account
+                        </a>
+                      </li>
+                      <li class="font-medium">
+                        <a href="#" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
+                          <div class="mr-3">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                          </div>
+                          Setting
+                        </a>
+                      </li>
+                      <hr class="dark:border-gray-700"> --}}
+                                    <li class="font-medium">
+                                        <button type="button" id="logout-button"
+                                            class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600">
+                                            <div class="mr-3 text-red-600" id="logout-button">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            Logout
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- modal --}}
+            </div>
+
+        </div>
 
 
-        <div class=" w-full bg-white rounded-xl shadow-md shadow-slate-500 flex flex-col px-12 space-y-6 mt-10">
-            <form class="space-y-6" action="" method="POST">
+        <div class=" w-full bg-white rounded-xl shadow-md shadow-slate-500 flex flex-col px-12 space-y-6 mt-4 pb-12 mb-12">
+            <form class="space-y-12" action="" method="POST">
                 @csrf
                 <div class="form-group w-full">
-                    <label class="w-full font-semibold mb-2" for="tittle">Judul</label>
-                    <input type="text" id="tittle" name="tittle" required style=""
+                    <label class="w-full font-semibold mb-2" for="title">Judul</label>
+                    <input type="text" id="title" name="title" required style=""
+                        placeholder="Masukan judul pengumuman"
                         class="form-control rounded-lg mt-2 border-gray-500 w-full focus:border-semi_dark_green"
-                        value="{{ old('tittle') }}">
+                        value="">
                     @if ($errors->has('tittle'))
-                        <span class="text-danger">{{ $errors->first('tittle') }}</span>
+                        <span class="text-danger">{{ $errors->first('title') }}</span>
                     @endif
                 </div>
 
                 <div class="form-group flex flex-col">
-                    <label class="mb-2 font-semibold" for="achievement level">Deskripsi</label>
-                    <textarea type="text" id="desc" name="desc" required class="form-control rounded-lg border-gray-500 h-[8rem]"
-                        value="{{ old('desc') }}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid mollitia libero porro sapiente excepturi adipisci nam molestiae aliquam, dignissimos similique id saepe sed earum maxime vero corrupti! Cum, veritatis veniam?</textarea>
-                    @if ($errors->has('desc'))
-                        <span class="text-danger">{{ $errors->first('desc') }}</span>
+                    <label class="mb-2 font-semibold" for="detail">Deskripsi</label>
+                    <textarea type="text" id="detail" name="detail" required class="form-control rounded-lg border-gray-500 h-[8rem]"
+                        placeholder="Masukan isi pengumuman" value=""></textarea>
+                    @if ($errors->has('detail'))
+                        <span class="text-danger">{{ $errors->first('detail') }}</span>
                     @endif
                 </div>
 
                 <div class="form-group flex flex-col">
-                    <label class="mb-2 font-semibold" for="achievement level">lampiran</label>
+                    <label class="mb-2 font-semibold" for="achievement level">Lampiran</label>
                     <div class="w-full h-fit flex flex-col items-center py-20 px-20 border-dashed border-4 border-sp border-slate-400 rounded-xl border-dash-spacing-[10px]"
                         style="border-dash-spacing: 10px;">
 
@@ -100,9 +143,7 @@
                                     class="custom-file-input border-2 border-slate-500 py-2 px-6 rounded-xl hover:bg-slate-100">
                                     <i class="fas fa-cloud-upload-alt"></i> Cari File
                                 </label> --}}
-                                <input onchange="inputFile()" type="file" id="file-input" class="file-input"
-                                    accept="*">
-                                <div id="file-list" class="file-list"></div>
+                                <input onchange="" type="file" id="file-input" class="file-input" accept="*">
                             </div>
                         </div>
 
@@ -117,9 +158,10 @@
                 </div>
 
 
+                <p id="error_message" class="flex flex-row hidden">*Masih ada kolom yang kosong</p>
 
                 <div class="w-full flex flex-row justify-end mt-10">
-                    <button type="button" class="" onclick="uploadFile()">
+                    <button type="button" class="" onclick="submitData()">
                         <div class="px-20 py-2 bg-button_green rounded-md text-white flex flex-row items-center w-fit">
                             <p class="">SUBMIT</p>
                         </div>
@@ -130,72 +172,160 @@
 
         </div>
     </main>
-
-    <script src="{{ asset('js/grafik_dashboard_dosen.js') }}"></script>
     @stack('script')
 @endsection
 
 <script>
-    const fileInput = document.getElementById('file-input');
-    const uploadButton = document.getElementById('upload-button');
-    const fileList = document.getElementById('file-list');
-    const fileName = document.getElementById('file_tittle');
-    const fileIsi = document.getElementById('file_isi');
-    const fileKosong = document.getElementById('file_kosong');
-    let fileEmpty = true;
+    let userData = null;
 
-    function deleteFile() {
-        fileName = "";
-        fileIsi.style.display = 'None';
-        fileKosong.style.display = 'flex';
-        fileInput.value = null;
+    const token = localStorage.getItem('token');
+    if (token == null) {
+        window.location.href = "{{ route('login') }}";
     }
 
-    function inputFile() {
-        console.log(fileInput);
-        if (fileInput && fileInput.files && fileInput.files.length > 0) {
-            const file = fileInput.files[0];
+    async function fetchUser() {
+        // FETCH DATA USER
+        let response = await fetch('http://127.0.0.1:8001/api/user', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
 
-            fileName.textContent = file.name;
-            fileIsi.style.display = 'flex';
-            fileKosong.style.display = 'None';
-        } else {
-            console.log("gagal")
+        if (response.ok) {
+            userData = await response.json();
+            console.log(userData);
+            const usernameObj = document.getElementById('username_txt');
+            usernameObj.textContent = userData.user_data.username;
         }
     }
 
-    function uploadFile() {
+    // async function uploadData(data) {
+    //     // FETCH DATA USER
+    //     let response = await fetch('http://127.0.0.1:8001/api/announcement', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Authorization': `Bearer ${token}`
+    //         },
+    //         body: JSON.stringify(data)
+    //     });
 
-    }
-    // uploadButton.addEventListener('click', () => {
-    //     const formData = new FormData();
-    //     for (let i = 0; i < fileInput.files.length; i++) {
-    //         const file = fileInput.files[i];
-    //         formData.append('files[]', file);
-
-    //         // Tampilkan nama file yang sedang diupload
-    //         const fileElement = document.createElement('p');
-    //         fileElement.textContent = `Uploading ${file.name}...`;
-    //         fileList.appendChild(fileElement);
+    //     if (response.ok) {
+    //         alert("BERHASIL UPLOAD PENGUMUMAN")
     //     }
+    // }
 
-    //     // Lakukan proses upload
-    //     fetch('/upload', {
-    //             method: 'POST',
-    //             body: formData
-    //         })
-    //         .then(response => {
-    //             // Setelah upload selesai, update tampilan file list
-    //             fileList.innerHTML = '';
-    //             for (let i = 0; i < fileInput.files.length; i++) {
-    //                 const file = fileInput.files[i];
-    //                 const fileElement = document.createElement('p');
-    //                 fileElement.textContent = `${file.name} - Upload Selesai`;
-    //                 fileList.appendChild(fileElement);
+    // function submitData() {
+    //     const titleField = document.getElementById("title");
+    //     const detailField = document.getElementById("detail");
+    //     const error_message = document.getElementById("error_message");
+    //     const input = document.getElementById('file-input');
+
+    //     console.log(fieldNotEmpty());
+    //     if (fieldNotEmpty()) {
+    //         if (validateFile()) {
+    //             const data = {
+    //                 title: titleField.value,
+    //                 detail: detailField.value,
+    //                 attachment: input.files.length > 0 ? input.files[0] : null
     //             }
-    //         })
-    //         .catch(error => {
-    //             console.error('Error uploading files:', error);
-    //         });
-    // });
+    //             uploadData(data);
+    //         }
+    //     } else {
+    //         error_message.style.display = "flex";
+    //     }
+    // }
+
+    function submitData() {
+        const titleField = document.getElementById("title");
+        const detailField = document.getElementById("detail");
+        const error_message = document.getElementById("error_message");
+        const input = document.getElementById('file-input');
+
+        console.log(fieldNotEmpty());
+        if (fieldNotEmpty()) {
+            if (validateFile()) {
+                const formData = new FormData();
+                formData.append('title', titleField.value);
+                formData.append('detail', detailField.value);
+
+                if (input.files.length > 0) {
+                    formData.append('attachment', input.files[0]);
+                }
+
+                uploadData(formData);
+            }
+        } else {
+            error_message.style.display = "flex";
+        }
+    }
+
+    function uploadData(formData) {
+        fetch('http://127.0.0.1:8001/api/announcement', { // Ganti dengan URL endpoint Anda
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData,
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        throw err;
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                // console.log('Berhasil:', data);
+                window.location.href = "{{ route('akademik.showpengumuman') }}";
+            })
+            .catch(error => {
+                if (error.errors) {
+                    console.error('Validation Errors:', error.errors);
+                    for (const key in error.errors) {
+                        if (error.errors.hasOwnProperty(key)) {
+                            alert(`${key}: ${error.errors[key].join(', ')}`);
+                        }
+                    }
+                } else {
+                    console.error('Error:', error);
+                }
+            });
+    }
+
+    function cekIsiFile() {
+        const input = document.getElementById('file-input');
+        if (input.files.length > 0) {
+            const file = input.files[0];
+            console.log(`File Name: ${file.name}, Size: ${file.size} bytes`);
+        } else {
+            console.log('Tidak ada file yang dipilih.');
+        }
+    }
+
+    function fieldNotEmpty() {
+        const titleField = document.getElementById("title");
+        const detailField = document.getElementById("detail");
+        const input = document.getElementById('file-input');
+        if (titleField.value != "" && detailField.value != "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function validateFile() {
+        const input = document.getElementById('file-input');
+        if (input.files.length > 0) {
+            const file = input.files[0];
+            if (file.size <= 500000) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+    fetchUser();
 </script>

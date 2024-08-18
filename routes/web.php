@@ -54,7 +54,7 @@ use App\Http\Controllers\MahasiswaPageController;
     // MANAJEMEN PERSEUJUAN
     Route::get('/akademik/persetujuanTA', [AkademikController::class,  'showPersetujuan'])->name('akademik.showPersetujuan');
     Route::get('/akademik/persetujuanTA/bimbingan', [AkademikController::class,  'showPersetujuan_bimbingan'])->name('akademik.showPersetujuan_bimbingan');
-    Route::get('/akademik/persetujuanTA/edit-proses', [AkademikController::class,  'showPersetujuan_edit_proses'])->name('akademik.showPersetujuan_edit_proses');
+    Route::get('/akademik/persetujuanTA/acc_TA', [AkademikController::class,  'acc_TA'])->name('akademik.acc_TA');
     Route::get('/akademik/persetujuanTA/edir-revisi', [AkademikController::class,  'showPersetujuan_edit_revisi'])->name('akademik.showPersetujuan_edit_revisi');
 
 
@@ -78,6 +78,7 @@ use App\Http\Controllers\MahasiswaPageController;
     Route::get('/mahasiswa/profile_prestasi/update', [MahasiswaPageController::class,  'profilePrestasiUpdate'])->name('mahasiswa.profilePrestasiUpdate');
     Route::get('/mahasiswa/profile_pengalaman/update', [MahasiswaPageController::class,  'profilePengalamanUpdate'])->name('mahasiswa.profilePengalamanUpdate');
     Route::get('/mahasiswa/pengajuan', [MahasiswaPageController::class,  'pengajuan'])->name('mahasiswa.pengajuan');
+    Route::get('/mahasiswa/pengajuanSudahAda', [MahasiswaPageController::class,  'pengajuanSudahAda'])->name('mahasiswa.pengajuanSudahAda');
     Route::get('/mahasiswa/tugasakhir', [MahasiswaPageController::class,  'tugasakhir'])->name('mahasiswa.tugasakhir');
     Route::get('/mahasiswa/pengumuman', [MahasiswaPageController::class,  'pengumuman'])->name('mahasiswa.pengumuman');
 

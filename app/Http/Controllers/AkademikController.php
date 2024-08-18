@@ -55,8 +55,8 @@ class AkademikController extends Controller
     public function showPersetujuan_bimbingan(){
         return(view('Akademik.persetujuan.persetujuan_TA_view_bim'));
     }
-    public function showPersetujuan_edit_proses(){
-        return(view('Akademik.persetujuan.persetujuan_TA_edit_proses'));
+    public function acc_TA(){
+        return(view('Akademik.persetujuan.acc_TA'));
     }
     public function showPersetujuan_edit_revisi(){
         return(view('Akademik.persetujuan.persetujuan_TA_edit_revisi'));

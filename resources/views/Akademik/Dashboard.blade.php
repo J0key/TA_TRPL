@@ -1,288 +1,438 @@
 @extends('Akademik.partial.layouts')
 
 @section('main')
-    <main class="w-[100%] ml-[322px] min-h-screen flex flex-col px-6">
+    <main class="w-full ml-[330px] mr-[50px] min-h-screen flex flex-col">
 
-        <form action="" method="POST">
-            @csrf
-            <div class="flex flex-row w-full h-fit justify-between items-center mt-8">
-                <form class="" action="">
-                    <div class="flex flex-row w-fit bg-semi_dark_green p-2 rounded-full items-center mt-4">
-                        <img class="w-8 h-8 ms-2" src="{{ asset('icon/Mahasiswa/Tugas akhir/u_search (1).png') }}"
+        <div class="flex items-center justify-between mt-4">
+
+            <div class="text-[#404D61]">
+                <p class="font-semibold text-2xl">Dashboard</p>
+            </div>
+
+            <div class="flex flex-row items-center">
+                {{-- modal --}}
+                <div class=" flex justify-center items-center z-10">
+                    <div class="mr-1 font-bold">
+                        <div class="\">
+                               <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" class="text-[#025E5A] w-6 h-6" viewBox="0 0 16 16">
+                            <path
+                                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div x-data="{ open: false }" class=" w-64 flex justify-center items-center z-10">
+                        <div @click="open = !open" class="relative border-b-4 border-transparent py-3"
+                            :class="{ 'border-[#025E5A] transform transition duration-300 ': open }"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75"
+                            x-transition:leave-start="transform opacity-100 scale-100">
+                            <div class="flex justify-center items-center space-x-3 cursor-pointer">
+                                <div
+                                    class="w-12 h-12 rounded-full overflow-hidden border-2 dark:border-white border-gray-900">
+                                    <img src="https://images.unsplash.com/photo-1610397095767-84a5b4736cbd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+                                        alt="" class="w-full h-full object-cover">
+                                </div>
+                                <div class="font-semibold  text-[#404D61] text-lg " id="username_txt">
+                                    <div class="cursor-pointer"></div>
+                                </div>
+                            </div>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class="absolute w-60 px-5 py-3  bg-white rounded-lg shadow border dark:border-transparent mt-5">
+                                <ul class="space-y-3 text-gray-900">
+                                    {{-- <li class="font-medium">
+                                <a href="#" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
+                                  <div class="mr-3">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                                  </div>
+                                  Account
+                                </a>
+                              </li>
+                              <li class="font-medium">
+                                <a href="#" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
+                                  <div class="mr-3">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                  </div>
+                                  Setting
+                                </a>
+                              </li>
+                              <hr class="dark:border-gray-700"> --}}
+                                    <li class="font-medium">
+                                        <button type="button" id="logout-button"
+                                            class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600">
+                                            <div class="mr-3 text-red-600" id="logout-button">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            Logout
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- modal --}}
+            </div>
+
+        </div>
+
+        <div class="w-full mt-8 py-8 px-12 pb-20 bg-semi_dark_green flex flex-col rounded-[3rem] relative ">
+            <p class="text-2xl text-white font-semibold">Periode Semester Ganjil 2024</p>
+            <p class="text-lg text-white mt-4">28 February 2024</p>
+            <img src="{{ asset('icon/Mahasiswa/buletan.png') }}" class=" absolute top-0 right-0 rounded-tr-3xl"
+                alt="">
+        </div>
+
+        <div class="w-full flex flex-row justify-center items-center relative space-x-16 px-8">
+            <div id="box1"
+                class="bg-white rounded-3xl p-4 px-8 flex flex-col mt-[-50px] shadow-lg shadow-main_green min-h-52 min-w-80">
+
+                <div id="modal_empty" class="flex-col hidden">
+                    <p class="text-lg font-semibold">Sistem Pengajuan Judul</p>
+                    <div class="flex flex-row w-full justify-start items-center space-x-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54"
+                            fill="none">
+                            <path
+                                d="M26.9987 0.333008C12.2787 0.333008 0.332031 12.2797 0.332031 26.9997C0.332031 41.7197 12.2787 53.6663 26.9987 53.6663C41.7187 53.6663 53.6654 41.7197 53.6654 26.9997C53.6654 12.2797 41.7187 0.333008 26.9987 0.333008ZM37.6654 29.6663H16.332C14.8654 29.6663 13.6654 28.4663 13.6654 26.9997C13.6654 25.533 14.8654 24.333 16.332 24.333H37.6654C39.132 24.333 40.332 25.533 40.332 26.9997C40.332 28.4663 39.132 29.6663 37.6654 29.6663Z"
+                                fill="#757D8A" />
+                        </svg>
+                        <div class="flex flex-col w-64 mt-2">
+                            <p class="text-sm mt-4 font-semibold">Ajukan Judul</p>
+                            <p class="text-sm mt-4">Kamu belum mengajukan judul proyek akhir. Pilih judul proyek akhir yang
+                                tersedia!.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="modal_acc" class="flex-col hidden">
+                    <p class="text-lg font-semibold">Sistem Pengajuan Judul</p>
+                    <div class="flex flex-row w-full justify-start items-center space-x-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="71" height="70" viewBox="0 0 71 70"
+                            fill="none">
+                            <path
+                                d="M62.2532 35.8375C62.2532 50.9788 49.9788 63.2532 34.8375 63.2532C19.6963 63.2532 7.42188 50.9788 7.42188 35.8375C7.42188 20.6963 19.6963 8.42188 34.8375 8.42188C49.9788 8.42188 62.2532 20.6963 62.2532 35.8375Z"
+                                fill="#344948" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M49.3954 25.6161C49.7894 26.0103 50.0108 26.5448 50.0108 27.1022C50.0108 27.6596 49.7894 28.1941 49.3954 28.5883L33.6405 44.3431C33.4323 44.5514 33.1851 44.7166 32.9131 44.8293C32.641 44.942 32.3494 45 32.055 45C31.7605 45 31.4689 44.942 31.1968 44.8293C30.9248 44.7166 30.6776 44.5514 30.4694 44.3431L22.6417 36.5169C22.4409 36.323 22.2808 36.091 22.1707 35.8346C22.0605 35.5781 22.0025 35.3023 22.0001 35.0232C21.9977 34.7441 22.0508 34.4673 22.1565 34.209C22.2622 33.9507 22.4183 33.716 22.6156 33.5186C22.813 33.3213 23.0477 33.1652 23.306 33.0595C23.5643 32.9538 23.8411 32.9006 24.1202 32.9031C24.3993 32.9055 24.6751 32.9635 24.9316 33.0736C25.188 33.1838 25.42 33.3439 25.6139 33.5447L32.0542 39.9851L46.4218 25.6161C46.617 25.4208 46.8488 25.2658 47.1039 25.1601C47.359 25.0544 47.6324 25 47.9086 25C48.1847 25 48.4582 25.0544 48.7133 25.1601C48.9684 25.2658 49.2002 25.4208 49.3954 25.6161Z"
+                                fill="white" />
+                        </svg>
+                        <div class="flex flex-col w-64 mt-2">
+                            <p class="text-sm mt-4 font-semibold">Proyek Akhirmu di Setujui</p>
+                            <p class="text-sm mt-4">Proyek akhirmu telah memenuhi krieria untuk menuju ketahap selanjutnya..
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="modal_dec" class="flex-col hidden">
+                    <p class="text-lg font-semibold">Sistem Pengajuan Judul</p>
+                    <div class="flex flex-row w-full justify-start items-center space-x-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="71" height="70" viewBox="0 0 71 70"
+                            fill="none">
+                            <path
+                                d="M62.2532 35.8375C62.2532 50.9788 49.9788 63.2532 34.8375 63.2532C19.6963 63.2532 7.42188 50.9788 7.42188 35.8375C7.42188 20.6963 19.6963 8.42188 34.8375 8.42188C49.9788 8.42188 62.2532 20.6963 62.2532 35.8375Z"
+                                fill="#344948" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M49.3954 25.6161C49.7894 26.0103 50.0108 26.5448 50.0108 27.1022C50.0108 27.6596 49.7894 28.1941 49.3954 28.5883L33.6405 44.3431C33.4323 44.5514 33.1851 44.7166 32.9131 44.8293C32.641 44.942 32.3494 45 32.055 45C31.7605 45 31.4689 44.942 31.1968 44.8293C30.9248 44.7166 30.6776 44.5514 30.4694 44.3431L22.6417 36.5169C22.4409 36.323 22.2808 36.091 22.1707 35.8346C22.0605 35.5781 22.0025 35.3023 22.0001 35.0232C21.9977 34.7441 22.0508 34.4673 22.1565 34.209C22.2622 33.9507 22.4183 33.716 22.6156 33.5186C22.813 33.3213 23.0477 33.1652 23.306 33.0595C23.5643 32.9538 23.8411 32.9006 24.1202 32.9031C24.3993 32.9055 24.6751 32.9635 24.9316 33.0736C25.188 33.1838 25.42 33.3439 25.6139 33.5447L32.0542 39.9851L46.4218 25.6161C46.617 25.4208 46.8488 25.2658 47.1039 25.1601C47.359 25.0544 47.6324 25 47.9086 25C48.1847 25 48.4582 25.0544 48.7133 25.1601C48.9684 25.2658 49.2002 25.4208 49.3954 25.6161Z"
+                                fill="white" />
+                        </svg>
+                        <div class="flex flex-col w-64 mt-2">
+                            <p class="text-sm mt-4 font-semibold">Proyek Akhirmu di Setujui</p>
+                            <p class="text-sm mt-4">Proyek akhirmu telah memenuhi krieria untuk menuju ketahap
+                                selanjutnya..
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+            <div id="box2"
+                class="bg-white h-min-52 rounded-3xl p-4 px-8 w-80 flex flex-col mt-[-54px] shadow-lg shadow-main_green">
+                <p class="text-lg mt-4 font-semibold">Judul Proyek akhir</p>
+                <div class="flex flex-row items-center w-full">
+                    <img src="{{ asset('icon/Mahasiswa/game-icons_graduate-cap (1).png') }}" alt="">
+                    <p id="projek_count_txt" class="text-3xl ps-4 font-bold"></p>
+                </div>
+                <div class="flex flex-row mt-2 items-center">
+                    <p class="text-sm mt-4">Lihat judul.</p>
+                    <button>
+                        <img class="mt-4 mx-10" src="{{ asset('icon/Mahasiswa/long-arrow-right (1).png') }}"
                             alt="">
-                        <input class="h-fit bg-semi_dark_green border-semi_dark_green text-white rounded-3xl" type="text"
-                            placeholder="Search here...">
-                    </div>
-                </form>
-
-
-                <div class="flex items-center">
-                    <ul class="ml-auto flex flex-row">
-                        <li class="mr-8">
-                            <img src="{{ asset('icon/lonceng.png') }}" alt="">
-                        </li>
-                        <li class="mr-8">
-                            <img src="{{ asset('icon/dosen.png') }}" alt="">
-                        </li>
-                        <li class="mr-4">
-                            <p class="text-xl font-semibold">Syra Athaya</p>
-                        </li>
-                    </ul>
-                    <div class="px-6 py-3 bg-main_green text-white rounded-lg shadow-sm shadow-gray-700">
-                        <button id="logout-button" type="button">logout</button>
-                    </div>
+                    </button>
                 </div>
             </div>
-        </form>
 
-        <div class="flex flex-row">
-            <p class="mt-8 text-3xl">Periode Semester</p>
-            <p class="mt-8 text-3xl font-semibold ms-2">Ganjil 2023/2024</p>
-        </div>
-        <p class="mt-4 text-2xl"><?php echo date('d F Y'); ?></p>
-
-        <div class="flex flex-row w-full justify-center space-x-8 mb-16">
-
-            <div class="flex flex-col w-[70%] pe-10">
-
-                <div class="flex flex-row w-full space-x-4 mt-10 ">
-                    <button onclick="tes()"
-                        class="py-3 px-6 font-semibold opacity-50 text-gray-500 hover:bg-semi_dark_green hover:text-white hover:opacity-100 rounded-2xl">Last
-                        7 days</button>
-                    <button
-                        class="py-3 px-6 font-semibold opacity-50 text-gray-500 hover:bg-semi_dark_green hover:text-white hover:opacity-100 rounded-2xl">Months</button>
-                    <button
-                        class="py-3 px-6 font-semibold opacity-50 text-gray-500 hover:bg-semi_dark_green hover:text-white hover:opacity-100 rounded-2xl">Years</button>
+            <div id="box3"
+                class="bg-white h-min-52 rounded-3xl p-4 px-8 w-80 flex flex-col mt-[-54px] shadow-lg shadow-main_green">
+                <p class="text-lg mt-2 font-semibold">Kuota Dosen</p>
+                <div class="flex flex-row items-center w-full">
+                    <img src="{{ asset('icon/Mahasiswa/game-icons_graduate-cap (2).png') }}" alt="">
+                    <p id="quota_txt" class="text-3xl ps-4 font-bold"></p>
                 </div>
-
-                <canvas id="myChart"></canvas>
-
-
-                <p class="text-xl font-semibold">Recents Projects</p>
-
-                {{-- LIST PROJECT --}}
-                <div id="rec_project" class="flex flex-col w-full justify-center mt-8 space-y-4">
-
-                    <div class="flex flex-row items-center mt-2 p-4 rounded-xl">
-                        <div class="flex flex-row w-[5%]">
-                            <img class="w-full rounded-full border-main_green border-2" src="{{ asset('icon/dosen.png') }}"
-                                alt="">
-                        </div>
-
-                        <div class="flex flex-row w-[70%]">
-                            <p class="text-lg font-semibold px-10">Dinar Nugroho Pratomo, S.Kom, M.IM., M. Cs.</p>
-                        </div>
-
-                        <div class="flex flex-row w-[25%] px-6">
-                            <p class="text-lg w-full text-end font-semibold px-4">Projek A</p>
-                        </div>
-                    </div>
-
-
-                    <div class="flex flex-row items-center mt-2 bg-slate-300 p-4 rounded-xl">
-                        <div class="flex flex-row w-[5%]">
-                            <img class="w-full rounded-full border-main_green border-2" src="{{ asset('icon/dosen.png') }}"
-                                alt="">
-                        </div>
-
-                        <div class="flex flex-row w-[70%]">
-                            <p class="text-lg font-semibold px-10">Dinar Nugroho Pratomo, S.Kom, M.IM., M. Cs.</p>
-                        </div>
-
-                        <div class="flex flex-row w-[25%] px-6">
-                            <p class="text-lg w-full text-end font-semibold px-4">Projek A</p>
-                        </div>
-                    </div>
-
-
-                    <div class="flex flex-row items-center mt-2 p-4 rounded-xl">
-                        <div class="flex flex-row w-[5%]">
-                            <img class="w-full rounded-full border-main_green border-2" src="{{ asset('icon/dosen.png') }}"
-                                alt="">
-                        </div>
-
-                        <div class="flex flex-row w-[70%]">
-                            <p class="text-lg font-semibold px-10">Dinar Nugroho Pratomo, S.Kom, M.IM., M. Cs.</p>
-                        </div>
-
-                        <div class="flex flex-row w-[25%] px-6">
-                            <p class="text-lg w-full text-end font-semibold px-4">Projek A</p>
-                        </div>
-                    </div>
-
+                <div class="flex flex-row mt-2 items-center">
+                    <p class="text-sm mt-2">Lihat detail dosen.</p>
+                    <button>
+                        <img class="mt-4 mx-10" src="{{ asset('icon/Mahasiswa/long-arrow-right (1).png') }}"
+                            alt="">
+                    </button>
                 </div>
-
-
-            </div>
-
-            <div class="flex flex-col space-y-12 items-center">
-                <div class="basis-1/4 bg-white p-4 py-8 flex flex-col px-12 rounded-md shadow-md shadow-gray-700">
-                    <p class="text-xl font-bold text-main_green">Judul Proyek</p>
-                    <div class="flex flex-row items-center space-x-6 my-4 mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" viewBox="0 0 66 66"
-                            fill="none">
-                            <g clip-path="url(#clip0_70_7518)" filter="url(#filter0_d_70_7518)">
-                                <path
-                                    d="M10.3438 0H55.6562C59.158 0 62 2.842 62 6.34375V51.6562C62 53.3387 61.3316 54.9523 60.142 56.142C58.9523 57.3316 57.3387 58 55.6562 58H10.3438C8.66128 58 7.04773 57.3316 5.85804 56.142C4.66836 54.9523 4 53.3387 4 51.6562V6.34375C4 2.842 6.842 0 10.3438 0ZM9.4375 6.34375V51.6562C9.4375 52.1565 9.8435 52.5625 10.3438 52.5625H55.6562C55.8966 52.5625 56.1271 52.467 56.2971 52.2971C56.467 52.1271 56.5625 51.8966 56.5625 51.6562V6.34375C56.5625 6.1034 56.467 5.87289 56.2971 5.70293C56.1271 5.53298 55.8966 5.4375 55.6562 5.4375H10.3438C10.1034 5.4375 9.87289 5.53298 9.70293 5.70293C9.53298 5.87289 9.4375 6.1034 9.4375 6.34375ZM46.5938 10.875C47.3148 10.875 48.0063 11.1614 48.5162 11.6713C49.0261 12.1812 49.3125 12.8727 49.3125 13.5938V40.7812C49.3125 41.5023 49.0261 42.1938 48.5162 42.7037C48.0063 43.2136 47.3148 43.5 46.5938 43.5C45.8727 43.5 45.1812 43.2136 44.6713 42.7037C44.1614 42.1938 43.875 41.5023 43.875 40.7812V13.5938C43.875 12.8727 44.1614 12.1812 44.6713 11.6713C45.1812 11.1614 45.8727 10.875 46.5938 10.875ZM16.6875 13.5938C16.6875 12.8727 16.9739 12.1812 17.4838 11.6713C17.9937 11.1614 18.6852 10.875 19.4062 10.875C20.1273 10.875 20.8188 11.1614 21.3287 11.6713C21.8386 12.1812 22.125 12.8727 22.125 13.5938V33.5312C22.125 34.2523 21.8386 34.9438 21.3287 35.4537C20.8188 35.9636 20.1273 36.25 19.4062 36.25C18.6852 36.25 17.9937 35.9636 17.4838 35.4537C16.9739 34.9438 16.6875 34.2523 16.6875 33.5312V13.5938ZM33 10.875C33.7211 10.875 34.4126 11.1614 34.9224 11.6713C35.4323 12.1812 35.7188 12.8727 35.7188 13.5938V26.2812C35.7188 27.0023 35.4323 27.6938 34.9224 28.2037C34.4126 28.7136 33.7211 29 33 29C32.2789 29 31.5874 28.7136 31.0776 28.2037C30.5677 27.6938 30.2812 27.0023 30.2812 26.2812V13.5938C30.2812 12.8727 30.5677 12.1812 31.0776 11.6713C31.5874 11.1614 32.2789 10.875 33 10.875Z"
-                                    fill="#344948" />
-                            </g>
-                            <defs>
-                                <filter id="filter0_d_70_7518" x="0" y="0" width="66" height="66"
-                                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                                    <feColorMatrix in="SourceAlpha" type="matrix"
-                                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                                    <feOffset dy="4" />
-                                    <feGaussianBlur stdDeviation="2" />
-                                    <feComposite in2="hardAlpha" operator="out" />
-                                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_70_7518" />
-                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_70_7518"
-                                        result="shape" />
-                                </filter>
-                                <clipPath id="clip0_70_7518">
-                                    <rect width="58" height="58" fill="white" transform="translate(4)" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        <p id="kuota_mhs" class="text-5xl font-bold text-main_green ms-8">0</p>
-                    </div>
-                    <a class="text-main_green text-[12px] mt-[-16px]" href="">Cek list judul proyek
-                        <svg class="inline ms-2" xmlns="http://www.w3.org/2000/svg" width="15" height="18"
-                            viewBox="0 0 15 18" fill="none">
-                            <path
-                                d="M10.414 5.26028L10.1772 5.49699C10.0203 5.65389 10.0203 5.90829 10.1772 6.06522L12.9873 8.8591H0.401786C0.1799 8.8591 0 9.039 0 9.26088V9.59571C0 9.81759 0.1799 9.99749 0.401786 9.99749H12.9873L10.1772 12.7914C10.0203 12.9483 10.0203 13.2027 10.1772 13.3596L10.414 13.5963C10.5708 13.7532 10.8252 13.7532 10.9821 13.5963L14.8823 9.71239C15.0392 9.55549 15.0392 9.3011 14.8823 9.14417L10.9821 5.26028C10.8252 5.10335 10.5708 5.10335 10.414 5.26028Z"
-                                fill="#344948" />
-                        </svg>
-                    </a>
-                </div>
-
-
-                <div
-                    class="basis-1/4 bg-white p-4 py-8 flex flex-col justify-center px-12 rounded-md shadow-md shadow-gray-700">
-                    <p class="text-xl font-bold text-main_green">Sidang</p>
-                    <div class="flex flex-row items-center space-x-6 mt-2">
-                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="83" height="83"
-                            viewBox="0 0 83 83" fill="none">
-                            <g clip-path="url(#clip0_70_7527)">
-                                <path
-                                    d="M29.3971 41.5003C36.0838 41.5003 41.5013 36.0828 41.5013 29.3962C41.5013 22.7095 36.0838 17.292 29.3971 17.292C22.7104 17.292 17.293 22.7095 17.293 29.3962C17.293 36.0828 22.7104 41.5003 29.3971 41.5003ZM67.4388 35.4482C67.4388 40.7032 63.1833 44.9587 57.9284 44.9587C56.6794 44.9589 55.4426 44.713 54.2886 44.2352C53.1347 43.7573 52.0862 43.0568 51.203 42.1736C50.3198 41.2905 49.6193 40.2419 49.1414 39.088C48.6636 37.934 48.4177 36.6972 48.418 35.4482C48.418 30.1933 52.6734 25.9378 57.9284 25.9378C63.1833 25.9378 67.4388 30.1933 67.4388 35.4482ZM29.3971 44.9587C34.1247 44.9587 41.8177 46.4302 46.8634 49.3594C48.9246 51.4569 50.1471 53.7446 50.1471 56.0253V65.7087H6.91797V56.0253C6.91797 48.666 21.8943 44.9587 29.3971 44.9587ZM76.0846 65.7087H53.6055V56.0253C53.6055 53.5768 52.7219 51.322 51.3161 49.311C53.9807 48.7161 56.6038 48.417 58.6079 48.417C65.0526 48.417 76.0846 51.507 76.0846 57.6386V65.7087Z"
-                                    fill="#344948" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_70_7527">
-                                    <rect width="83" height="83" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        <p id="sidang" class="text-5xl font-bold text-main_green ms-8">0</p>
-                    </div>
-                    <a class="text-main_green text-[12px]" href="">Cek list sidang
-
-                        <svg class="inline ms-2" xmlns="http://www.w3.org/2000/svg" width="15" height="18"
-                            viewBox="0 0 15 18" fill="none">
-                            <path
-                                d="M10.414 5.26028L10.1772 5.49699C10.0203 5.65389 10.0203 5.90829 10.1772 6.06522L12.9873 8.8591H0.401786C0.1799 8.8591 0 9.039 0 9.26088V9.59571C0 9.81759 0.1799 9.99749 0.401786 9.99749H12.9873L10.1772 12.7914C10.0203 12.9483 10.0203 13.2027 10.1772 13.3596L10.414 13.5963C10.5708 13.7532 10.8252 13.7532 10.9821 13.5963L14.8823 9.71239C15.0392 9.55549 15.0392 9.3011 14.8823 9.14417L10.9821 5.26028C10.8252 5.10335 10.5708 5.10335 10.414 5.26028Z"
-                                fill="#344948" />
-                        </svg>
-                    </a>
-
-                </div>
-
-
-                {{-- <div
-                    class="basis-1/4 bg-white p-4 py-8 flex flex-col justify-center px-12 rounded-md shadow-md shadow-gray-700">
-                    <p class="text-xl font-bold text-main_green">Yudisium</p>
-                    <div class="flex flex-row items-center space-x-6 mt-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="83" height="83" viewBox="0 0 83 83"
-                            fill="none">
-                            <path
-                                d="M41.4993 14.5269L3.64453 28.7228L41.4993 47.6502L59.5291 38.6353L42.6151 33.464C42.2668 33.631 41.8856 33.7181 41.4993 33.719C40.8114 33.719 40.1517 33.4457 39.6653 32.9593C39.1789 32.4729 38.9056 31.8131 38.9056 31.1252C38.9056 30.4373 39.1789 29.7776 39.6653 29.2912C40.1517 28.8048 40.8114 28.5315 41.4993 28.5315L41.0704 29.926L44.0754 30.8505C44.0759 30.8535 44.0763 30.8565 44.0767 30.8595L48.5111 32.2156L73.7591 39.9837V41.9527C73.4099 42.1903 73.124 42.5095 72.9262 42.8827C72.7285 43.2559 72.6248 43.6718 72.6243 44.0941C72.6248 44.5262 72.7332 44.9513 72.9397 45.3308C73.1461 45.7103 73.4441 46.0323 73.8066 46.2674C72.626 50.7294 72.6243 60.8533 72.6243 64.844C75.2181 66.5291 75.2181 66.5907 77.8118 64.844C77.8118 60.8538 77.8105 50.7319 76.6301 46.2688C76.9927 46.0335 77.2907 45.7113 77.4971 45.3315C77.7035 44.9517 77.8117 44.5263 77.8118 44.094C77.8118 43.6712 77.7084 43.2547 77.5106 42.881C77.3128 42.5073 77.0267 42.1876 76.6771 41.9498V37.8289L67.0601 34.87L79.3541 28.7228L41.4993 14.5269ZM19.3913 40.3655L17.264 53.13C21.5072 53.6849 26.583 56.1512 31.2492 59.0675C33.9029 60.7262 36.3885 62.5469 38.4073 64.3134C39.6412 65.3931 40.6731 66.4289 41.4993 67.4481C42.3256 66.4288 43.3574 65.3931 44.5914 64.3134C46.6102 62.5469 49.0956 60.7262 51.7495 59.0675C56.4157 56.1512 61.4915 53.6849 65.7347 53.13L63.607 40.3655H62.5938L41.4993 50.9128L20.4045 40.3655H19.3913Z"
-                                fill="#344948" />
-                        </svg>
-                        <p id="yudisium" class="text-5xl font-bold text-main_green ms-8">0</p>
-                    </div>
-                    <a class="text-main_green text-[12px]" href="">Cek list yudisium
-
-                        <svg class="inline ms-2" xmlns="http://www.w3.org/2000/svg" width="15" height="18"
-                            viewBox="0 0 15 18" fill="none">
-                            <path
-                                d="M10.414 5.26028L10.1772 5.49699C10.0203 5.65389 10.0203 5.90829 10.1772 6.06522L12.9873 8.8591H0.401786C0.1799 8.8591 0 9.039 0 9.26088V9.59571C0 9.81759 0.1799 9.99749 0.401786 9.99749H12.9873L10.1772 12.7914C10.0203 12.9483 10.0203 13.2027 10.1772 13.3596L10.414 13.5963C10.5708 13.7532 10.8252 13.7532 10.9821 13.5963L14.8823 9.71239C15.0392 9.55549 15.0392 9.3011 14.8823 9.14417L10.9821 5.26028C10.8252 5.10335 10.5708 5.10335 10.414 5.26028Z"
-                                fill="#344948" />
-                        </svg>
-                    </a>
-
-                </div> --}}
-
-                {{-- <div class="basis-1/4 bg-white p-4 py-8 flex flex-col px-12 rounded-md shadow-md shadow-gray-700">
-                    <p class="text-xl font-bold text-main_green">Yudisium</p>
-                    <div class="flex flex-row items-center space-x-6 my-2 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="83" height="83" viewBox="0 0 83 83"
-                            fill="none">
-                            <path
-                                d="M41.4993 14.5269L3.64453 28.7228L41.4993 47.6502L59.5291 38.6353L42.6151 33.464C42.2668 33.631 41.8856 33.7181 41.4993 33.719C40.8114 33.719 40.1517 33.4457 39.6653 32.9593C39.1789 32.4729 38.9056 31.8131 38.9056 31.1252C38.9056 30.4373 39.1789 29.7776 39.6653 29.2912C40.1517 28.8048 40.8114 28.5315 41.4993 28.5315L41.0704 29.926L44.0754 30.8505C44.0759 30.8535 44.0763 30.8565 44.0767 30.8595L48.5111 32.2156L73.7591 39.9837V41.9527C73.4099 42.1903 73.124 42.5095 72.9262 42.8827C72.7285 43.2559 72.6248 43.6718 72.6243 44.0941C72.6248 44.5262 72.7332 44.9513 72.9397 45.3308C73.1461 45.7103 73.4441 46.0323 73.8066 46.2674C72.626 50.7294 72.6243 60.8533 72.6243 64.844C75.2181 66.5291 75.2181 66.5907 77.8118 64.844C77.8118 60.8538 77.8105 50.7319 76.6301 46.2688C76.9927 46.0335 77.2907 45.7113 77.4971 45.3315C77.7035 44.9517 77.8117 44.5263 77.8118 44.094C77.8118 43.6712 77.7084 43.2547 77.5106 42.881C77.3128 42.5073 77.0267 42.1876 76.6771 41.9498V37.8289L67.0601 34.87L79.3541 28.7228L41.4993 14.5269ZM19.3913 40.3655L17.264 53.13C21.5072 53.6849 26.583 56.1512 31.2492 59.0675C33.9029 60.7262 36.3885 62.5469 38.4073 64.3134C39.6412 65.3931 40.6731 66.4289 41.4993 67.4481C42.3256 66.4288 43.3574 65.3931 44.5914 64.3134C46.6102 62.5469 49.0956 60.7262 51.7495 59.0675C56.4157 56.1512 61.4915 53.6849 65.7347 53.13L63.607 40.3655H62.5938L41.4993 50.9128L20.4045 40.3655H19.3913Z"
-                                fill="#344948" />
-                        </svg>
-                        <p id="yudisium" class="text-5xl font-bold text-main_green">0</p>
-                    </div>
-                    <a class="text-main_green text-[12px]" href="">Cek mahasiswa bimbingan
-                        <svg class="inline ms-2" xmlns="http://www.w3.org/2000/svg" width="15" height="18"
-                            viewBox="0 0 15 18" fill="none">
-                            <path
-                                d="M10.414 5.26028L10.1772 5.49699C10.0203 5.65389 10.0203 5.90829 10.1772 6.06522L12.9873 8.8591H0.401786C0.1799 8.8591 0 9.039 0 9.26088V9.59571C0 9.81759 0.1799 9.99749 0.401786 9.99749H12.9873L10.1772 12.7914C10.0203 12.9483 10.0203 13.2027 10.1772 13.3596L10.414 13.5963C10.5708 13.7532 10.8252 13.7532 10.9821 13.5963L14.8823 9.71239C15.0392 9.55549 15.0392 9.3011 14.8823 9.14417L10.9821 5.26028C10.8252 5.10335 10.5708 5.10335 10.414 5.26028Z"
-                                fill="#344948" />
-                        </svg></a>
-                </div> --}}
-
-
             </div>
 
         </div>
+
+        <p class="font-medium text-2xl mt-12">Pengumuman</p>
+
+        <div id="container_berita"
+            class="flex flex-col rounded-lg border bg-white border-gray-200 shadow-lg mt-10 w-full p-10">
+
+        </div>
+
     </main>
-
-    <script src="{{ asset('js/grafik_dashboard_dosen.js') }}"></script>
     @stack('script')
 @endsection
-<script>
-    async function fetchProjects(page = 1, filterName = '') {
-        try {
-            let totalSlotDosen = 0;
-            let totalSlotKosong = 0;
-            const url = `http://127.0.0.1:8001/api/lecturer`;
-            while (url != null) {
-                const response = await fetch(url);
-                data = await response.json();
-                url = data.data.next_page_url;
-                data.data.data.forEach(detailDosen => {
-                    console.log(detailDosen);
-                });
-            }
 
-            const token = localStorage.getItem('token');
-            const response = await fetch('http://127.0.0.1:8001/api/user', {
+<script>
+    let userData = null;
+
+    const token = localStorage.getItem('token');
+    console.log(token);
+    if (token == null) {
+        window.location.href = "{{ route('login') }}";
+    }
+
+    async function fetchUser() {
+        // FETCH DATA USER
+        let response = await fetch('http://127.0.0.1:8001/api/user', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            userData = await response.json();
+            console.log(userData);
+            const usernameObj = document.getElementById('username_txt');
+            usernameObj.textContent = userData.user_data.username;
+        }
+    }
+
+    async function fetchMyStatus() {
+        try {
+            let response = await fetch('http://127.0.0.1:8001/api/myProjectStatus', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
-            const userData = await response.json();
-            console.log(userData);
+
+            const modal_empty = document.getElementById("modal_empty");
+            const modal_acc = document.getElementById("modal_acc");
+            const modal_dec = document.getElementById("modal_dec");
+            data = await response.json();
+            if (data.message == "kamu belum mengajukan judul") {
+                modal_empty.style.display = "flex";
+            } else if (data.message == "kamu belum mengajukan judul") {
+                modal_acc.style.display = "flex";
+            } else if (data.message == "kamu belum mengajukan judul") {
+                modal_dec.style.display = "flex";
+            }
+
         } catch (error) {
             console.error('Error:', error);
         }
     }
 
-    function sortProjectsChanger(sortField) {
-        if (sortcounter == 0) {
-            sortProjects(sortField, 'asc')
-            sortcounter++;
-        } else {
-            sortProjects(sortField, 'desc')
-            sortcounter--;
+    async function fetchLecturers() {
+        try {
+            let url = `http://127.0.0.1:8001/api/lecturer`;
+
+            let tmpArrayDosen = [];
+            let totalProjekTersedia = 0;
+            let totalProjekKosong = 0;
+
+
+            // FETCH DATA COUNSELLING
+            response = await fetch(url, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            data = await response.json();
+            while (url != null) {
+                response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                data = await response.json();
+                url = data.meta.next_page;
+                data.data.forEach(detailProjek => {
+                    if (detailProjek.Approval_kaprodi == "Approved") {
+                        if (detailProjek.status == "not taken yet") {
+                            totalProjekKosong++;
+                            totalProjekTersedia++;
+                        } else {
+                            totalProjekTersedia++;
+                        }
+                    }
+                });
+            }
+
+            const quota_txt = document.getElementById("quota_txt");
+            const projek_count_txt = document.getElementById("projek_count_txt");
+            quota_txt.textContent = kuotaTerpakai + " / " + totalSlotDosen;
+            projek_count_txt.textContent = totalProjekKosong + " / " + totalProjekTersedia;
+
+            // displayCounselingData();
+
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+    }
+
+    async function fetchProjects() {
+        try {
+            let url = `http://127.0.0.1:8001/api/project`;
+            // FETCH TOTAL SLOT DOSEN
+            let totalSlotDosen = 0;
+            let kuotaTerpakai = 0;
+            let tmpArrayDosen = [];
+            let totalProjekTersedia = 0;
+            let totalProjekKosong = 0;
+
+
+            // FETCH DATA COUNSELLING
+            response = await fetch(url, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            data = await response.json();
+            while (url != null) {
+                response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                data = await response.json();
+                url = data.meta.next_page;
+                data.data.forEach(detailProjek => {
+                    if (detailProjek.Approval_kaprodi == "Approved") {
+                        if (detailProjek.status == "not taken yet") {
+                            totalProjekKosong++;
+                            totalProjekTersedia++;
+                        } else {
+                            totalProjekTersedia++;
+                        }
+                    }
+                });
+            }
+
+            const quota_txt = document.getElementById("quota_txt");
+            const projek_count_txt = document.getElementById("projek_count_txt");
+            quota_txt.textContent = kuotaTerpakai + " / " + totalSlotDosen;
+            projek_count_txt.textContent = totalProjekKosong + " / " + totalProjekTersedia;
+
+            // displayCounselingData();
+
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+    }
+
+    async function fetchAnouncements(page = 1, filterName = '') {
+        try {
+            const response = await fetch(`http://127.0.0.1:8001/api/announcement?page=${page}&name=${filterName}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            data = await response.json();
+            console.log(data);
+            totalPages = data.meta.last_page;
+            displayAnouncements(data.data);
+            updatePagination();
+            setPageIndicator();
+        } catch (error) {
+            console.error('Error:', error);
         }
     }
 
-    document.addEventListener("DOMContentLoaded", async () => {
 
+    function displayAnouncements(projects) {
+        const containerBerita = document.getElementById('container_berita');
+        if (projects.length == 0) {
+            const emptyText = document.createElement('p');
+            emptyText.classList.add('text-lg', 'text-black', 'w-full', 'text-center');
+            emptyText.textContent = "Tidak ada pengumuman"
+            containerBerita.appendChild(emptyText);
+        } else {
+            projects.forEach(project => {
+                const container_content = document.createElement('div');
+                container_content.classList.add('flex', 'flex-col');
+
+                const tittle = document.createElement('p');
+                tittle.classList.add('text-xl', 'font-semibold');
+                tittle.textContent = project.title;
+
+                const detail = document.createElement('p');
+                detail.classList.add('text-sm', 'mt-4');
+                detail.textContent = project.detail;
+
+                const buttonAtc = document.createElement('button');
+                buttonAtc.setAttribute('onclick', 'toProjectDetails(' + project["id"] + ')');
+
+                const logoAtc = document.createElement('img');
+                logoAtc.classList.add('bg-slate-900', 'rounded-xl', 'p-2', 'w-8', 'h-8', 'mt-10');
+                logoAtc.setAttribute('src', "{{ asset('icon/Mahasiswa/octicon_project-16.png') }}");
+                buttonAtc.appendChild(logoAtc);
+
+                const container_footer = document.createElement('div');
+                container_footer.classList.add('flex', 'flex-row', 'items-center', 'text-xs', 'mt-12',
+                    'space-x-4', 'text-black');
+                const uploadDate = document.createElement('p');
+                const projectCreatedAt = new Date(project.created_at);
+                uploadDate.textContent = projectCreatedAt.toLocaleDateString();
+                container_footer.appendChild(uploadDate);
+
+                const pembatas = document.createElement('div');
+                pembatas.classList.add('w-full', 'h-1', 'bg-slate-300', 'my-10');
+
+
+                container_content.appendChild(tittle);
+                container_content.appendChild(detail);
+                container_content.appendChild(buttonAtc);
+                container_content.appendChild(container_footer);
+                container_content.appendChild(pembatas);
+
+                containerBerita.appendChild(container_content);
+            });
+        }
+    }
+
+
+
+    document.addEventListener("DOMContentLoaded", async () => {
         const logoutButton = document.getElementById('logout-button');
         logoutButton.addEventListener('click', async () => {
             try {
@@ -311,4 +461,9 @@
             }
         });
     });
+
+    fetchUser();
+    fetchMyStatus();
+    fetchAnouncements();
+    fetchProjects();
 </script>

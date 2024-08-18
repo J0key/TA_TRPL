@@ -71,7 +71,7 @@
 
             <div class="flex flex-row justify-between items-center mt-8 space-x-6">
 
-                <div class="w-80 basis-2/5 bg-white shadow-lg shadow-slate rounded-3xl flex flex-col relative">
+                <div class="w-80 min-h-[30rem] basis-2/5 bg-white shadow-lg shadow-slate rounded-3xl flex flex-col relative">
 
                     <button type="button" onclick="toEditProfile()">
                         <img class="absolute top-0 right-0 mt-4 me-4"
@@ -80,7 +80,7 @@
 
                     <button class="self-center" onclick="saveImage()">
                         <div class="flex flex-row bg-slate-100 w-56 h-56 rounded-full mt-10 items-center justify-center">
-                            <img id="profile_image" class="w-full h-full"
+                            <img class="w-32 h-32" id="profile_image" class="w-full h-full"
                                 src="{{ asset('icon/Mahasiswa/Profile/camera.png') }}" alt="">
                         </div>
                     </button>

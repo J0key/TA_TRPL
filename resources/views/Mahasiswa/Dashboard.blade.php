@@ -1,23 +1,8 @@
 @extends('Mahasiswa.LayoutMahasiswa')
-<style>
-    /* #box1:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease-in-out;
-    }
-
-    #box2:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease-in-out;
-    }
-
-    #box3:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease-in-out;
-    } */
-</style>
 
 @section('main')
     <main class="w-full ml-[330px] mr-[50px] min-h-screen flex flex-col">
+
         <div class="flex items-center justify-between mt-4">
 
             <div class="text-[#404D61]">
@@ -112,7 +97,8 @@
         <div class="w-full flex flex-row justify-center items-center relative space-x-16 px-8">
             <div id="box1"
                 class="bg-white rounded-3xl p-4 px-8 flex flex-col mt-[-50px] shadow-lg shadow-main_green min-h-52 min-w-80">
-                <div id="modal_empty" class="flex flex-col hidden">
+
+                <div id="modal_empty" class="flex-col hidden">
                     <p class="text-lg font-semibold">Sistem Pengajuan Judul</p>
                     <div class="flex flex-row w-full justify-start items-center space-x-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54"
@@ -127,10 +113,9 @@
                                 tersedia!.</p>
                         </div>
                     </div>
-
                 </div>
 
-                <div id="modal_acc" class="flex flex-col hidden">
+                <div id="modal_acc" class="flex-col hidden">
                     <p class="text-lg font-semibold">Sistem Pengajuan Judul</p>
                     <div class="flex flex-row w-full justify-start items-center space-x-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="71" height="70" viewBox="0 0 71 70"
@@ -150,6 +135,29 @@
                     </div>
                 </div>
 
+                <div id="modal_dec" class="flex-col hidden">
+                    <p class="text-lg font-semibold">Sistem Pengajuan Judul</p>
+                    <div class="flex flex-row w-full justify-start items-center space-x-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="71" height="70" viewBox="0 0 71 70"
+                            fill="none">
+                            <path
+                                d="M62.2532 35.8375C62.2532 50.9788 49.9788 63.2532 34.8375 63.2532C19.6963 63.2532 7.42188 50.9788 7.42188 35.8375C7.42188 20.6963 19.6963 8.42188 34.8375 8.42188C49.9788 8.42188 62.2532 20.6963 62.2532 35.8375Z"
+                                fill="#344948" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M49.3954 25.6161C49.7894 26.0103 50.0108 26.5448 50.0108 27.1022C50.0108 27.6596 49.7894 28.1941 49.3954 28.5883L33.6405 44.3431C33.4323 44.5514 33.1851 44.7166 32.9131 44.8293C32.641 44.942 32.3494 45 32.055 45C31.7605 45 31.4689 44.942 31.1968 44.8293C30.9248 44.7166 30.6776 44.5514 30.4694 44.3431L22.6417 36.5169C22.4409 36.323 22.2808 36.091 22.1707 35.8346C22.0605 35.5781 22.0025 35.3023 22.0001 35.0232C21.9977 34.7441 22.0508 34.4673 22.1565 34.209C22.2622 33.9507 22.4183 33.716 22.6156 33.5186C22.813 33.3213 23.0477 33.1652 23.306 33.0595C23.5643 32.9538 23.8411 32.9006 24.1202 32.9031C24.3993 32.9055 24.6751 32.9635 24.9316 33.0736C25.188 33.1838 25.42 33.3439 25.6139 33.5447L32.0542 39.9851L46.4218 25.6161C46.617 25.4208 46.8488 25.2658 47.1039 25.1601C47.359 25.0544 47.6324 25 47.9086 25C48.1847 25 48.4582 25.0544 48.7133 25.1601C48.9684 25.2658 49.2002 25.4208 49.3954 25.6161Z"
+                                fill="white" />
+                        </svg>
+                        <div class="flex flex-col w-64 mt-2">
+                            <p class="text-sm mt-4 font-semibold">Proyek Akhirmu di Setujui</p>
+                            <p class="text-sm mt-4">Proyek akhirmu telah memenuhi krieria untuk menuju ketahap
+                                selanjutnya..
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
 
             </div>
 
@@ -163,7 +171,8 @@
                 <div class="flex flex-row mt-2 items-center">
                     <p class="text-sm mt-4">Lihat judul.</p>
                     <button>
-                        <img class="mt-4 mx-10" src="{{ asset('icon/Mahasiswa/long-arrow-right (1).png') }}" alt="">
+                        <img class="mt-4 mx-10" src="{{ asset('icon/Mahasiswa/long-arrow-right (1).png') }}"
+                            alt="">
                     </button>
                 </div>
             </div>
@@ -217,36 +226,64 @@
     let userData = null;
 
     const token = localStorage.getItem('token');
+    console.log(token);
     if (token == null) {
         window.location.href = "{{ route('login') }}";
     }
 
-    async function fetchProjects() {
+    async function fetchUser() {
+        // FETCH DATA USER
+        let response = await fetch('http://127.0.0.1:8001/api/user', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            userData = await response.json();
+            console.log(userData);
+            const usernameObj = document.getElementById('username_txt');
+            usernameObj.textContent = userData.user_data.username;
+        }
+    }
+
+    async function fetchMyStatus() {
         try {
-            let url = `http://127.0.0.1:8001/api/counseling`;
-            // FETCH TOTAL SLOT DOSEN
-            let totalSlotDosen = 0;
-            let kuotaTerpakai = 0;
-            let tmpArrayDosen = [];
-            let totalProjekTersedia = 0;
-            let totalProjekDiambil = 0;
-
-
-            // FETCH DATA USER
-            console.log(token);
-            let response = await fetch('http://127.0.0.1:8001/api/user', {
+            let response = await fetch('http://127.0.0.1:8001/api/myProjectStatus', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
             });
 
-            if (response.ok) {
-                userData = await response.json();
-                console.log(userData);
-                const usernameObj = document.getElementById('username_txt');
-                usernameObj.textContent = userData.user_data.username;
+            const modal_empty = document.getElementById("modal_empty");
+            const modal_acc = document.getElementById("modal_acc");
+            const modal_dec = document.getElementById("modal_dec");
+            data = await response.json();
+            if (data.message == "kamu belum mengajukan judul") {
+                modal_empty.style.display = "flex";
+            } else if (data.message == "kamu belum mengajukan judul") {
+                modal_acc.style.display = "flex";
+            } else if (data.message == "kamu belum mengajukan judul") {
+                modal_dec.style.display = "flex";
             }
 
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    async function fetchProjects() {
+        try {
+            let url = `http://127.0.0.1:8001/api/project`;
+            // FETCH TOTAL SLOT DOSEN
+            let totalSlotDosen = 0;
+            let kuotaTerpakai = 0;
+            let tmpArrayDosen = [];
+            let totalProjekTersedia = 0;
+            let totalProjekKosong = 0;
+
+
+            // FETCH DATA COUNSELLING
             response = await fetch(url, {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -254,46 +291,32 @@
             });
 
             data = await response.json();
-            // url = data.data.next_page_url;
-            console.log(data);
-
-
-            // while (url != null) {
-            //     let response = await fetch(url);
-            //     data = await response.json();
-            //     url = data.data.next_page_url;
-            //     data.data.data.forEach(detailProjek => {
-            //         if (detailProjek.status == "bimbingan") {
-            //             kuotaTerpakai += 1;
-            //         }
-            //         if (detailProjek.isApproved == "Approved") {
-            //             totalProjekTersedia += 1;
-            //         }
-            //         if (!tmpArrayDosen.includes(detailProjek['lecturer'].id)) {
-            //             tmpArrayDosen.push(detailProjek['lecturer'].id);
-            //             totalSlotDosen += detailProjek['lecturer'].max_quota;
-            //         }
-            //         detailProjek
-            //     });
-            // }
+            while (url != null) {
+                response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                data = await response.json();
+                url = data.meta.next_page;
+                data.data.forEach(detailProjek => {
+                    if (detailProjek.Approval_kaprodi == "Approved") {
+                        if (detailProjek.status == "not taken yet") {
+                            totalProjekKosong++;
+                            totalProjekTersedia++;
+                        } else {
+                            totalProjekTersedia++;
+                        }
+                    }
+                });
+            }
 
             const quota_txt = document.getElementById("quota_txt");
             const projek_count_txt = document.getElementById("projek_count_txt");
             quota_txt.textContent = kuotaTerpakai + " / " + totalSlotDosen;
-            projek_count_txt.textContent = kuotaTerpakai + " / " + totalProjekTersedia;
+            projek_count_txt.textContent = totalProjekKosong + " / " + totalProjekTersedia;
 
-            displayCounselingData();
-            // // FETCH DATA counseling
-            // response = await fetch('http://127.0.0.1:8001/api/counseling', {
-            //     headers: {
-            //         'Authorization': `Bearer ${token}`
-            //     }
-            // });
-
-            // if (response.ok) {
-            //     const counselingData = await response.json();
-            //     displayCounselingData(counselingData.data.data);
-            // }
+            // displayCounselingData();
 
 
         } catch (error) {
@@ -302,53 +325,54 @@
 
     }
 
-    async function displayCounselingData() {
-        const tableBody = document.getElementById("table_body");
-        tableBody.innerHTML = "";
-        let isEmpty = true;
-        url = "http://127.0.0.1:8001/api/counseling";
-        while (url != null) {
-            let response = await await fetch(url, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            data = await response.json();
-            url = data.data.next_page_url;
-            let index = 1;
-            // console.log(data.data.data);
+    // async function displayCounselingData() {
+    //     const tableBody = document.getElementById("table_body");
+    //     tableBody.innerHTML = "";
+    //     let isEmpty = true;
+    //     url = "http://127.0.0.1:8001/api/counseling";
 
-            if (data.data.data.length != 0) {
-                isEmpty = false;
-                data.data.data.forEach(detailCounseling => {
-                    let tanggal = "sq";
-                    let title = "1";
-                    let description = "1";
-                    let catatan = "1";
+    //     while (url != null) {
+    //         let response = await await fetch(url, {
+    //             headers: {
+    //                 'Authorization': `Bearer ${token}`
+    //             }
+    //         });
+    //         data = await response.json();
+    //         url = data.data.next_page_url;
+    //         let index = 1;
+    //         // console.log(data.data.data);
 
-                    if (detailCounseling.student_id == userData.profile_data.id) {
-                        tanggal = detailCounseling.tanggal;
-                        title = detailCounseling.project.title;
-                        description = detailCounseling.subject;
-                        catatan = detailCounseling.catatan_dosen;
-                    }
-                    tableBody.innerHTML += (createTableBody(detailCounseling, index));
-                    index += 1;
-                });
-            }
-            console.log(isEmpty);
-            if (isEmpty == false) {
-                const modal_acc = document.getElementById("modal_acc");
-                modal_acc.classList.remove('hidden');
-            } else {
-                const empty_filed = document.getElementById("empty_filed");
-                const modal_empty = document.getElementById("modal_empty");
-                modal_empty.classList.remove('hidden');
-                const tableBodyHTML = `<div class="px-6 py-4 flex flex-row justify-center w-full">BELUM ADA</div>`;
-                empty_filed.innerHTML += tableBodyHTML;
-            }
-        }
-    }
+    //         if (data.data.data.length != 0) {
+    //             isEmpty = false;
+    //             data.data.data.forEach(detailCounseling => {
+    //                 let tanggal = "sq";
+    //                 let title = "1";
+    //                 let description = "1";
+    //                 let catatan = "1";
+
+    //                 if (detailCounseling.student_id == userData.profile_data.id) {
+    //                     tanggal = detailCounseling.tanggal;
+    //                     title = detailCounseling.project.title;
+    //                     description = detailCounseling.subject;
+    //                     catatan = detailCounseling.catatan_dosen;
+    //                 }
+    //                 tableBody.innerHTML += (createTableBody(detailCounseling, index));
+    //                 index += 1;
+    //             });
+    //         }
+    //         console.log(isEmpty);
+    //         if (isEmpty == false) {
+    //             const modal_acc = document.getElementById("modal_acc");
+    //             modal_acc.classList.remove('hidden');
+    //         } else {
+    //             const empty_filed = document.getElementById("empty_filed");
+    //             const modal_empty = document.getElementById("modal_empty");
+    //             modal_empty.classList.remove('hidden');
+    //             const tableBodyHTML = `<div class="px-6 py-4 flex flex-row justify-center w-full">BELUM ADA</div>`;
+    //             empty_filed.innerHTML += tableBodyHTML;
+    //         }
+    //     }
+    // }
 
     function createTableBody(data, index) {
         let tableBodyHTML = '';
@@ -394,5 +418,8 @@
             }
         });
     });
+
+    fetchUser();
+    fetchMyStatus();
     fetchProjects();
 </script>

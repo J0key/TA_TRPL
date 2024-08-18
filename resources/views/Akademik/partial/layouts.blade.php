@@ -47,7 +47,7 @@
 
             <ul class="mt-8 ms-2 me-4 z-30">
                 <li class="mb-1 group py-2">
-                    <a id="to_dashboard" href="{{ route('mahasiswa.dashboard') }}"
+                    <a id="to_dashboard" href="{{ route('akademik.dashboard') }}"
                         class="flex items-center py-2 px-4 text-white font-medium hover:bg-main_green_hover hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                         <img src="{{ asset('icon/Property 1=icon, Property 2=mahasiswa.png') }}" class="w-4 h-auto mr-4"
                             alt="" />
@@ -253,7 +253,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    {{-- <script src="https://unpkg.com/@popperjs/core@2"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>

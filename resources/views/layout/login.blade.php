@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -28,7 +29,8 @@
                         Sign In to Your Account
                     </h1>
                     <form id="login-form" class="space-y-4 md:space-y-6" action="#">
-                        {{-- @csrf --}}
+                        {{-- @csrf  --}}
+                        {{ csrf_field() }}
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-white dark:text-white">Your
                                 email</label>
@@ -70,14 +72,46 @@
 </body>
 
 <script>
-    // const token = localStorage.getItem('token');
-    // if (token != null) {
-    //     window.location.href = "{{ route('mahasiswa.dashboard') }}";
-    // }
+    const token = localStorage.getItem('token');
+    console.log(token);
+    if (token != null) {
+        navigateToPage(token);
+    }
+
+    async function navigateToPage(token) {
+        try {
+            const response = await fetch('http://127.0.0.1:8001/api/user', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                if (data.user_data.role == "Dosen") {
+                    if (data.profile_data.isKaprodi == 1) {
+                        window.location.href = "{{ route('akademik.dashboard') }}";
+
+                    } else {
+                        window.location.href = "{{ route('dosen.dashboard') }}";
+                    }
+                } else {
+                    window.location.href = "{{ route('mahasiswa.dashboard') }}";
+                }
+            } else {
+                alert(`Error: ${result.message}`);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const errorMessageElement = document.getElementById('error-message');
     const errorPassword = document.getElementById('error_password');
 
     document.addEventListener("DOMContentLoaded", () => {
+
         const loginForm = document.getElementById("login-form");
         loginForm.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -100,22 +134,26 @@
                 const response = await fetch('http://127.0.0.1:8001/api/login', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': token
+
                     },
+                    credentials: 'include',
                     body: JSON.stringify(data)
                 });
 
                 const result = await response.json();
 
                 if (response.ok) {
-                    alert('Login Berhasil!');
                     localStorage.setItem('token', result.token);
                     const userData = await getUserData(result.token);
                     console.log(localStorage.getItem('token'));
-                    if (userData.role === "Admin") {
-                        window.location.href = "{{ route('akademik.dashboard') }}";
-                    } else if (userData.role === "Dosen") {
-                        window.location.href = "{{ route('dosen.dashboard') }}";
+                    if (userData.user_data.role == "Dosen") {
+                        if (userData.profile_data.isKaprodi == 1) {
+                            window.location.href = "{{ route('akademik.dashboard') }}";
+                        } else {
+                            window.location.href = "{{ route('dosen.dashboard') }}";
+                        }
                     } else {
                         window.location.href = "{{ route('mahasiswa.dashboard') }}";
                     }

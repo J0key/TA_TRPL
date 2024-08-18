@@ -104,13 +104,14 @@
                 <div class="form-group">
                     <label class=" block mb-2 font-semibold" for="title">Usulan Judul</label>
                     <input type="text" id="title" name="title" style="" placeholder="Judul Proyek" required
+                        disabled
                         class="form-control min-h-12 rounded-lg border-gray-500 w-full focus:border-semi_dark_green"
                         value="">
                 </div>
 
                 <div class="form-group mt-12">
                     <label class=" block mb-2 font-semibold" for="agency">Nama Perusahaan Mitra</label>
-                    <input type="text" id="agency" name="agency" style="" required
+                    <input type="text" id="agency" name="agency" style="" required disabled
                         placeholder="Nama Perusahaan / agensi"
                         class="form-control min-h-12 rounded-lg border-gray-500 w-full focus:border-semi_dark_green"
                         value="">
@@ -119,6 +120,7 @@
                 <div class="form-group mt-12">
                     <label class=" block mb-2 font-semibold" for="tools">Tools</label>
                     <input type="text" id="tools" name="tools" style="" placeholder="Tools yang di gunakan"
+                        disabled
                         class="form-control min-h-12 rounded-lg border-gray-500 w-full focus:border-semi_dark_green"
                         onkeydown="saveData(event)" value="">
                 </div>
@@ -129,7 +131,7 @@
 
                 <div class="form-group mt-12">
                     <label class=" block mb-2 font-semibold" for="description">Deskripsi</label>
-                    <textarea type="text" id="description" name="description" style="" placeholder="Deskripsi projek"
+                    <textarea type="text" id="description" name="description" style="" placeholder="Deskripsi projek" disabled
                         class="form-control min-h-32 rounded-lg border-gray-500 w-full focus:border-semi_dark_green"
                         onkeydown="saveData(event)" value=""></textarea>
                 </div>
@@ -137,7 +139,7 @@
                 <div class="w-full grid grid-flow-col justify-stretch space-x-12 mt-10">
                     <div class="">
                         <label class=" block mb-2 font-semibold" for="Dosen_1">Dosen Pembimbing 1</label>
-                        <select id="Dosen_1" type="dropdown" name="Dosen_1"
+                        <select id="Dosen_1" type="dropdown" name="Dosen_1" disabled
                             class="form-control rounded-lg border-gray-500 w-full py-4 px-4 mt-4" value="">
                         </select>
                     </div>
@@ -169,6 +171,7 @@
 
 
 <script>
+    // BUAT ATUR ARRAY TOOLS
     function saveData(event) {
         if (event.key === 'Enter') {
             const tools = document.getElementById('tools');
@@ -219,7 +222,6 @@
 
             arrayToolsElement.appendChild(container);
         });
-
     }
 
     function deleteArray(value) {
@@ -227,7 +229,7 @@
         updateArray();
     }
 
-    async function fetchUser(page = 1, filterName = '') {
+    async function fetchUser() {
         try {
             // FETCH DATA USER
             let response = await fetch('http://127.0.0.1:8001/api/user', {
@@ -240,6 +242,62 @@
                 userData = await response.json();
                 const usernameObj = document.getElementById('username_txt');
                 usernameObj.textContent = userData.user_data.username;
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    async function fetchProject(id) {
+        const url = `http://127.0.0.1:8001/api/project/${id}`;
+
+        try {
+            // FETCH DATA PROJECT
+            let response = await fetch(url, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                const titleField = document.getElementById("title");
+                const agencyField = document.getElementById("agency");
+                const descriptionField = document.getElementById("description");
+                const lecturer1_idField = document.getElementById("Dosen_1");
+                const lecturer2_idField = document.getElementById("Dosen_2");
+
+                data = await response.json();
+                titleField.value = data.data.title;
+                agencyField.value = data.data.agency;
+                descriptionField.value = data.data.description;
+
+                const strTools = data.data.tools;
+                arrayTools = strTools.split(", ");
+                updateArray();
+
+                // console.log(data.data.Dosen_1.user["first_name"]);
+
+                // lecturer1_idField.value = data.data.Dosen_1.user["first_name"] + " " + data.data.Dosen_1.user[
+                //     "last_name"];
+
+                const newOption = document.createElement("option");
+                newOption.value = data.data.Dosen_1.id;
+                newOption.textContent = data.data.Dosen_1.user["first_name"] + " " + data.data.Dosen_1.user[
+                    "last_name"];
+                lecturer1_idField.appendChild(newOption);
+
+                if (data.data.Dosen_2 != null) {
+                    lecturer2_idField.disabled = true;
+                    const newOption2 = document.createElement("option");
+                    newOption2.value = data.data.Dosen_2.id;
+                    newOption2.textContent = data.data.Dosen_2.user["first_name"] + " " + data.data.Dosen_2.user[
+                        "last_name"];
+                    lecturer2_idField.appendChild(newOption2);
+                } else {
+                    fethDosenAll();
+                }
+
             }
 
         } catch (error) {
@@ -265,11 +323,6 @@
             url = data.data.links.next;
             console.log(url);
             data.data.data.forEach(dataDosen => {
-
-                const option = document.createElement('option');
-                option.value = dataDosen.id;
-                option.textContent = dataDosen.user.first_name + " " + dataDosen.user.last_name;
-                dropdown1.appendChild(option);
 
                 const option2 = document.createElement('option');
                 option2.value = dataDosen.id;
@@ -324,7 +377,6 @@
         };
 
         if (validateInput()) {
-            // console.log(data);
             try {
                 const response = await fetch('http://127.0.0.1:8001/api/project', {
                     method: 'POST',
@@ -349,7 +401,6 @@
                     'Terjadi kesalahan saat mengupdate data. Silakan coba lagi.');
             }
 
-
         } else {
             const emptyMessage = document.getElementById("errorMessage");
             emptyMessage.style.display = "flex";
@@ -366,6 +417,10 @@
     let sortcounter = 0;
     let arrayTools = [];
 
+    const currentUrl = window.location.href;
+    const url = new URL(currentUrl);
+    const id = url.searchParams.get('id');
+    console.log(id);
     const token = localStorage.getItem('token');
     console.log(token);
 
@@ -374,5 +429,5 @@
     }
 
     fetchUser();
-    fethDosenAll();
+    fetchProject(id);
 </script>
